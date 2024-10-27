@@ -77,9 +77,10 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
 :$HOME/.foundry/bin\
-:/opt/homebrew/opt/python@3.12/libexec/bin\
+:/opt/homebrew/opt/python@3.13/libexec/bin\
 :/opt/homebrew/opt/sqlite/bin\
 :/opt/homebrew/opt/ruby/bin\
+:/opt/homebrew/opt/openjdk/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
@@ -88,11 +89,6 @@ export PATH="$HOME/.local/bin/\
 :/usr/sbin\
 :/bin\
 :/sbin";
-
-# :$HOME/Library/Android/sdk/tools\
-# :$HOME/Library/Android/sdk/platform-tools\
-# :/opt/homebrew/opt/openjdk@11/bin\
-# :/opt/homebrew/opt/ncurses/bin\
 
 function chpwd() {
   if [[ $PWD == /Users/pritesh/Work/simpletire/steer ]]; then useNode20; fi

@@ -26,7 +26,8 @@ end
 
 local function _openApp(name); application.launchOrFocus(name); end
 
-function M.openBrowser(); _openApp("firefox"); end
+function M.openFirefox(); _openApp("firefox"); end
+function M.openChrome(); _openApp("/Applications/Google Chrome.app/contents/MacOS/Google Chrome"); end
 function M.openTerminal(); _openApp("kitty"); end
 -- function M.openMusic(); _openApp("kitty music"); end
 -- function M.openEditor(); _openApp("kitty nvim"); end

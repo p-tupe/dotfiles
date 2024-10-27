@@ -6,7 +6,8 @@ local hotkey = require("hs.hotkey")
 local f = require("./functions")
 
 local mappings = {
-	{ modifiers = { "cmd" }, key = "b", fn = f.openBrowser },
+	{ modifiers = { "cmd" }, key = "b", fn = f.openFirefox },
+	{ modifiers = { "cmd" }, key = "g", fn = f.openChrome },
 	{ modifiers = { "cmd" }, key = "return", fn = f.openTerminal },
 
 	{ modifiers = { "alt" }, key = "m", fn = f.zoom },

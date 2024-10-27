@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-~/.local/bin/backup_sandisk
 open /Applications/MEGAsync.app
 open /Applications/Nextcloud.app
 open /Applications/Syncthing.app
 ~/.local/bin/backup_servers
+~/.local/bin/backup_sandisk
