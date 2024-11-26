@@ -76,11 +76,9 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
-:$HOME/.foundry/bin\
 :/opt/homebrew/opt/python@3.13/libexec/bin\
+:/opt/homebrew/opt/postgresql@17/bin\
 :/opt/homebrew/opt/sqlite/bin\
-:/opt/homebrew/opt/ruby/bin\
-:/opt/homebrew/opt/openjdk/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
@@ -91,9 +89,7 @@ export PATH="$HOME/.local/bin/\
 :/sbin";
 
 function chpwd() {
-  if [[ $PWD == /Users/pritesh/Work/simpletire/steer ]]; then useNode20; fi
-  if [[ $PWD == /Users/pritesh/Work/simpletire/steer-search-widget ]]; then useNode18; fi
-  if [[ $PWD == /Users/pritesh/Work/simpletire/steer-api-definition ]] then useNode14; fi
+  if [[ $PWD == '/Users/pritesh/Work/ztx/stix-web' ]]; then useNode20; fi
 }
 
 
@@ -122,10 +118,14 @@ if [ ! -e "/tmp/run_once" ]; then
   (
   # Inject Window Manager
   cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa &
+
   # Load SSH Keys
-  # Add them to keychain using following command:
-  #   ssh-add --apple-use-keychain ~/.ssh/<key>
+  # Add them to keychain using following command: ssh-add --apple-use-keychain ~/.ssh/<key>
   /usr/bin/ssh-add --apple-load-keychain &
+
+  # Mount sandisk
+  mount -t smbfs "//guest@192.168.2.1/sandisk" ~/sandisk &
+
   # Mark it done
   touch /tmp/run_once
   ) 2> /dev/null

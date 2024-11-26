@@ -10,9 +10,8 @@ local servers = {
 	"ts_ls",
 	"vimls",
 	"yamlls",
-	-- "denols",
+	"gopls",
 	"docker_compose_language_service",
-	-- "cssmodules_ls",
 }
 
 require("mason-lspconfig").setup({})

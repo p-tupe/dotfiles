@@ -1,7 +1,7 @@
 [user]
   name = Pritesh Tupe
   email = mail@priteshtupe.com
-  signingkey = 2CB695256E32FF9E
+  signingkey = /Users/pritesh/.ssh/github.pub
 [init]
   defaultBranch = main
 [advice]
@@ -12,13 +12,15 @@
 [pull]
   rebase = false
 [commit]
-  ; gpgsign = true
+  gpgsign = true
 [safe]
   directory = *
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [maintenance]
-	repo = /Users/pritesh/Work/simpletire/steer
+  repo = /Users/pritesh/Work/simpletire/steer
+[gpg]
+  format = ssh
