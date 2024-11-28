@@ -46,7 +46,10 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-	completion = { keyword_length = 1 },
+	performance = {
+		max_view_entries = 10,
+	},
+	completion = { keyword_length = 2 },
 	experimental = { ghost_text = true },
 	window = { completion = cmp.config.window.bordered(), documentation = cmp.config.window.bordered() },
 	mapping = cmp.mapping.preset.insert({
@@ -54,7 +57,7 @@ cmp.setup({
 		["<C-u>"] = cmp.mapping.scroll_docs(1),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = true }), -- false swallows some completions
+		["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -85,7 +88,7 @@ cmp.setup({
 	},
 	-- Each {} is one group, when present excludes other
 	sources = cmp.config.sources({
-		{ name = "codeium" },
+		{ name = "codeium", max_item_count = 3 },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "path" },

@@ -106,16 +106,13 @@ lazy.setup({
 		{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" } },
 
 		-- Codeim AI code helper
-		{
-			"Exafunction/codeium.nvim",
-			opts = function()
-				require("codeium").setup({})
-			end,
-		},
+		{ "Exafunction/codeium.nvim" },
 	},
 
 	install = { colorscheme = { "dracula" } },
 })
+
+require("codeium").setup({})
 
 require("mason").setup({})
 
