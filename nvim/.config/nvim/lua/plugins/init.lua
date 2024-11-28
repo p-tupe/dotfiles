@@ -1,156 +1,121 @@
--- Automatically Install Packer https://github.com/wbthomason/packer.nvim
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 
+vim.opt.rtp:prepend(lazypath)
+
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
 	return
 end
 
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
+lazy.setup({
+	spec = {
+		-- A dark theme
+		{ "dracula/vim", name = "dracula" },
+
+		-- Library of lua functions.
+		{ "nvim-lua/plenary.nvim" },
+
+		-- An implementation of the Popup API from vim in Neovim.
+		{ "nvim-lua/popup.nvim" },
+
+		-- Collection of common configurations for Neovim's built-in language server client.
+		{ "neovim/nvim-lspconfig" },
+
+		-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+		{ "williamboman/mason.nvim" },
+
+		-- mason-lspconfig bridges mason.nvim with the lspconfig plugin
+		{ "williamboman/mason-lspconfig.nvim" },
+
+		-- A highly extendable fuzzy finder over lists.
+		{ "nvim-telescope/telescope.nvim" },
+
+		-- fzf-native is a c port of fzf
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+		-- Wraps the Neovim treesitter API
+		{ "nvim-treesitter/nvim-treesitter" },
+
+		-- A completion engine plugin for neovim written in Lua.
+		{
+			"hrsh7th/nvim-cmp",
+			dependencies = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-path",
+				"hrsh7th/cmp-cmdline",
+				"ray-x/cmp-treesitter",
+				"saadparwaiz1/cmp_luasnip",
+			},
+		},
+
+		-- A file system explorer for the Vim editor.
+		{ "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
+
+		-- Provides mappings to easily delete, change and add such surroundings in pairs.
+		{ "tpope/vim-surround" },
+
+		-- Smart and Powerful commenting plugin for neovim
+		{ "numToStr/Comment.nvim" },
+
+		-- A minimalist autopairs for Neovim written by Lua.
+		{ "windwp/nvim-autopairs" },
+
+		-- Git signs written in pure lua.
+		{ "lewis6991/gitsigns.nvim" },
+
+		-- Snippet engine in LUA
+		{
+			"L3MON4D3/LuaSnip",
+			build = "make install_jsregexp",
+		},
+		{ "rafamadriz/friendly-snippets" },
+
+		-- navigate seamlessly between vim and kitty splits
+		{ "knubie/vim-kitty-navigator", build = "cp ./*.py ~/.config/kitty" },
+
+		-- This (neo)vim plugin makes scrolling nice and smooth.
+		{ "psliwka/vim-smoothie" },
+
+		-- Distraction-free writing for Neovim.
+		{ "folke/zen-mode.nvim" },
+
+		-- A (Neo)vim plugin for formatting code.
+		{ "sbdchd/neoformat", cmd = "Neoformat" },
+
+		-- Provides a single command that deletes the current buffer in a smart way.
+		{ "mhinz/vim-sayonara", cmd = "Sayonara" },
+
+		-- Git plugin
+		{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" } },
+
+		-- Codeim AI code helper
+		{
+			"Exafunction/codeium.nvim",
+			opts = function()
+				require("codeium").setup({})
+			end,
+		},
 	},
+
+	install = { colorscheme = { "dracula" } },
 })
-
-packer.startup(function(use)
-	-- Speed up loading Lua modules in Neovim to improve startup time.
-	use("lewis6991/impatient.nvim")
-
-	-- Have package manager manage package manager
-	use("wbthomason/packer.nvim")
-
-	-- Library of lua functions.
-	use("nvim-lua/plenary.nvim")
-
-	-- An implementation of the Popup API from vim in Neovim.
-	use("nvim-lua/popup.nvim")
-
-	-- Collection of common configurations for Neovim's built-in language server client.
-	use("neovim/nvim-lspconfig")
-
-	-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
-	use("williamboman/mason.nvim")
-
-	-- mason-lspconfig bridges mason.nvim with the lspconfig plugin
-	use("williamboman/mason-lspconfig.nvim")
-
-	-- A highly extendable fuzzy finder over lists.
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
-
-	-- fzf-native is a c port of fzf
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
-	-- Wraps the Neovim treesitter API
-	use("nvim-treesitter/nvim-treesitter")
-
-	-- A completion engine plugin for neovim written in Lua.
-	use("hrsh7th/nvim-cmp")
-
-	-- Completion Sources
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("ray-x/cmp-treesitter")
-	use("saadparwaiz1/cmp_luasnip")
-
-	-- A file system explorer for the Vim editor.
-	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
-
-	-- A dark theme
-	use({ "dracula/vim", as = "dracula" })
-
-	-- Provides mappings to easily delete, change and add such surroundings in pairs.
-	use("tpope/vim-surround")
-
-	-- Smart and Powerful commenting plugin for neovim
-	use("numToStr/Comment.nvim")
-
-	-- A minimalist autopairs for Neovim written by Lua.
-	use("windwp/nvim-autopairs")
-
-	-- Git signs written in pure lua.
-	use("lewis6991/gitsigns.nvim")
-
-	-- Snippet engine in LUA
-	use({
-		"L3MON4D3/LuaSnip",
-		tag = "v2.*",
-		run = "make install_jsregexp",
-	})
-	use("rafamadriz/friendly-snippets")
-
-	-- navigate seamlessly between vim and kitty splits
-	use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty" })
-
-	-- This (neo)vim plugin makes scrolling nice and smooth.
-	use("psliwka/vim-smoothie")
-
-	-- Distraction-free writing for Neovim.
-	use("folke/zen-mode.nvim")
-
-	-- A (Neo)vim plugin for formatting code.
-	use({ "sbdchd/neoformat", cmd = "Neoformat" })
-
-	-- Provides a single command that deletes the current buffer in a smart way.
-	use({ "mhinz/vim-sayonara", cmd = "Sayonara" })
-
-	-- Markdown Preview for neovim
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		setup = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
-		cmd = "MarkdownPreview",
-	})
-
-	-- Git plugin
-	use({ "NeogitOrg/neogit", requires = { "sindrets/diffview.nvim" } })
-
-	-- Codeim AI code helper
-	use({
-		"Exafunction/codeium.nvim",
-		config = function()
-			require("codeium").setup({})
-		end,
-	})
-
-	-- Interactive repl
-	-- use("hkupty/iron.nvim")
-
-	-- A simple rss reader plugin for neovim
-	-- use {
-	--   -- "empat94/nvim-rss",
-	--   "~/Projects/nvim-rss",
-	--   requires = { "tami5/sqlite.lua" },
-	--   rocks = { "luaexpat" },
-	-- }
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
-
-require("impatient")
 
 require("mason").setup({})
 
