@@ -42,7 +42,7 @@ local lspconfig = require("lspconfig")
 -- Extra config for some servers
 local enhance_server_opts = {
 
-	["sumneko_lua"] = function(opts)
+	["lua_ls"] = function(opts)
 		opts.settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },

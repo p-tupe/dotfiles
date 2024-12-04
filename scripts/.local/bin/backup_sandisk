@@ -2,7 +2,6 @@
 
 rsync \
   --archive \
-  --quiet \
   --partial \
   --recursive \
   --delete \
@@ -16,4 +15,4 @@ rsync \
   $HOME/Projects \
   $HOME/Work \
   $HOME/Pictures \
-  /Volumes/sandisk
+  ~/sandisk
