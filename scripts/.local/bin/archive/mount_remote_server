@@ -4,7 +4,6 @@
 
 pushd ~/mnt
 
-
 sshfs_mount() {
   sshfs \
     -o defer_permissions \

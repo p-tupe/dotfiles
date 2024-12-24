@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 open /Applications/MEGAsync.app
 open /Applications/Nextcloud.app

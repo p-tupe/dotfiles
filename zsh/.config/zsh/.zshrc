@@ -126,6 +126,9 @@ if [ ! -e "/tmp/run_once" ]; then
   # Mount sandisk
   mount -t smbfs "//guest@192.168.2.1/sandisk" ~/sandisk &
 
+  # Set $GOBIN
+  go env -w GOBIN='/Users/pritesh/.local/bin'
+
   # Mark it done
   touch /tmp/run_once
   ) 2> /dev/null
