@@ -12,12 +12,12 @@ local servers = {
 	"yamlls",
 	"gopls",
 	"docker_compose_language_service",
+	"taplo",
 }
 
 require("mason-lspconfig").setup({})
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local function on_attach(_, bufnr)
 	local function buf_set_keymap(...)

@@ -61,7 +61,7 @@ lazy.setup({
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"ray-x/cmp-treesitter",
-				"saadparwaiz1/cmp_luasnip",
+				"tzachar/cmp-ai",
 			},
 		},
 
@@ -80,13 +80,6 @@ lazy.setup({
 		-- Git signs written in pure lua.
 		{ "lewis6991/gitsigns.nvim" },
 
-		-- Snippet engine in LUA
-		{
-			"L3MON4D3/LuaSnip",
-			build = "make install_jsregexp",
-		},
-		{ "rafamadriz/friendly-snippets" },
-
 		-- navigate seamlessly between vim and kitty splits
 		{ "knubie/vim-kitty-navigator", build = "cp ./*.py ~/.config/kitty" },
 
@@ -104,17 +97,11 @@ lazy.setup({
 
 		-- Git plugin
 		{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" } },
-
-		-- Codeim AI code helper
-		{ "Exafunction/codeium.nvim" },
 	},
-
 	install = { colorscheme = { "dracula" } },
 })
 
-require("codeium").setup({})
-
-require("mason").setup({})
+require("mason").setup()
 
 require("Comment").setup()
 
@@ -138,7 +125,7 @@ require("plugins.zen-mode")
 
 require("plugins.neogit")
 
-require("luasnip.loaders.from_vscode").lazy_load()
+require("plugins.llm")
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 
