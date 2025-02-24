@@ -61,7 +61,7 @@ lazy.setup({
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"ray-x/cmp-treesitter",
-				"tzachar/cmp-ai",
+				-- "tzachar/cmp-ai",
 			},
 		},
 
@@ -125,7 +125,7 @@ require("plugins.zen-mode")
 
 require("plugins.neogit")
 
-require("plugins.llm")
+-- require("plugins.llm")
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 

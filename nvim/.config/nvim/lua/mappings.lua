@@ -17,9 +17,13 @@ map("n", "k", "gk", s)
 map("v", "j", "gj", s)
 map("v", "k", "gk", s)
 
--- Quick start/end in insert mode
+-- Quick line start/end in insert mode
 map("i", "<C-e>", "<ESC>A", s)
 map("i", "<C-a>", "<ESC>I", s)
+
+-- Quick sentence start/end in normal mode
+map("n", "0", "^", s)
+map("n", "-", "g_", s)
 
 -- Colon switch
 map("n", ";", ":", o)
