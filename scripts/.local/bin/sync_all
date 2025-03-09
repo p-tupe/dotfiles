@@ -1,7 +1,24 @@
 #!/usr/bin/env zsh
 
+echo "Starting apps..."
 open /Applications/MEGAsync.app
 open /Applications/Nextcloud.app
 open /Applications/Syncthing.app
-~/.local/bin/backup_servers
-~/.local/bin/backup_sandisk
+
+echo "Sync servers..."
+~/.local/bin/sync/servers
+
+echo "Sync sandisk..."
+~/.local/bin/sync/sandisk
+
+echo "Sync SSD..."
+~/.local/bin/sync/SSD
+
+echo "Sync Pixel..."
+~/.local/bin/sync/pixel
+
+echo "Sync Mega..."
+~/.local/bin/sync/mega
+
+echo "Sync Nextcloud..."
+~/.local/bin/sync/nextcloud

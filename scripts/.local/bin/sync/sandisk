@@ -1,18 +1,20 @@
 #!/usr/bin/env zsh
 
+if [[ ! -e /Volumes/Sandisk ]]; then
+  echo "Sandisk not mounted, skipping"
+  exit
+fi
+
 rsync \
   --archive \
   --partial \
   --recursive \
   --delete \
-  --exclude='.git' \
-  --exclude='node_modules' \
   --exclude='.*' \
-  --filter="dir-merge,- .gitignore" \
+  --progress \
   $HOME/Documents \
   $HOME/Music \
   $HOME/Notes \
-  $HOME/Projects \
-  $HOME/Work \
   $HOME/Pictures \
-  ~/sandisk
+  $HOME/Ebooks \
+  /Volumes/Sandisk

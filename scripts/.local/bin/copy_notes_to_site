@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+###
+# Automatically called from git hook
+###
+
 rsync \
   --archive \
   --quiet \

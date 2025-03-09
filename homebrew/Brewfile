@@ -1,0 +1,103 @@
+tap "felixkratz/formulae"
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "koekeishiya/formulae"
+tap "oven-sh/bun"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Linux/OSX/FreeBSD resource monitor
+brew "bpytop"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Core component of the AcoustID project (Audio fingerprinting)
+brew "chromaprint"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Platform keystore credential helper for Docker
+brew "docker-credential-helper"
+# Command-line tool to interact with exercism.io
+brew "exercism"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Distributed revision control system
+brew "git"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Postgres C API library
+brew "libpq"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Platform built on V8 to build network applications
+brew "node"
+# Platform built on V8 to build network applications
+brew "node@20"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# Rsync for cloud storage
+brew "rclone"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# JavaScript package manager
+brew "yarn"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Tracks most-used directories to make cd smarter
+brew "z"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai"
+# Enable Windows-like alt-tab
+cask "alt-tab"
+# Android SDK component
+cask "android-platform-tools"
+# Desktop password and login vault
+cask "bitwarden"
+# Web browser
+cask "firefox"
+cask "font-maple-mono"
+cask "font-symbols-only-nerd-font"
+# Free and open-source image editor
+cask "gimp"
+# Web browser
+cask "google-chrome"
+# Graphically shows disk usage within a file system
+cask "grandperspective"
+# Desktop automation application
+cask "hammerspoon"
+# GPU-based terminal emulator
+cask "kitty"
+# Software for Logitech devices
+cask "logi-options+"
+# Syncs files between computers and MEGA Cloud drives
+cask "megasync"
+# Desktop sync client for Nextcloud software products
+cask "nextcloud"
+# Simple application that will prevent iTunes or Apple Music from launching
+cask "notunes"
+# Peer to peer Bitorrent client
+cask "qbittorrent"
+# Team communication and collaboration software
+cask "slack"
+# Real time file synchronisation software
+cask "syncthing"
+# Virtual machines UI using QEMU
+cask "utm"
+# Multimedia player
+cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"

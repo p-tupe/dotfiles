@@ -11,7 +11,7 @@
   autocrlf = input
   ignoreCase = false
 [pull]
-  rebase = true
+  rebase = false
 [commit]
   gpgsign = true
 [safe]

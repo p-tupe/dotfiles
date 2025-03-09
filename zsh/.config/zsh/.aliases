@@ -68,66 +68,14 @@ wiki() {
     popd
 }
 
-daily() {
-  cd ~/Notes
-    nvim tracking.md -c ':execute "normal @P"'
-    cd - >/dev/null
-}
-
-cleanup_everything() {
-  echo -e "\nCleaning histories"
-    (
-     rm -rf ~/.*history
-     rm -rf ~/.config/zsh/.zhistory
-     rm -rf ~/.lesshst
-     rm -rf ~/.wget-hsts
-     rm -rf ~/.ipython
-     rm -rf ~/.cljs
-    ) >/dev/null 2>&1
-
-    echo -e "\nEmptying trash"
-    (
-     pushd ~/.Trash/
-     rm -rf *
-     popd
-    ) 2> /dev/null
-
-    echo -e "\nRemoving .DS_Store files"
-    \fd --unrestricted --glob --follow --prune \
-    --type file ".DS_Store" \
-    --exec rm
-
-    echo -e "\nPruning brew packages"
-    brew autoremove && brew cleanup --prune=all
-
-    echo -e "\nDeleting macos tracking"
-    sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 \
-    'delete from LSQuarantineEvent'
-
-# Clear Cache
-# rm -rf $HOME/Library/Caches/*
-# rm -rf ~/.cache/*
-
-# Delete docker stuff
-if (docker stats --no-stream >/dev/null 2>&1)
-then
-echo -e "\nClearing docker stuff - be careful if prompted!"
-docker image prune
-docker volume prune
-docker network prune
-fi
-
-echo -e "\nAll Done!\n"
-}
-
 # For example, to run a testrunner T on dir change D
 # $ watch_and_do D T
 watch_and_do() {
-while true; do watch -g ls -l $1 >/dev/null && clear; ${*:2}; sleep 1; done
+  while true; do watch -g ls -l $1 >/dev/null && clear; ${*:2}; sleep 1; done
 }
 
 sqlite() {
-/opt/homebrew/opt/sqlite/bin/sqlite3 --header --column "$@"
+  /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column "$@"
 }
 
 # eval $(python ~/.config/zsh/docker_aliases.py)

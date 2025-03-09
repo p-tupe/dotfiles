@@ -1,7 +1,11 @@
 #!/usr/bin/env zsh
 
 echo -e "\n\nUpdating brew...\n"
-brew update && brew upgrade --greedy --no-quarantine
+brew update
+brew upgrade --greedy --no-quarantine
+pushd ~/.dotfiles/homebrew
+brew bundle dump --force --describe
+popd
 
 echo -e "\n\nUpdating npm...\n"
 npm --location=global update
@@ -17,4 +21,4 @@ fi
 echo -e "\n\nUpdating nvim...\n"
 nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
 
-echo -e "\n\nAll Done!\n\n"
+cleanup_everything
