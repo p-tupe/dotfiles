@@ -29,6 +29,7 @@ brew autoremove && brew cleanup --prune=all
 
 echo -e "\nDeleting macos tracking"
 sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
+sudo log erase --all
 
 # Clear Cache
 # rm -rf $HOME/Library/Caches/*
