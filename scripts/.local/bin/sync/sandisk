@@ -11,10 +11,16 @@ rsync \
   --recursive \
   --delete \
   --exclude='.*' \
-  --progress \
   $HOME/Documents \
   $HOME/Music \
   $HOME/Notes \
   $HOME/Pictures \
   $HOME/Ebooks \
+  $HOME/.dotfiles \
   /Volumes/Sandisk
+
+# To backup sensitive data, use:
+#
+# zip --encrypt ...
+#
+# For relatively convenient security.

@@ -10,7 +10,6 @@ rsync \
   --partial \
   --recursive \
   --delete \
-  --progress \
   --exclude=".DS_Store" \
   --timeout=60 \
   $HOME/Documents \
