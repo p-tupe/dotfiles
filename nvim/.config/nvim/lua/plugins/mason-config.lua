@@ -26,14 +26,10 @@ local function on_attach(_, bufnr)
 
 	local opts = { noremap = true, silent = true }
 
-	buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-	buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementation<CR>", opts)
+	buf_set_keymap("n", "grr", "<cmd>Telescope lsp_references<CR>", opts)
+	buf_set_keymap("n", "gri", "<cmd>Telescope lsp_implementation<CR>", opts)
 	buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-	buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	buf_set_keymap("n", "<localleader>n", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buf_set_keymap("n", "<localleader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	buf_set_keymap("v", "<localleader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+	buf_set_keymap("n", "gO", "<Cmd>Telescope lsp_document_symbols<CR>", opts)
 	buf_set_keymap("n", "<localleader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
@@ -88,24 +84,28 @@ end
 -- Does not show the diagnostics in buffer (use mapping <localleader>d instead)
 vim.diagnostic.config({ virtual_text = false })
 
--- Installed via Mason
--- ◍ bash-language-server bashls
--- ◍ beautysh
--- ◍ black
--- ◍ css-lsp cssls
--- ◍ docker-compose-language-service docker_compose_language_service
--- ◍ dockerfile-language-server dockerls
--- ◍ elixir-ls elixirls
--- ◍ gopls
--- ◍ html-lsp html
--- ◍ json-lsp jsonls
--- ◍ lua-language-server lua_ls
--- ◍ markdownlint
--- ◍ prettierd
--- ◍ python-lsp-server pylsp
--- ◍ sql-formatter
--- ◍ sqlls
--- ◍ stylua
--- ◍ typescript-language-server ts_ls
--- ◍ vim-language-server vimls
--- ◍ yaml-language-server yamlls
+--[[
+    Installed
+        clangd
+        yaml-language-server yamlls
+        sql-formatter
+        lua-language-server lua_ls
+        shfmt
+        bash-language-server bashls
+        black
+        cpplint
+        css-lsp cssls
+        docker-compose-language-service docker_compose_language_service
+        dockerfile-language-server dockerls
+        goimports
+        gopls
+        html-lsp html
+        json-lsp jsonls
+        marksman
+        prettierd
+        python-lsp-server pylsp
+        sqlls
+        stylua
+        taplo
+        typescript-language-server ts_ls
+  ]]

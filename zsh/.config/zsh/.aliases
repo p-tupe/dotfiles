@@ -7,16 +7,16 @@ alias d="daily"
 
 alias fd="fd --ignore-case --follow"
 alias ls="eza --icons"
-alias vi="nvim";
+alias vi="nvim"
 
-alias top="bpytop";
+alias top="bpytop"
 alias tree="eza --icons --tree"
-alias vim="nvim";
+alias vim="nvim"
 
-alias decrypt="gpg -d" # file.gpg -> file
+alias decrypt="gpg -d"          # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
-alias http_server="python3 -m http.server 8888";
-alias show_public_ip="curl ifconfig.co";
+alias http_server="python3 -m http.server 8888"
+alias show_public_ip="curl ifconfig.co"
 alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
 
 music() {
@@ -31,51 +31,44 @@ music() {
     --playlist-tree \
     --no-repeat \
     --loop \
-    --random\
-    $folders > /dev/null &
+    --random $folders >/dev/null &
 
-    disown
+  disown
 
-    /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
+  # /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
 }
 
 mov2mp4() {
   ffmpeg -i $1 video.mp4
 }
 
-useNodeVersion() {
-  export PATH="/opt/homebrew/opt/node@${1}/bin:$PATH"
-}
+# NOTE: Unused
+# useNodeVersion() {
+#   export PATH="/opt/homebrew/opt/node@${1}/bin:$PATH"
+# }
+# alias useNode20="useNodeVersion 20"
+# alias useNode18="useNodeVersion 18"
+# alias useNode16="useNodeVersion 16"
+# alias useNode14="useNodeVersion 14"
 
-alias useNode20="useNodeVersion 20"
-alias useNode18="useNodeVersion 18"
-alias useNode16="useNodeVersion 16"
-alias useNode14="useNodeVersion 14"
-
-# youtube-dl is currently installed from git; move to pip package
-# when they fix the download bug
-download_english_song() {
+# USAGE: download_song "https://www.youtube.com/..."
+download_song() {
   yt-dlp --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
-    --output '%(title)s.%(ext)s' $1 && \
-    beet -d ~/Music/English import -s *.mp3 && \
-    rm -f *.mp3
+    --output '%(title)s.%(ext)s' $1
+}
+
+# USAGE: import_song hind_song.mp3 Hindi
+import_song() {
+  beet -d ~/Music/$2 import -s $1 && rm -f $2
 }
 
 wiki() {
-  pushd ~/Notes
-    nvim index.md +Telescope\ find_files
-    popd
-}
-
-# For example, to run a testrunner T on dir change D
-# $ watch_and_do D T
-watch_and_do() {
-  while true; do watch -g ls -l $1 >/dev/null && clear; ${*:2}; sleep 1; done
+  pushd ~/Notes >/dev/null
+  nvim index.md +Telescope\ find_files
+  popd >/dev/null
 }
 
 sqlite() {
   /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column "$@"
 }
-
-# eval $(python ~/.config/zsh/docker_aliases.py)

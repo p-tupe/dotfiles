@@ -47,7 +47,7 @@ zstyle ':completion:*:functions' ignored-patterns '_*'     # Ignore completion f
 ##### CONFIG #####
 ##################
 
-HISTFILE=${ZDOTDIR}/.zhistory
+HISTFILE=/tmp/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 WORDCHARS=${WORDCHARS//\/[&.;]}       # Don't consider certain characters part of the word
@@ -89,10 +89,6 @@ export PATH="$HOME/.local/bin/\
 :/bin\
 :/sbin";
 
-function chpwd() {
-  if [[ $PWD == '/Users/pritesh/Work/ztx/stix-web' ]]; then useNode20; fi
-}
-
 
 ##################
 ##### PROMPT #####
@@ -123,9 +119,6 @@ if [ ! -e "/tmp/run_once" ]; then
   # Load SSH Keys
   # Add them to keychain using following command: ssh-add --apple-use-keychain ~/.ssh/<key>
   /usr/bin/ssh-add --apple-load-keychain &
-
-  # Mount sandisk
-  mount -t smbfs "//guest@192.168.2.1/sandisk" ~/sandisk &
 
   # Set $GOBIN
   go env -w GOBIN='/Users/pritesh/.local/bin'

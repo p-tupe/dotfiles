@@ -5,8 +5,6 @@ tap "koekeishiya/formulae"
 brew "python@3.12"
 # Linux/OSX/FreeBSD resource monitor
 brew "bpytop"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
@@ -27,16 +25,18 @@ brew "git"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
 # Postgres C API library
 brew "libpq"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
-# Platform built on V8 to build network applications
-brew "node@20"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
@@ -45,6 +45,8 @@ brew "ripgrep"
 brew "rsync"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Tracks most-used directories to make cd smarter
@@ -55,8 +57,6 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai"
-# Enable Windows-like alt-tab
-cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Desktop password and login vault
@@ -85,8 +85,6 @@ cask "nextcloud"
 cask "notunes"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
-# Team communication and collaboration software
-cask "slack"
 # Real time file synchronisation software
 cask "syncthing"
 # Virtual machines UI using QEMU
