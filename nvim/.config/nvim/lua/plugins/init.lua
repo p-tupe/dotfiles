@@ -24,6 +24,9 @@ if not status_ok then
 end
 
 lazy.setup({
+	rocks = {
+		enabled = false,
+	},
 	spec = {
 		-- A dark theme
 		{ "dracula/vim", name = "dracula" },

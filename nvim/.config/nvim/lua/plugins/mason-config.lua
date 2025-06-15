@@ -1,4 +1,5 @@
 local servers = {
+	"astro",
 	"bashls",
 	"cssls",
 	"dockerls",
@@ -15,7 +16,7 @@ local servers = {
 	"taplo",
 }
 
-require("mason-lspconfig").setup({})
+require("mason-lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 

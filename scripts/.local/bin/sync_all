@@ -11,9 +11,6 @@ echo "Sync servers..."
 echo "Sync sandisk..."
 ~/.local/bin/sync/sandisk
 
-echo "Sync SSD..."
-~/.local/bin/sync/SSD
-
 echo "Sync Pixel..."
 ~/.local/bin/sync/pixel
 

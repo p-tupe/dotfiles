@@ -98,3 +98,4 @@ set.linebreak = true
 
 -- Hide all that can be hidden
 set.conceallevel = 2
+

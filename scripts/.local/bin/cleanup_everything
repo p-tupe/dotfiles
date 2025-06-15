@@ -22,14 +22,15 @@ echo -e "\nEmptying trash"
 ) 2>/dev/null
 
 echo -e "\nRemoving .DS_Store files"
-\fd --unrestricted --glob --follow --prune --type file ".DS_Store" --exec rm
+command fd --unrestricted --glob --follow --prune --type file ".DS_Store" --exec rm
 
 echo -e "\nPruning brew packages"
 brew autoremove && brew cleanup --prune=all
 
-echo -e "\nDeleting macos tracking"
+echo -e "\nDeleting macos stuff"
 sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
-sudo log erase --all
+rm -rf ~/Music/Music
+# sudo log erase --all
 
 # Clear Cache
 # rm -rf $HOME/Library/Caches/*

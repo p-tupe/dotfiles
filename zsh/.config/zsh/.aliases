@@ -8,8 +8,10 @@ alias d="daily"
 alias fd="fd --ignore-case --follow"
 alias ls="eza --icons"
 alias vi="nvim"
+alias du="dust"
 
 alias top="bpytop"
+alias cat="bat"
 alias tree="eza --icons --tree"
 alias vim="nvim"
 

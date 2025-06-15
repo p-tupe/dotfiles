@@ -61,6 +61,7 @@ map("n", "<leader><CR>", ":nohls<CR>", s)
 
 -- Inbuild terminal ESC normal mode
 map("t", "<Esc>", [[<C-\><C-n>]], s)
+map("t", "<C-[>", [[<C-\><C-n>]], s)
 
 -- Open url under cursor into browser
 map("n", "gx", ":!open <cfile><CR>", o)

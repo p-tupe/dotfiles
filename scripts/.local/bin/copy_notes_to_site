@@ -13,4 +13,4 @@ rsync \
   --exclude=LICENSE \
   --exclude=.git* \
   $HOME/Notes/code-notes/ \
-  $HOME/Projects/empat94.github.io/src/notes/
+  $HOME/Projects/p-tupe.github.io/main/src/collections/notes/

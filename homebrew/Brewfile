@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "koekeishiya/formulae"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.12"
 # Linux/OSX/FreeBSD resource monitor
@@ -9,10 +10,14 @@ brew "bpytop"
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Platform keystore credential helper for Docker
 brew "docker-credential-helper"
+# More intuitive version of du in rust
+brew "dust"
 # Command-line tool to interact with exercism.io
 brew "exercism"
 # Modern, maintained replacement for ls
@@ -33,8 +38,6 @@ brew "libpq"
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
-# Create, run, and share large language models (LLMs)
-brew "ollama"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
 # Rsync for cloud storage
@@ -45,8 +48,6 @@ brew "ripgrep"
 brew "rsync"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
-# Executes a program periodically, showing output fullscreen
-brew "watch"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Tracks most-used directories to make cd smarter
@@ -77,8 +78,6 @@ cask "hammerspoon"
 cask "kitty"
 # Software for Logitech devices
 cask "logi-options+"
-# Syncs files between computers and MEGA Cloud drives
-cask "megasync"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Simple application that will prevent iTunes or Apple Music from launching
