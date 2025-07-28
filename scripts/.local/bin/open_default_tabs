@@ -1,0 +1,69 @@
+#!/usr/bin/env node
+
+const { exec } = require("node:child_process");
+
+const sites = {
+  jobs: [
+    "https://ca.indeed.com/",
+    "https://www.jobbank.gc.ca/home",
+    "https://www.glassdoor.ca/Job/index.htm",
+    "https://wellfound.com/jobs",
+    "https://www.linkedin.com/jobs/",
+    "https://talent.toptal.com/portal",
+    // "https://techamana.com/",
+    // "eluta.ca",
+    // "monster.ca",
+  ],
+
+  pr: [
+    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html",
+    "https://www.reddit.com/r/ImmigrationCanada/",
+  ],
+
+  swipe: [
+    "https://okcupid.com/discover",
+    "https://tinder.com/app/recs",
+    "https://shaadi.com",
+    "https://www.jeevansathi.com/mymatches",
+  ],
+
+  work: [
+    "https://outlook.office.com/mail/",
+    "https://tangiblelabs.atlassian.net/jira/your-work",
+    "https://tangiblelabs.atlassian.net/wiki/spaces/ENGINEERIN/overview",
+    "https://app.slack.com/client/T08CK22ML7P/C08CK2E3ZGV",
+  ],
+};
+
+const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
+const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+
+async function sleep(time) {
+  return new Promise((r) => setTimeout(r, time));
+}
+
+async function openSites(sites) {
+  exec(firefox + " --new-window " + sites.shift());
+  // await sleep(3000);
+  exec(firefox + sites.map((s) => " --new-tab " + s).join(" "));
+}
+
+async function openSitesChrome(sites) {
+  exec('\"' + chrome + '\" ' + sites.map((s) => " --new-tab " + s).join(" "));
+}
+
+const list = process.argv[2];
+const arg = sites[list];
+
+if (arg) {
+  if (list === "swipe") {
+    openSitesChrome(sites["swipe"]);
+  } else {
+    openSites(sites[process.argv[2]]);
+  }
+} else
+  console.log(
+    "Usage: open_default_tabs (",
+    Object.keys(sites).join(" | "),
+    ")",
+  );

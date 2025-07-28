@@ -4,13 +4,5 @@
 # Automatically called from git hook
 ###
 
-rsync \
-  --archive \
-  --quiet \
-  --partial \
-  --recursive \
-  --exclude=README.md \
-  --exclude=LICENSE \
-  --exclude=.git* \
-  $HOME/Notes/code-notes/ \
-  $HOME/Projects/p-tupe.github.io/main/src/collections/notes/
+cp -r ~/Notes/code-notes/*.md \
+  ~/Projects/p-tupe.github.io/src/collections/notes/

@@ -17,9 +17,7 @@ def rsync(from_dir, to_dir):
 
 def backup_toronto_server():
     badass_dirs = (
-        "/home/ubuntu/remark42",
-        "/home/ubuntu/caddy",
-        "/home/ubuntu/wg-easy",
+        "/home/ubuntu/",
     )
 
     for dir in badass_dirs:
@@ -29,10 +27,7 @@ def backup_toronto_server():
 
 def backup_badass_server():
     badass_dirs = (
-        "/home/ubuntu/caddy",
-        "/home/ubuntu/nextcloud",
-        "/home/ubuntu/slack-webhook-proxy",
-        "/home/ubuntu/.config/rclone",
+        "/home/ubuntu/",
     )
 
     for dir in badass_dirs:
