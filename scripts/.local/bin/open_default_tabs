@@ -32,6 +32,7 @@ const sites = {
     "https://tangiblelabs.atlassian.net/jira/your-work",
     "https://tangiblelabs.atlassian.net/wiki/spaces/ENGINEERIN/overview",
     "https://app.slack.com/client/T08CK22ML7P/C08CK2E3ZGV",
+    "https://www.figma.com/design/kaEWOr9KsLrBDkvaSulnwn/Tangible?node-id=191-94&p=f",
   ],
 };
 
@@ -44,7 +45,7 @@ async function sleep(time) {
 
 async function openSites(sites) {
   exec(firefox + " --new-window " + sites.shift());
-  // await sleep(3000);
+  await sleep(3000);
   exec(firefox + sites.map((s) => " --new-tab " + s).join(" "));
 }
 

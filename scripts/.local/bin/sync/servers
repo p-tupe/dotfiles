@@ -4,39 +4,20 @@ from subprocess import run
 from pathlib import Path
 
 
-def rsync(from_dir, to_dir):
-    try:
-        run(
-            f"rsync -azrq --partial --delete {from_dir} {to_dir}",
-            shell=True,
-            check=True,
-        )
-    except Exception:
-        print(f"An error occured when backing up {from_dir}")
-
-
-def backup_toronto_server():
-    badass_dirs = (
-        "/home/ubuntu/",
-    )
-
-    for dir in badass_dirs:
-        rsync(f"toronto-server:{dir}", Path.home() / "Backups/Servers/toronto-server")
-    pass
-
-
-def backup_badass_server():
-    badass_dirs = (
-        "/home/ubuntu/",
-    )
-
-    for dir in badass_dirs:
-        rsync(f"badass-server:{dir}", Path.home() / "Backups/Servers/badass-server")
-
-
 def main():
-    backup_badass_server()
-    backup_toronto_server()
+    servers = ["ubuntu@toronto-server.follow-mohs.ts.net"]
+
+    backupDir = Path.home() / "Backups"
+
+    try:
+        for server in servers:
+            print(f"Syncing {server}")
+            run(f"rsync -azrq --partial --exclude '.*' --delete --ignore-errors {server}:/home/ubuntu {backupDir}/{server}",
+                shell=True,
+                check=True,
+                )
+    except Exception:
+        print(f"An error occured when backing up {server}")
 
 
 if __name__ == "__main__":
