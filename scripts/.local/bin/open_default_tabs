@@ -28,11 +28,11 @@ const sites = {
   ],
 
   work: [
-    "https://outlook.office.com/mail/",
-    "https://tangiblelabs.atlassian.net/jira/your-work",
-    "https://tangiblelabs.atlassian.net/wiki/spaces/ENGINEERIN/overview",
-    "https://app.slack.com/client/T08CK22ML7P/C08CK2E3ZGV",
+    "https://teams.microsoft.com/v2/",
+    "https://tangible-intelligence.slack.com",
     "https://www.figma.com/design/kaEWOr9KsLrBDkvaSulnwn/Tangible?node-id=191-94&p=f",
+    "https://trello.com/b/s0NpaS1u/platform?filter=member:priteshtupe",
+    "https://trello.com/b/o6obkZAV/website",
   ],
 };
 

@@ -104,8 +104,6 @@ lazy.setup({
 	install = { colorscheme = { "dracula" } },
 })
 
-require("mason").setup()
-
 require("Comment").setup()
 
 require("plugins.telescope")
@@ -127,8 +125,6 @@ require("plugins.nvim-tree")
 require("plugins.zen-mode")
 
 require("plugins.neogit")
-
--- require("plugins.llm")
 
 -- require "plugins.nvim-rss" -- Uncomment when using github uri
 

@@ -78,8 +78,8 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.docker/bin\
 :/opt/homebrew/opt/libpq/bin\
 :/opt/homebrew/opt/python@3.13/libexec/bin\
+:/opt/homebrew/opt/make/libexec/gnubin\
 :/opt/homebrew/opt/postgresql@17/bin\
-:/opt/homebrew/opt/sqlite/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
@@ -89,6 +89,7 @@ export PATH="$HOME/.local/bin/\
 :/bin\
 :/sbin";
 
+# :/opt/homebrew/opt/sqlite/bin\
 
 ##################
 ##### PROMPT #####
@@ -120,8 +121,8 @@ if [ ! -e "/tmp/run_once" ]; then
   # Add them to keychain using following command: ssh-add --apple-use-keychain ~/.ssh/<key>
   /usr/bin/ssh-add --apple-load-keychain &
 
-  # Set $GOBIN
-  go env -w GOBIN='/Users/pritesh/.local/bin'
+  go env -w GOBIN='/Users/pritesh/.local/bin/go'
+  go env -w GOPATH='/Users/pritesh/.go'
 
   # Mark it done
   touch /tmp/run_once

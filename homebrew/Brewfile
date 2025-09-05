@@ -1,10 +1,6 @@
 tap "koekeishiya/formulae"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.12"
-# Linux/OSX/FreeBSD resource monitor
-brew "bpytop"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
@@ -23,6 +19,8 @@ brew "exercism"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Lua Lisp Language
+brew "fennel"
 # Distributed revision control system
 brew "git"
 # GNU Pretty Good Privacy (PGP) package
@@ -33,10 +31,14 @@ brew "go"
 brew "graphviz"
 # Postgres C API library
 brew "libpq"
+# Utility for directing compilation
+brew "make"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
 # Rsync for cloud storage

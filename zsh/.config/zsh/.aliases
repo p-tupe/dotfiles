@@ -35,9 +35,9 @@ music() {
     --loop \
     --random $folders >/dev/null &
 
-  disown
+    disown
 
-  # /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
+# /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
 }
 
 mov2mp4() {
@@ -60,15 +60,10 @@ download_song() {
     --output '%(title)s.%(ext)s' $1
 }
 
-# USAGE: import_song hind_song.mp3 Hindi
-import_song() {
-  beet -d ~/Music/$2 import -s $1 && rm -f $2
-}
-
 wiki() {
   pushd ~/Notes >/dev/null
-  nvim index.md +Telescope\ find_files
-  popd >/dev/null
+    nvim index.md +Telescope\ find_files
+    popd >/dev/null
 }
 
 sqlite() {
