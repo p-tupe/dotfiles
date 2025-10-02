@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Global env
-export LC_ALL=en_US.UTF-8             # solves locale warnings
+export LC_ALL=en_US.UTF-8 # solves locale warnings
 export MANPAGER='nvim +Man!'
 export VISUAL=nvim
 export EDITOR="$VISUAL"

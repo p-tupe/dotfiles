@@ -49,6 +49,10 @@ brew "ripgrep"
 brew "rsync"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Official tldr client written in Rust
+brew "tlrc"
+# Internet file retriever
+brew "wget"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Tracks most-used directories to make cd smarter
@@ -85,6 +89,8 @@ cask "logi-options+"
 cask "nextcloud"
 # Simple application that will prevent iTunes or Apple Music from launching
 cask "notunes"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Real time file synchronisation software

@@ -27,13 +27,7 @@ const sites = {
     "https://www.jeevansathi.com/mymatches",
   ],
 
-  work: [
-    "https://teams.microsoft.com/v2/",
-    "https://tangible-intelligence.slack.com",
-    "https://www.figma.com/design/kaEWOr9KsLrBDkvaSulnwn/Tangible?node-id=191-94&p=f",
-    "https://trello.com/b/s0NpaS1u/platform?filter=member:priteshtupe",
-    "https://trello.com/b/o6obkZAV/website",
-  ],
+  work: [],
 };
 
 const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
