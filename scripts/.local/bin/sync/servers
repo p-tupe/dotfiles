@@ -5,14 +5,16 @@ from pathlib import Path
 
 
 def main():
-    servers = ["ubuntu@toronto-server.follow-mohs.ts.net"]
+    servers = ["toronto-server", "badass-server"]
 
     backupDir = Path.home() / "Backups"
 
     try:
         for server in servers:
             print(f"Syncing {server}")
-            run(f"rsync -azrq --partial --exclude '.*' --delete --ignore-errors {server}:/home/ubuntu {backupDir}/{server}",
+            run(f"rsync -azrq --partial \
+                    --exclude '.*' --delete --ignore-errors \
+                    {server}:/home/ubuntu {backupDir}/{server}",
                 shell=True,
                 check=True,
                 )
