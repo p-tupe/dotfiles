@@ -76,10 +76,7 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
-:/opt/homebrew/opt/libpq/bin\
-:/opt/homebrew/opt/python@3.13/libexec/bin\
-:/opt/homebrew/opt/make/libexec/gnubin\
-:/opt/homebrew/opt/postgresql@17/bin\
+:/opt/homebrew/opt/python@3.14/libexec/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\
@@ -88,8 +85,6 @@ export PATH="$HOME/.local/bin/\
 :/usr/sbin\
 :/bin\
 :/sbin";
-
-# :/opt/homebrew/opt/sqlite/bin\
 
 ##################
 ##### PROMPT #####

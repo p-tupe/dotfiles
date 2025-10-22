@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ ! -e /Volumes/Sandisk ]]; then
-  echo "Sandisk not mounted, skipping"
-  exit
-fi
+set -euo pipefail
+
+if [[ ! -e /Volumes/Sandisk ]]; then exit; fi
 
 rsync \
   --archive \
@@ -18,6 +17,8 @@ rsync \
   $HOME/Ebooks \
   $HOME/.dotfiles \
   /Volumes/Sandisk
+
+osascript -e 'display notification "Sandisk synced successfully!"'
 
 # To backup sensitive data, use:
 #

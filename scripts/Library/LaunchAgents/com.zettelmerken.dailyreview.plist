@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.pritesh.zettelmerken</string>
+    <key>ServiceDescription</key>
+    <string>Zettel Merken Daily Review</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/homebrew/bin/python3</string>
+      <string>-m</string>
+      <string>zettelmerken</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true />
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>13</integer>
+      <key>Minute</key>
+      <integer>35</integer>
+    </dict>
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.pritesh.zettelmerken.err</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.pritesh.zettelmerken.out</string>
+  </dict>
+</plist>

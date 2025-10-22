@@ -18,6 +18,30 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles. A ni
 
 5. Verify that symlinks were made `ls -lah ~/.config/nvim` should show `/home/<user>/.config/nvim -> ../.dotfiles/nvim/.config/nvim`
 
+## Some Specific Instructions
+
+### firefox
+
+The file `userChrome.css` is linked to a default profile; check which dir it is in "about:profiles"
+
+<blah> is dynamic so cannot stow directly
+
+FOR MORE CHANGES:
+
+https://github.com/MrOtherGuy/firefox-csshacks
+
+FOR PRIVACY TWEAKS:
+
+https://www.reddit.com/r/privacytoolsIO/comments/mqy5u1/firefox_privacy_tweaks/
+
+### .scripts/Library/LaunchAgents
+
+This is macos specific launchd user agent directory. Once stowed, run the following to load the jobs:
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.pritesh.*
+```
+
 ## Notes
 
 As you can see, I use [dracula](https://draculatheme.com/) theme for most of my apps, focusing on minimalist UI with a high contrast ratio and poppy colors.

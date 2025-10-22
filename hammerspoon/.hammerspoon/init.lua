@@ -8,7 +8,7 @@ local f = require("./functions")
 local mappings = {
 	{ modifiers = { "cmd" }, key = "b", fn = f.openFirefox },
 	{ modifiers = { "cmd" }, key = "g", fn = f.openChrome },
-	{ modifiers = { "cmd" }, key = "return", fn = f.openTerminal },
+	{ modifiers = { "cmd" }, key = "return", fn = f.openKitty },
 
 	{ modifiers = { "alt" }, key = "m", fn = f.zoom },
 	{ modifiers = { "alt" }, key = "h", fn = f.slideLeft },
@@ -32,6 +32,13 @@ local mappings = {
 f.mapKeys(mappings)
 
 hs.loadSpoon("Shade")
+
+-----------------
+-- Login Items --
+-----------------
+
+f.openKitty()
+f.openFirefox()
 
 -----------------
 -- Break Timer --
