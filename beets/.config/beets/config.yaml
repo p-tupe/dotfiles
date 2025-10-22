@@ -1,3 +1,5 @@
+# Installation: uv tool install  beets  --with requests --with chromaprint --with pyacoustid
+
 # Path to beets library file
 library: ~/Music/library.db
 
@@ -11,9 +13,6 @@ asciify_paths: yes
 # fromfilename: use filename to search
 # chroma: use audio fingerprint to search (https://beets.readthedocs.io/en/stable/plugins/chroma.html)
 # fetchart: get album art along with metadata
-#
-# pip install pyacoustid requests && brew install chromaprint
-#
 plugins: scrub fromfilename chroma fetchart
 
 match:

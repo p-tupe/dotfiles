@@ -77,6 +77,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
 :/opt/homebrew/opt/python@3.14/libexec/bin\
+:/opt/homebrew/Cellar/uv/0.9.5/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
 :/usr/local/bin\

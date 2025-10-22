@@ -25,8 +25,6 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Postgres C API library
-brew "libpq"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
@@ -93,3 +91,4 @@ cask "utm"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
+go "snazzy-maps-scraper"

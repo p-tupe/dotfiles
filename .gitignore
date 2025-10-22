@@ -18,6 +18,8 @@ zsh/.config/zsh/.zsh_sessions
 scripts/.local/share/slack-webhook-url
 scripts/.local/bin/*.py
 scripts/.local/bin/__pycache__
+scripts/.local/share/kokoro-tts/kokoro-v1.0.onnx
+scripts/.local/share/kokoro-tts/voices-v1.0.bin
 
 firefox/.config/psd/.psd.conf
 

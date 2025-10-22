@@ -18,30 +18,6 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles. A ni
 
 5. Verify that symlinks were made `ls -lah ~/.config/nvim` should show `/home/<user>/.config/nvim -> ../.dotfiles/nvim/.config/nvim`
 
-## Some Specific Instructions
-
-### firefox
-
-The file `userChrome.css` is linked to a default profile; check which dir it is in "about:profiles"
-
-<blah> is dynamic so cannot stow directly
-
-FOR MORE CHANGES:
-
-https://github.com/MrOtherGuy/firefox-csshacks
-
-FOR PRIVACY TWEAKS:
-
-https://www.reddit.com/r/privacytoolsIO/comments/mqy5u1/firefox_privacy_tweaks/
-
-### .scripts/Library/LaunchAgents
-
-This is macos specific launchd user agent directory. Once stowed, run the following to load the jobs:
-
-```bash
-launchctl load ~/Library/LaunchAgents/com.pritesh.*
-```
-
 ## Notes
 
 As you can see, I use [dracula](https://draculatheme.com/) theme for most of my apps, focusing on minimalist UI with a high contrast ratio and poppy colors.
@@ -73,3 +49,34 @@ I use this setup on a Macbook Air M1 machine.
 - bpytop:
 
 ![bpytop image](./bpytop.webp)
+
+## Some App- Specific Instructions
+
+### firefox
+
+The file `userChrome.css` is linked to a default profile; check which dir it is in "about:profiles"
+
+<blah> is dynamic so cannot stow directly
+
+FOR MORE CHANGES:
+
+https://github.com/MrOtherGuy/firefox-csshacks
+
+FOR PRIVACY TWEAKS:
+
+https://www.reddit.com/r/privacytoolsIO/comments/mqy5u1/firefox_privacy_tweaks/
+
+### .scripts/Library/LaunchAgents
+
+This is macos specific launchd user agent directory. Once stowed, run the following to load the jobs:
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.pritesh.*
+```
+
+### .scripts/.local/share/kokoro-tts
+
+kokoro-tts requires a couple more files to work properly; download them and stash 'em in this directory. It's wired up to work well with `tts` alias in `zsh/.aliases`
+
+- [kokoro-v1.0.onnx](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx)
+- [voices-v1.0.bin](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin)

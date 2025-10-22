@@ -1,25 +1,31 @@
 alias ...='../..'
-alias ....='../../..'
 alias l="eza --icons --long --header --all"
 alias v="nvim"
 alias w="wiki"
-alias d="daily"
-
+alias m="music"
 alias fd="fd --ignore-case --follow"
 alias ls="eza --icons"
 alias vi="nvim"
 alias du="dust"
-
-alias top="bpytop"
 alias cat="bat"
 alias tree="eza --icons --tree"
 alias vim="nvim"
-
 alias decrypt="gpg -d"          # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
 alias http_server="python3 -m http.server 8888"
 alias show_public_ip="curl ifconfig.co"
 alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
+alias tts="kokoro-tts --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx --voices ~/.local/share/kokoro-tts/voices-v1.0.bin --voice af_heart"
+
+# MacOS only
+if [[ `uname` == Darwin ]]; then
+  alias rm="trash"
+  alias uuidgen='uuidgen | tr A-F a-f'
+fi
+
+mkcd() {
+  mkdir $1 && cd $1
+}
 
 music() {
   folders=${@:-'/Users/pritesh/Music'}
@@ -35,35 +41,26 @@ music() {
     --loop \
     --random $folders >/dev/null &
 
-    disown
+  disown
 
-# /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
+  /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
 }
 
 mov2mp4() {
   ffmpeg -i $1 video.mp4
 }
 
-# NOTE: Unused
-# useNodeVersion() {
-#   export PATH="/opt/homebrew/opt/node@${1}/bin:$PATH"
-# }
-# alias useNode20="useNodeVersion 20"
-# alias useNode18="useNodeVersion 18"
-# alias useNode16="useNodeVersion 16"
-# alias useNode14="useNodeVersion 14"
-
 # USAGE: download_song "https://www.youtube.com/..."
 download_song() {
   yt-dlp --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
     --output '%(title)s.%(ext)s' $1
-}
+  }
 
 wiki() {
   pushd ~/Notes >/dev/null
-    nvim index.md +Telescope\ find_files
-    popd >/dev/null
+  nvim index.md +Telescope\ find_files
+  popd >/dev/null
 }
 
 sqlite() {
