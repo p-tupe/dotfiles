@@ -15,13 +15,20 @@ alias encrypt="gpg -er Pritesh" # file -> file.gpg
 alias http_server="python3 -m http.server 8888"
 alias show_public_ip="curl ifconfig.co"
 alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
-alias tts="kokoro-tts --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx --voices ~/.local/share/kokoro-tts/voices-v1.0.bin --voice af_heart"
 
 # MacOS only
 if [[ `uname` == Darwin ]]; then
   alias rm="trash"
   alias uuidgen='uuidgen | tr A-F a-f'
 fi
+
+# Usage: tts input.txt --> output.wav
+tts() {
+  kokoro-tts $1 output.wav \
+    --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
+    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
+    --voice af_heart
+  }
 
 mkcd() {
   mkdir $1 && cd $1
