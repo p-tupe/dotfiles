@@ -117,7 +117,7 @@ if [ ! -e "/tmp/run_once" ]; then
   # Add them to keychain using following command: ssh-add --apple-use-keychain ~/.ssh/<key>
   /usr/bin/ssh-add --apple-load-keychain &
 
-  go env -w GOBIN='/Users/pritesh/.local/bin/go'
+  go env -w GOBIN='/Users/pritesh/.local/bin'
   go env -w GOPATH='/Users/pritesh/.go'
 
   # Mark it done

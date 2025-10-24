@@ -1,4 +1,4 @@
-# Installation: uv tool install  beets  --with requests --with chromaprint --with pyacoustid
+# Installation: uv tool install "beets[chroma]" && brew install chromaprint
 
 # Path to beets library file
 library: ~/Music/library.db

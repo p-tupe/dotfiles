@@ -5,6 +5,8 @@ brew "bat"
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Platform keystore credential helper for Docker
@@ -41,6 +43,8 @@ brew "ripgrep"
 brew "rsync"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv", link: false
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Tracks most-used directories to make cd smarter

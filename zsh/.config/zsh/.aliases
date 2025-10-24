@@ -1,3 +1,5 @@
+# vi: ft=bash
+
 alias ...='../..'
 alias l="eza --icons --long --header --all"
 alias v="nvim"
@@ -24,7 +26,7 @@ fi
 
 # Usage: tts input.txt --> output.wav
 tts() {
-  kokoro-tts $1 output.wav \
+  kokoro-tts $1 "$(basename "$1" .txt).wav" \
     --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
     --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
     --voice af_heart
