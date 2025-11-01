@@ -100,8 +100,16 @@ lazy.setup({
 
 		-- Git plugin
 		{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" } },
+
+		-- gtask.nvim
+		{ "p-tupe/gtask.nvim" },
 	},
 	install = { colorscheme = { "dracula" } },
+})
+
+require("gtask").setup({
+	markdown_dir = "~/Notes",
+	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
 })
 
 require("Comment").setup()

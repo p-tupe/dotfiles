@@ -20,16 +20,27 @@ alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
 
 # MacOS only
 if [[ `uname` == Darwin ]]; then
-  alias rm="trash"
-  alias uuidgen='uuidgen | tr A-F a-f'
+  alias uuidgen="uuidgen | tr A-F a-f"
 fi
+
+tx() {
+}
 
 # Usage: tts input.txt --> output.wav
 tts() {
-  kokoro-tts $1 "$(basename "$1" .txt).wav" \
+  if [ "$#" -lt 1 ]; then
+    echo "USAGE:"
+    echo "\ttts <input.txt> [--chunks ./dir] [--format mp3]"
+    return
+  fi
+
+  input=$1
+  output="$(basename "$1" .txt).wav"
+
+  kokoro-tts $input $output \
     --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
     --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
-    --voice af_heart
+    --voice af_bella "$*"
   }
 
 mkcd() {

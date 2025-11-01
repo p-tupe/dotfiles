@@ -72,6 +72,7 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 ##### PATH #####
 ################
 
+export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
