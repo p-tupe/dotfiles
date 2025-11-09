@@ -24,3 +24,10 @@ augroup END
 command! -nargs=1 CreateZettelHub :call CreateZettelHub(<args>)
 
 ]=])
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = vim.fn.expand("~/Notes") .. "/*.md",
+	callback = function()
+		vim.cmd(":GtaskSync")
+	end,
+})

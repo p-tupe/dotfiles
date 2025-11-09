@@ -27,6 +27,8 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Package manager for the Lua programming language
+brew "luarocks"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment

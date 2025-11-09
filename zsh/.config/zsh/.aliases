@@ -39,8 +39,7 @@ tts() {
 
   kokoro-tts $input $output \
     --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
-    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
-    --voice af_bella "$*"
+    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin
   }
 
 mkcd() {
@@ -70,10 +69,16 @@ mov2mp4() {
   ffmpeg -i $1 video.mp4
 }
 
-# USAGE: download_song "https://www.youtube.com/..."
-download_song() {
+download_auto() {
   yt-dlp --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
+    --output '%(title)s.%(ext)s' $1
+  }
+
+download_video() {
+  yt-dlp --verbose --ignore-errors \
+    --format 'bestvideo+bestaudio' \
+    --merge-output-format mp4  \
     --output '%(title)s.%(ext)s' $1
   }
 
