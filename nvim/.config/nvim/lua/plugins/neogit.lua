@@ -18,3 +18,5 @@ neogit.setup({
 	-- Disables signs for sections/items/hunks
 	disable_signs = true,
 })
+
+vim.api.nvim_set_keymap("n", "<leader>G", ":Neogit<CR>", { noremap = true, silent = true })

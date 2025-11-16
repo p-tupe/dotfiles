@@ -1,9 +1,10 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.loop.fs_scandir(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	local out =
+		vim.fn.system({ "git", "clone", "--depth=1", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -24,9 +25,6 @@ if not status_ok then
 end
 
 lazy.setup({
-	rocks = {
-		enabled = false,
-	},
 	spec = {
 		-- A dark theme
 		{ "dracula/vim", name = "dracula" },
@@ -64,12 +62,11 @@ lazy.setup({
 				"hrsh7th/cmp-path",
 				"hrsh7th/cmp-cmdline",
 				"ray-x/cmp-treesitter",
-				-- "tzachar/cmp-ai",
 			},
 		},
 
 		-- A file system explorer for the Vim editor.
-		{ "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
+		{ "kyazdani42/nvim-tree.lua", lazy = true, dependencies = { "kyazdani42/nvim-web-devicons" } },
 
 		-- Provides mappings to easily delete, change and add such surroundings in pairs.
 		{ "tpope/vim-surround" },
@@ -99,7 +96,7 @@ lazy.setup({
 		{ "mhinz/vim-sayonara", cmd = "Sayonara" },
 
 		-- Git plugin
-		{ "NeogitOrg/neogit", dependencies = { "sindrets/diffview.nvim" } },
+		{ "NeogitOrg/neogit", lazy = true, dependencies = { "sindrets/diffview.nvim" } },
 
 		-- gtask.nvim
 		{ "p-tupe/gtask.nvim" },
@@ -110,7 +107,45 @@ lazy.setup({
 require("gtask").setup({
 	markdown_dir = "~/Notes",
 	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
+	verbosity = "info",
 })
+
+----------------------------------
+-- vim.opt.runtimepath:prepend("/Users/pritesh/Projects/gtask.nvim")
+--
+-- require("gtask").setup({
+-- 	markdown_dir = "~/Notes",
+-- 	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
+-- 	keep_completed_in_markdown = true, -- Keep completed tasks in markdown even if deleted from Google Tasks
+-- 	verbosity = "info", -- Logging level: "error", "warn", or "info"
+-- })
+--
+-- local function cmd_auth()
+-- 	require("gtask.auth").authenticate()
+-- end
+--
+-- local function cmd_sync()
+-- 	require("gtask.sync").sync_directory_with_google(function(success)
+-- 		if success then
+-- 			vim.notify("Sync completed successfully")
+-- 		else
+-- 			vim.notify("Sync failed", vim.log.levels.ERROR)
+-- 		end
+-- 	end)
+-- end
+--
+-- vim.api.nvim_create_user_command("GtaskAuth", cmd_auth, {})
+-- vim.api.nvim_create_user_command("GtaskSync", cmd_sync, {})
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "markdown",
+-- 	callback = function()
+-- 		vim.defer_fn(function()
+-- 			vim.cmd([[syntax match gtaskComment /<!--\s*gtask:[^>]*-->/ conceal]])
+-- 		end, 0)
+-- 	end,
+-- })
+----------------------------------
 
 require("Comment").setup()
 

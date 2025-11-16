@@ -69,7 +69,7 @@ mov2mp4() {
   ffmpeg -i $1 video.mp4
 }
 
-download_auto() {
+download_audio() {
   yt-dlp --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
     --output '%(title)s.%(ext)s' $1
@@ -81,6 +81,14 @@ download_video() {
     --merge-output-format mp4  \
     --output '%(title)s.%(ext)s' $1
   }
+
+import_as_single() {
+  beet -d $1 import -s $2
+}
+
+import_as_album() {
+  beet -d $1 import -g $2
+}
 
 wiki() {
   pushd ~/Notes >/dev/null

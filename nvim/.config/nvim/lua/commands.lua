@@ -3,7 +3,7 @@ vim.cmd([=[
 augroup CustomCmds
   autocmd!
   " Blink yanked text
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+  autocmd TextYankPost * silent! lua vim.hl.on_yank()
 
   " Set custom highlights
   autocmd ColorScheme * call MyHighlights()
@@ -19,15 +19,8 @@ augroup CustomCmds
 
   " Create note mapping only if markdown
   autocmd FileType markdown noremap <buffer><silent><leader>n :call CreateZettel()<CR>
+
+  " Sync Google Tasks on writing any file in ~/Notes dir
+  autocmd BufWritePost ~/Notes/*.md :GtaskSync
 augroup END
-
-command! -nargs=1 CreateZettelHub :call CreateZettelHub(<args>)
-
 ]=])
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = vim.fn.expand("~/Notes") .. "/*.md",
-	callback = function()
-		vim.cmd(":GtaskSync")
-	end,
-})

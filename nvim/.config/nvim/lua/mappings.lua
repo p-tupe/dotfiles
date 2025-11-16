@@ -79,24 +79,5 @@ map("n", "z=", ":Telescope spell_suggest<CR>", s)
 -- I personally use it for replacing in already copied text
 map("v", "p", "P", s)
 
--- Open current file in nvim tree
-map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", s)
-
 -- Start music player
 map("n", "<leader>m", ":!music<CR>", s)
-
--- Neogit
-map("n", "<leader>G", ":Neogit<CR>", s)
-
--- LSP error jumps
-map(
-	"n",
-	"<localleader>g",
-	":lua vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
-	s
-)
-map("n", "grr", "<cmd>Telescope lsp_references<CR>", s)
-map("n", "gri", "<cmd>Telescope lsp_implementation<CR>", s)
-map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", s)
-map("n", "gO", "<Cmd>Telescope lsp_document_symbols<CR>", s)
-map("n", "<localleader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", s)
