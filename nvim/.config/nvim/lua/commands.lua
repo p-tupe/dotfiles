@@ -20,6 +20,9 @@ augroup CustomCmds
   " Create note mapping only if markdown
   autocmd FileType markdown noremap <buffer><silent><leader>n :call CreateZettel()<CR>
 
+  " Hide the <!--gtask:abc123--> ids from tasks
+   autocmd FileType markdown syntax match gtaskComment /<!--\s*gtask:[^>]*-->/ conceal
+
   " Sync Google Tasks on writing any file in ~/Notes dir
   autocmd BufWritePost ~/Notes/*.md :GtaskSync
 augroup END

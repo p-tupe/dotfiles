@@ -10,14 +10,26 @@ def main():
     backupDir = Path.home() / "Backups"
 
     try:
-        for server in servers:
-            print(f"Syncing {server}")
-            run(f"rsync -azrq --partial \
-                    --exclude '.*' --delete --ignore-errors \
-                    {server}:/home/ubuntu {backupDir}/{server}",
-                shell=True,
-                check=True,
-                )
+        server = servers[0]
+        print(f"Syncing {server}")
+        run(f"rsync -azrq --partial \
+                --exclude '.*' --delete --ignore-errors \
+                {server}:/home/ubuntu {backupDir}/{server}",
+            shell=True,
+            check=True,
+            )
+    except Exception:
+        print(f"An error occured when backing up {server}")
+
+    try:
+        server = servers[1]
+        print(f"Syncing {server}")
+        run(f"rsync -azrq --partial \
+                --exclude '.*' --delete --ignore-errors \
+                {server}:/home/ubuntu {backupDir}/{server}",
+            shell=True,
+            check=True,
+            )
     except Exception:
         print(f"An error occured when backing up {server}")
 

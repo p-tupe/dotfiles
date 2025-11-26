@@ -33,11 +33,6 @@ local kind_icons = {
 	Codeium = " ",
 }
 
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 cmp.setup({
 	performance = {
 		max_view_entries = 10,
@@ -51,18 +46,29 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+		-- If prompt visible
+		--    If only one entry -> confirm it
+		--    Else -> select next entry
+		-- Else -> fallback to default
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item()
-			elseif has_words_before() then
-				cmp.complete()
+				if #cmp.get_entries() == 1 then
+					cmp.confirm({ select = true })
+				else
+					cmp.select_next_item()
+				end
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_item()
+				if #cmp.get_entries() == 1 then
+					cmp.confirm({ select = true })
+				else
+					cmp.select_prev_item()
+				end
 			else
 				fallback()
 			end
@@ -77,7 +83,6 @@ cmp.setup({
 	},
 	-- Each {} is one group, when present excludes other
 	sources = cmp.config.sources({
-		{ name = "cmp_ai", max_item_count = 3 },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 	}, { { name = "buffer" } }),

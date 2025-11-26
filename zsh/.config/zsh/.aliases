@@ -26,20 +26,22 @@ fi
 tx() {
 }
 
-# Usage: tts input.txt --> output.wav
+# Usage: tts file.txt --> file.mp3
 tts() {
   if [ "$#" -lt 1 ]; then
-    echo "USAGE:"
-    echo "\ttts <input.txt> [--chunks ./dir] [--format mp3]"
+    echo "USAGE:\n\ttts <input.txt> [--chunks ./dir]"
     return
   fi
 
   input=$1
-  output="$(basename "$1" .txt).wav"
+  output="$(basename "$1" .txt).mp3"
+  shift
 
   kokoro-tts $input $output \
     --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
-    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin
+    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
+    --format mp3 \
+    --voice af_bella $*
   }
 
 mkcd() {
