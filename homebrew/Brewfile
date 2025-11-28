@@ -36,7 +36,9 @@ brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Interpreted, interactive, object-oriented programming language
-brew "python"
+brew "python@3.13"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
