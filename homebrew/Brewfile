@@ -27,8 +27,10 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Package manager for the Lua programming language
-brew "luarocks"
+# GNU utilities for networking
+brew "inetutils"
+# Tool for linting and static analysis of Lua code
+brew "luacheck"
 # Utility for directing compilation
 brew "make"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -95,8 +97,6 @@ cask "qview"
 cask "slack"
 # Real time file synchronisation software
 cask "syncthing-app"
-# Mesh VPN based on WireGuard
-cask "tailscale-app"
 # Virtual machines UI using QEMU
 cask "utm"
 # Multimedia player

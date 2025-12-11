@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-osascript -e 'tell application "Tailscale" to activate'
-
 ssh toronto-server 'bash -s' <<'EOF'
 for app in */; do pushd $app; docker compose pull && docker compose up -d; popd; done
 sudo apt update && sudo apt upgrade -y

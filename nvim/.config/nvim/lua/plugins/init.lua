@@ -25,6 +25,21 @@ if not status_ok then
 end
 
 lazy.setup({
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"netrwPlugin",
+				"osc52",
+				"rplugin",
+				"shada",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 	spec = {
 		-- A dark theme
 		{ "dracula/vim", name = "dracula" },

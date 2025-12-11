@@ -6,18 +6,18 @@
 
 echo -e "\nCleaning histories"
 (
-  \rm -rf ~/.*history
-  \rm -rf ~/.config/zsh/.zhistory
-  \rm -rf ~/.lesshst
-  \rm -rf ~/.wget-hsts
-  \rm -rf ~/.ipython
-  \rm -rf ~/.cljs
+  rm -rf ~/.*history
+  rm -rf ~/.config/zsh/.zhistory
+  rm -rf ~/.lesshst
+  rm -rf ~/.wget-hsts
+  rm -rf ~/.ipython
+  rm -rf ~/.cljs
 ) >/dev/null 2>&1
 
 echo -e "\nEmptying trash"
 (
   pushd ~/.Trash/
-  \rm -rf *
+  rm -rf *
   popd
 ) 2>/dev/null
 

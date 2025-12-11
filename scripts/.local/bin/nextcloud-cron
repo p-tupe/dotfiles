@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+curl --no-progress-meter https://nextcloud.priteshtupe.com/cron.php

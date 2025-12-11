@@ -99,3 +99,19 @@ set.linebreak = true
 -- Hide all that can be hidden
 set.conceallevel = 2
 
+-- Don't use shadafile
+set.shadafile = "NONE"
+
+-- Disable unused stiff
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_remote_plugins = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_shada_plugin = 1
+vim.g.loaded_spellfile_plugin = 1
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
