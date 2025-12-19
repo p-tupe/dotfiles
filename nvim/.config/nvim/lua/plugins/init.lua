@@ -115,6 +115,9 @@ lazy.setup({
 
 		-- gtask.nvim
 		{ "p-tupe/gtask.nvim" },
+
+		-- nvim-rss
+		{ "p-tupe/nvim-rss" },
 	},
 	install = { colorscheme = { "dracula" } },
 })
@@ -124,43 +127,6 @@ require("gtask").setup({
 	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
 	-- verbosity = "info",
 })
-
-----------------------------------
--- vim.opt.runtimepath:prepend("/Users/pritesh/Projects/gtask.nvim")
---
--- require("gtask").setup({
--- 	markdown_dir = "~/Notes",
--- 	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
--- 	keep_completed_in_markdown = true, -- Keep completed tasks in markdown even if deleted from Google Tasks
--- 	verbosity = "info", -- Logging level: "error", "warn", or "info"
--- })
---
--- local function cmd_auth()
--- 	require("gtask.auth").authenticate()
--- end
---
--- local function cmd_sync()
--- 	require("gtask.sync").sync_directory_with_google(function(success)
--- 		if success then
--- 			vim.notify("Sync completed successfully")
--- 		else
--- 			vim.notify("Sync failed", vim.log.levels.ERROR)
--- 		end
--- 	end)
--- end
---
--- vim.api.nvim_create_user_command("GtaskAuth", cmd_auth, {})
--- vim.api.nvim_create_user_command("GtaskSync", cmd_sync, {})
---
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "markdown",
--- 	callback = function()
--- 		vim.defer_fn(function()
--- 			vim.cmd([[syntax match gtaskComment /<!--\s*gtask:[^>]*-->/ conceal]])
--- 		end, 0)
--- 	end,
--- })
-----------------------------------
 
 require("Comment").setup()
 
@@ -184,8 +150,4 @@ require("plugins.zen-mode")
 
 require("plugins.neogit")
 
--- require "plugins.nvim-rss" -- Uncomment when using github uri
-
--- Tools
--- npm i -g neovim
--- pip install pynvim
+require("plugins.nvim-rss")

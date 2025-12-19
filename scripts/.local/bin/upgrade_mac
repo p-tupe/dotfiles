@@ -2,7 +2,7 @@
 
 echo -e "\n\nUpdating brew...\n"
 brew update
-brew upgrade --greedy --no-quarantine
+brew upgrade --greedy # --no-quarantine
 pushd ~/.dotfiles/homebrew
 brew bundle dump --force --describe
 popd

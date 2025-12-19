@@ -1,8 +1,9 @@
 #!/usr/bin/env zsh
-
-###
+#
 # Automatically called in update_everything
-###
+#
+
+set -euo pipefail
 
 echo -e "\nCleaning histories"
 (
@@ -29,7 +30,7 @@ brew autoremove && brew cleanup --prune=all
 
 echo -e "\nDeleting macos stuff"
 sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
-\rm -rf ~/Music/Music
+rm -rf ~/Music/Music
 # sudo log erase --all
 
 # Clear Cache
@@ -38,9 +39,7 @@ sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEv
 
 if (docker stats --no-stream >/dev/null 2>&1); then
   echo -e "\nClearing docker stuff - be careful if prompted!"
-  docker image prune
-  docker volume prune
-  docker network prune
+  docker system prune -a --volumes
 fi
 
 echo -e "\nAll Done!\n"
