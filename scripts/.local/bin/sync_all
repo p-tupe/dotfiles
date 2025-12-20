@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+echo "Starting apps..."
+open /Applications/Nextcloud.app
+open /Applications/Syncthing.app
+
+echo "Sync servers..."
+~/.local/bin/sync/servers
+
+echo "Sync sandisk..."
+~/.local/bin/sync/sandisk
+
+# echo "Sync Pixel..."
+# ~/.local/bin/sync/pixel
+#
+# echo "Sync Nextcloud..."
+# ~/.local/bin/sync/nextcloud

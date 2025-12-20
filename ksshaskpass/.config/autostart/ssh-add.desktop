@@ -1,4 +1,0 @@
-[Desktop Entry]
-Exec=ssh-add -q ~/.ssh/github ~/.ssh/badass-server ~/.ssh/personal-server
-Name=ssh-add
-Type=Application

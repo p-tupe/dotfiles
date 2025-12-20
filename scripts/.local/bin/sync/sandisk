@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ ! -e /Volumes/Sandisk ]]; then exit; fi
+
+rsync \
+  --archive \
+  --partial \
+  --recursive \
+  --delete \
+  --exclude='.*' \
+  $HOME/Documents \
+  $HOME/Music \
+  $HOME/Notes \
+  $HOME/Pictures \
+  $HOME/Ebooks \
+  $HOME/.dotfiles \
+  /Volumes/Sandisk
+
+osascript -e 'display notification "Sandisk synced successfully!"'
+
+# To backup sensitive data, use:
+#
+# zip --encrypt ...
+#
+# For relatively convenient security.

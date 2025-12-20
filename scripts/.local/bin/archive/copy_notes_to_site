@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+###
+# Automatically called from git hook
+###
+
+cp -r ~/Notes/code-notes/*.md \
+  ~/Projects/p-tupe.github.io/src/collections/notes/

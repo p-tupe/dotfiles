@@ -1,16 +1,48 @@
 [user]
   name = Pritesh Tupe
   email = mail@priteshtupe.com
-	signingkey = 2CB695256E32FF9E
+  signingkey = /Users/pritesh/.ssh/github.pub
 [init]
   defaultBranch = main
 [advice]
   addIgnoredFile = false
 [core]
   editor = nvim
+  autocrlf = input
+  ignoreCase = false
 [pull]
   rebase = false
 [commit]
-	; gpgsign = true
+  gpgsign = true
 [safe]
-	directory = *
+  directory = *
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[gpg]
+  format = ssh
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  renames = true
+[push]
+  autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[merge]
+  conflictstyle = zdiff3

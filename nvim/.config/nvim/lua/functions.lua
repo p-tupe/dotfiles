@@ -1,4 +1,4 @@
-vim.cmd [=[
+vim.cmd([=[
 
 function! MyHighlights()
   highlight! Normal guibg=none
@@ -21,14 +21,17 @@ function! MyHighlights()
   highlight! Trail guifg=#FF5555
   match Trail /\s\+$/
 
-  highlight! link GitSignsAdd NONE
+  highlight! link GitSignsAdd DraculaGreen
+  highlight! link GitSignsChange DraculaYellow
+  highlight! link GitSignsDelete DraculaRed
+  highlight! link GitSignsChangeDelete DraculaOrange
   highlight! DiffAdd guibg=#254035 guifg=NONE gui=NONE
   highlight! DiffDelete guibg=#440000 guifg=NONE gui=NONE
   highlight! DiffChange guibg=#292929 guifg=NONE gui=NONE
   highlight! DiffText guibg=#252525 guifg=orange gui=underline
 
-  highlight! link DiagnosticHint NonText
-  highlight! link DiagnosticInfo NonText
+  highlight! link DiagnosticHint white
+  highlight! link DiagnosticInfo white
   highlight! link DiagnosticSignHint NonText
   highlight! link DiagnosticSignInfo NonText
   highlight! link DiagnosticVirtualTextHint NonText
@@ -44,7 +47,6 @@ function! MyHighlights()
   highlight! link LspDiagnosticsUnderlineError NONE
   highlight! link LspDiagnosticsUnderlineWarning NONE
 endfunction
-
 
 function! TermOptions()
   if exists('b:termOptionsSet')
@@ -70,49 +72,25 @@ function! EmptyCmdline(timer)
   endif
 endfunction
 
-" Create a zettel hub (A collection of zettels)
-" This creates a file name with decorated title and
-" a folder with same name to store related zettels
-function! CreateZettelHub()
-  let cline = getline(".")
-  let line = substitute(tolower(cline), " ", "-", "g")
-  let file = "./" . line . ".md"
-
-  " Add markdown link to new zettel hub
-  execute "silent normal! 0i- [$a](" . file . ")"
-
-  " open new hub in vertical split
-  execute "silent vsp " . file
-
-  " Add decorated title on top -c = center
-  execute "silent r!figlet -ck " . cline
-
-  "Format to remove padding
-  execute "silent Neoformat"
-
-  " Create a directory
-  execute "silent!mkdir " . line
-
-endfunction
-
-" Create a zettel (An atomic piece of info)
+" Create a zettel/note
 function! CreateZettel()
   " Get parent buffer name :t = tail, :r = root (w/o extension)
   " Buffer name is same as directory in which zettels will be stored
   let dir = expand("%:p:r")
   let rdir = expand("%:t:r")
 
-  if rdir == "index"
-    let dir = "./zettels"
-    let rdir = "zettels"
-  endif
-
   " Put line under cursor as title/file-name
   let cline = getline(".")
   let line = tolower(cline)
+  let sub = substitute(line, " ", "-", "g") . ".md"
 
-  let path =  dir . "/" . substitute(line, " ", "-", "g") . ".md"
-  let link = "./" . rdir . "/" . substitute(line, " ", "-", "g") . ".md"
+  let path =  dir . "/" . sub
+  let link = "./" . rdir . "/" . sub
+
+  if rdir == "index"
+    let path =  "./" . sub
+    let link = "./" . sub
+  endif
 
   " Add markdown link to new zettel
   execute "normal! 0i- [$a](" . link . ")"
@@ -125,4 +103,43 @@ function! CreateZettel()
 
 endfunction
 
-]=]
+function! GoToFile()
+  let cwd = expand("%:p:h")
+  let cfile = expand("<cfile>")
+
+  if matchstr(cfile, "../") == "../"
+    :execute 'vsplit' substitute(cfile, '..', expand("%:p:h:h"), '')
+  elseif matchstr(cfile, "./") == "./"
+    :execute 'vsplit' substitute(cfile, '.', cwd, '')
+  endif
+endfunction
+
+" Create a small floating terminal window
+" Credits: https://www.statox.fr/posts/2021/03/breaking_habits_floating_window/
+function! FloatTerm() abort
+    let width = 100
+    let height = 30
+
+    " Create the scratch buffer displayed in the floating window
+    let buf = nvim_create_buf(v:false, v:true)
+
+    " Get the current UI
+    let ui = nvim_list_uis()[0]
+
+    " Create the floating window
+    let opts = {'relative': 'editor',
+                \ 'width': width,
+                \ 'height': height,
+                \ 'col': (ui.width/2) - (width/2),
+                \ 'row': (ui.height/2) - (height/2),
+                \ 'anchor': 'NW',
+                \ 'style': 'minimal',
+                \ 'border': 'rounded',
+                \ }
+
+    let win = nvim_open_win(buf, 1, opts)
+
+    :terminal
+endfunction
+
+]=])

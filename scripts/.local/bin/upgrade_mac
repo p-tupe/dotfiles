@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+echo -e "\n\nUpdating brew...\n"
+brew update
+brew upgrade --greedy # --no-quarantine
+pushd ~/.dotfiles/homebrew
+brew bundle dump --force --describe
+popd
+
+echo -e "\n\nUpdating npm...\n"
+npm --location=global update
+
+echo -e "\n\nUpdating pip...\n"
+pip3 list --outdated | awk 'NR != 1 && NR != 2 { print $1 }' >/tmp/pip-upgrade-list
+if [ -s /tmp/pip-upgrade-list ]; then
+  cat /tmp/pip-upgrade-list | xargs -n1 pip3 install --user --upgrade --break-system
+else
+  echo "Nothing to update..."
+fi
+
+echo -e "\n\nUpdating nvim...\n"
+nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
+
+cleanup_everything

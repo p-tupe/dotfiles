@@ -1,70 +1,103 @@
-# vi: ft=zsh
+# vi: ft=bash
 
 alias ...='../..'
-alias ....='../../..'
-alias l="exa --icons --long --header --all"
+alias l="eza --icons --long --header --all"
 alias v="nvim"
 alias w="wiki"
-alias y="yay"
-
-alias cp="cp --update --verbose"
+alias m="music"
 alias fd="fd --ignore-case --follow"
-alias ls="exa --icons"
-alias mv="mv --update --verbose"
-alias py="python"
-alias no="node"
-alias vi="nvim";
-
-alias icat="kitty +kitten icat"
-# alias lua="luajit" # ln -s /usr/bin/luajit ~/.local/bin/lua, for when aliases are not imported
-alias music="mocp"
-alias open="xdg-open"
-# alias ssh="kitty +kitten ssh" # Only required once, when logging first time
-alias top="bpytop";
-alias tree="exa --icons --tree"
-alias vim="nvim";
-
-alias adb_connect="adb connect 192.168.0.190:5555";
-alias decrypt="gpg -d" # file.gpg -> file
+alias ls="eza --icons"
+alias vi="nvim"
+alias du="dust"
+alias cat="bat"
+alias tree="eza --icons --tree"
+alias vim="nvim"
+alias decrypt="gpg -d"          # file.gpg -> file
 alias encrypt="gpg -er Pritesh" # file -> file.gpg
-alias http_server="python -m http.server 8888";
-alias ramfs="sudo mount -t tmpfs -o size=5g tmpfs /mnt/ramfs"
-alias show_private_ip="ip addr | rg '192.*/'";
-alias show_public_ip="curl ifconfig.co";
+alias http_server="python3 -m http.server 8888"
+alias show_public_ip="curl ifconfig.co"
+alias emulator="/Users/pritesh/Library/Android/sdk/emulator/emulator"
+
+# MacOS only
+if [[ `uname` == Darwin ]]; then
+  alias uuidgen="uuidgen | tr A-F a-f"
+fi
+
+tx() {
+}
+
+# Usage: tts file.txt --> file.mp3
+tts() {
+  if [ "$#" -lt 1 ]; then
+    echo "USAGE:\n\ttts <input.txt> [--chunks ./dir]"
+    return
+  fi
+
+  input=$1
+  output="$(basename "$1" .txt).mp3"
+  shift
+
+  kokoro-tts $input $output \
+    --model ~/.local/share/kokoro-tts/kokoro-v1.0.onnx \
+    --voices ~/.local/share/kokoro-tts/voices-v1.0.bin \
+    --format mp3 \
+    --voice af_bella $*
+  }
+
+mkcd() {
+  mkdir $1 && cd $1
+}
+
+music() {
+  folders=${@:-'/Users/pritesh/Music'}
+
+  nohup /opt/homebrew/bin/vlc \
+    --quiet \
+    --no-video \
+    --recursive=expand \
+    --no-media-library \
+    --playlist-autostart \
+    --playlist-tree \
+    --no-repeat \
+    --loop \
+    --random $folders >/dev/null &
+
+  disown
+
+  /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
+}
+
+mov2mp4() {
+  ffmpeg -i $1 video.mp4
+}
+
+download_audio() {
+  yt-dlp --verbose --ignore-errors \
+    --format bestaudio --extract-audio --audio-format mp3 \
+    --output '%(title)s.%(ext)s' $1
+  }
+
+download_video() {
+  yt-dlp --verbose --ignore-errors \
+    --format 'bestvideo+bestaudio' \
+    --merge-output-format mp4  \
+    --output '%(title)s.%(ext)s' $1
+  }
+
+import_as_single() {
+  beet -d $1 import -s $2
+}
+
+import_as_album() {
+  beet -d $1 import -g $2
+}
 
 wiki() {
-  cd ~/Notes
+  pushd ~/Notes >/dev/null
   nvim index.md +Telescope\ find_files
+  popd >/dev/null
 }
 
-clear_zsh_history() {
-  echo > ~/.config/zsh/.zhistory
+sqlite() {
+  /opt/homebrew/opt/sqlite/bin/sqlite3 --header --column "$@"
 }
-
-scrcap() {
-  adb shell screencap /sdcard/scrcap.png
-  adb pull /sdcard/scrcap.png ~/documents/scr/$(date '+%s').png
-  adb shell rm /sdcard/scrcap.png
-}
-
-clean_package_cache() {
-  yay -Sc
-  yay -cc
-  pamac clean
-}
-
-update_docker_images() {
-  docker images | awk '{print $1":"$2}' | tail -n +2 | xargs -n 1 docker pull
-}
-
-# For example, to run a testrunner T on dir change D
-# $ watch_and_do D T
-watch_and_do() {
-  while true;	do watch -g ls -l $1 >/dev/null && ${*:2}; sleep 5;	done
-}
-
-pandoc() {
-	docker run --rm -it -v "$PWD:/wrk" -w "/wrk" pandoc/core "$@"
-}
-
-eval $(python ~/.config/zsh/docker_aliases.py)

@@ -1,3 +1,6 @@
+.luarc.json
+.DS_Store
+
 moc/.moc/pid
 moc/.moc/equalizer
 moc/.moc/last_directory
@@ -10,11 +13,18 @@ nvim/.config/nvim/spell
 
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zsh_sessions
 
 scripts/.local/share/slack-webhook-url
-/scripts/.local/bin/*.py
-/scripts/.local/bin/__pycache__
+scripts/.local/bin/*.py
+scripts/.local/bin/__pycache__
+scripts/.local/share/kokoro-tts/kokoro-v1.0.onnx
+scripts/.local/share/kokoro-tts/voices-v1.0.bin
 
 firefox/.config/psd/.psd.conf
 
 ssmtp/etc/ssmtp/ssmtp.conf
+
+beets/.config/beets/state.pickle
+
+zettel_merken/.config/zettel_merken/config.json

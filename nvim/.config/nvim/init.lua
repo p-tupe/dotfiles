@@ -1,13 +1,11 @@
-require "globals"
+require("options")
 
-require "options"
+require("mappings")
 
-require "mappings"
+require("plugins")
 
-require "plugins"
+require("functions")
 
-require "functions"
+require("commands")
 
-require "commands"
-
-require "colorscheme"
+vim.cmd("colorscheme dracula")

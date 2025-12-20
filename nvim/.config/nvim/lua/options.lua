@@ -60,6 +60,10 @@ set.sidescrolloff = 5
 -- Number of screen lines to use for the command-line.
 set.cmdheight = 2
 
+-- Height/Width of popup menu for completion items
+set.pumheight = 10
+set.pumwidth = 0
+
 -- The screen will not be redrawn while executing macros, registers and other commands that have not been typed.
 -- Also, updating the window title is postponed.
 set.lazyredraw = true
@@ -70,10 +74,10 @@ set.numberwidth = 5
 -- List mode on, with custom chars
 set.list = true
 set.listchars = {
-  tab = "  ",
-  trail = "·",
-  extends = "»",
-  precedes = "«",
+	tab = "  ",
+	trail = "·",
+	extends = "»",
+	precedes = "«",
 }
 
 -- Remove end of buffer ~, diff delted - and fold closed -
@@ -91,3 +95,23 @@ set.foldlevel = 10
 
 -- Wrap with line break
 set.linebreak = true
+
+-- Hide all that can be hidden
+set.conceallevel = 2
+
+-- Don't use shadafile
+set.shadafile = "NONE"
+
+-- Disable unused stiff
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_remote_plugins = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_shada_plugin = 1
+vim.g.loaded_spellfile_plugin = 1
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0

@@ -1,4 +1,6 @@
-# Path to beetds library file
+# Installation: uv tool install "beets[chroma]" && brew install chromaprint
+
+# Path to beets library file
 library: ~/Music/library.db
 
 asciify_paths: yes

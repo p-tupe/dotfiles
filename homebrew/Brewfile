@@ -1,0 +1,108 @@
+tap "koekeishiya/formulae"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Core component of the AcoustID project (Audio fingerprinting)
+brew "chromaprint"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Platform keystore credential helper for Docker
+brew "docker-credential-helper"
+# More intuitive version of du in rust
+brew "dust"
+# Command-line tool to interact with exercism.io
+brew "exercism"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Distributed revision control system
+brew "git"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# GNU utilities for networking
+brew "inetutils"
+# Tool for linting and static analysis of Lua code
+brew "luacheck"
+# Utility for directing compilation
+brew "make"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
+# Rsync for cloud storage
+brew "rclone"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Tracks most-used directories to make cd smarter
+brew "z"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai"
+# Toolset to implement parts of Android apps in native code
+cask "android-ndk"
+# Android SDK component
+cask "android-platform-tools"
+# Desktop password and login vault
+cask "bitwarden"
+# Web browser
+cask "firefox"
+cask "font-maple-mono"
+cask "font-symbols-only-nerd-font"
+# Free and open-source image editor
+cask "gimp"
+# Web browser
+cask "google-chrome"
+# Graphically shows disk usage within a file system
+cask "grandperspective"
+# Desktop automation application
+cask "hammerspoon"
+# GPU-based terminal emulator
+cask "kitty"
+# Software for Logitech devices
+cask "logi-options+"
+# Desktop sync client for Nextcloud software products
+cask "nextcloud"
+# Simple application that will prevent iTunes or Apple Music from launching
+cask "notunes"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Peer to peer Bitorrent client
+cask "qbittorrent"
+# Image viewer
+cask "qview"
+# Team communication and collaboration software
+cask "slack"
+# Real time file synchronisation software
+cask "syncthing-app"
+# Virtual machines UI using QEMU
+cask "utm"
+# Multimedia player
+cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"
+go "github.com/p-tupe/pingmon"
+go "github.com/p-tupe/dev-log/examples/go/royal-road-scraper"
+go "snazzy-maps-scraper"

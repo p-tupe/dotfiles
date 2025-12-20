@@ -25,9 +25,8 @@ setopt rc_expand_param        # Array expension with parameters
 ##### PLUGINS #####
 ###################
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 ######################
@@ -48,7 +47,7 @@ zstyle ':completion:*:functions' ignored-patterns '_*'     # Ignore completion f
 ##### CONFIG #####
 ##################
 
-HISTFILE=${ZDOTDIR}/.zhistory
+HISTFILE=/tmp/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
 WORDCHARS=${WORDCHARS//\/[&.;]}       # Don't consider certain characters part of the word
@@ -73,15 +72,22 @@ bindkey '^[[6~' history-beginning-search-forward   # Page down key
 ##### PATH #####
 ################
 
+export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
+
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
+:$HOME/.docker/bin\
+:/opt/homebrew/opt/python@3.14/libexec/bin\
+:/opt/homebrew/Cellar/uv/0.9.5/bin\
+:/opt/homebrew/opt/make/libexec/gnubin\
+:/opt/homebrew/bin\
+:/opt/homebrew/sbin\
 :/usr/local/bin\
 :/usr/local/sbin\
 :/usr/bin\
 :/usr/sbin\
 :/bin\
 :/sbin";
-
 
 ##################
 ##### PROMPT #####
@@ -101,4 +107,22 @@ zstyle ':vcs_info:*' enable git
 ##### INIT ####
 ###############
 
- [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# For z command
+. /opt/homebrew/etc/profile.d/z.sh
+
+if [ ! -e "/tmp/run_once" ]; then
+  (
+  # Inject Window Manager
+  cat /Users/pritesh/.local/share/xyz | sudo -S yabai --load-sa &
+
+  # Load SSH Keys
+  # Add them to keychain using following command: ssh-add --apple-use-keychain ~/.ssh/<key>
+  /usr/bin/ssh-add --apple-load-keychain &
+
+  go env -w GOBIN='/Users/pritesh/.local/bin'
+  go env -w GOPATH='/Users/pritesh/.go'
+
+  # Mark it done
+  touch /tmp/run_once
+  ) 2> /dev/null
+fi

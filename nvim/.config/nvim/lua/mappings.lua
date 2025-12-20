@@ -1,6 +1,6 @@
 local o = { noremap = true, silent = false }
 local s = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 -- Remap space as leader key and comma as localleader
 map("n", "<SPACE>", "<NOP>", s)
@@ -12,25 +12,33 @@ vim.g.maplocalleader = ","
 map("i", "jk", "<Esc>", s)
 
 -- Remap j and k to scroll by visual lines
-map("n", "j", "gj", s)
-map("n", "k", "gk", s)
-map("v", "j", "gj", s)
-map("v", "k", "gk", s)
+map({ "n", "v" }, "j", "gj", s)
+map({ "n", "v" }, "k", "gk", s)
+
+-- Quick line start/end in insert mode
+map("i", "<C-e>", "<ESC>A", s)
+map("i", "<C-a>", "<ESC>I", s)
+
+-- Quick sentence start/end in normal mode
+map("n", "0", "^", s)
+map("n", "-", "g_", s)
 
 -- Colon switch
-map("n", ";", ":", o)
-map("v", ";", ":", o)
+map({ "n", "v" }, ";", ":", o)
 
 -- Save and quit
 map("n", "<leader>s", ":update<CR>", s) -- Save only
-map("n", "<leader>q", ":Sayonara!<CR>", s) -- Close buffer but keep window
-map("n", "Q", ":Sayonara<CR>", s) -- Close buffer and window
+map("n", "<leader>Q", ":Sayonara!<CR>", s) -- Close buffer but keep window
+map("n", "<leader>q", ":Sayonara<CR>", s) -- Close buffer and window
 map("n", "<leader>w", "ZZ", s) -- Save and close buffer and window
 
 -- Quick splits and tabs
 map("n", "<leader>v", ":vsplit<CR>", s)
 map("n", "<leader>x", ":split<CR>", s)
 map("n", "<leader>t", ":tabnew <CR>", s)
+
+-- Open floating terminal
+map({ "n", "i" }, "<C-'>", ":call FloatTerm()<CR>", s)
 
 -- Indents
 map("n", "<", "<<", s)
@@ -39,9 +47,6 @@ map("n", ">", ">>", s)
 -- Blank lines
 map("n", "<leader>j", "o<ESC>k", s)
 map("n", "<leader>k", "O<ESC>j", s)
-
--- Very Magic search
-map("n", "/", [[/\v]], o)
 
 -- Search and replace
 map("n", "<leader>r", ":%s//g<Left><Left>", o)
@@ -52,19 +57,42 @@ map("n", "<leader><CR>", ":nohls<CR>", s)
 
 -- Inbuild terminal ESC normal mode
 map("t", "<Esc>", [[<C-\><C-n>]], s)
+map("t", "<C-[>", [[<C-\><C-n>]], s)
 
--- Sigh... Things were not supposed to break like this
 -- Open url under cursor into browser
-map("n", "gx", ':!xdg-open <cfile><CR>', o)
+map("n", "gx", ":Open <cfile><CR>", o)
+
 -- Create a new zettel note
 map("n", "<leader>n", ":call CreateZettel()<CR>", s)
 
 -- Open path under cursor in vertical split
-map("n", "gf", ":execute 'vsplit' substitute(expand('<cfile>'), '.', expand('%:h'), '')<CR>", s)
+map("n", "gf", ":call GoToFile()<CR>", s)
 
 -- Use telescope whenever possible for consistent flow
 map("n", "z=", ":Telescope spell_suggest<CR>", s)
 
 -- Do not copy deleted text in visual mode
 -- I personally use it for replacing in already copied text
-map("v", "p", "\"_dP", s) -- yes it is capital P here
+map("v", "p", "P", s)
+
+-- Open current file in nvim tree
+map("n", "<leader>f", ":NvimTreeFindFileToggle<CR>", s)
+
+-- Start music player
+map("n", "<leader>m", ":!music<CR>", s)
+
+-- Neogit
+map("n", "<leader>G", ":Neogit<CR>", s)
+
+-- LSP error jumps
+map(
+	"n",
+	"<localleader>g",
+	":lua vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
+	s
+)
+map("n", "grr", "<cmd>Telescope lsp_references<CR>", s)
+map("n", "gri", "<cmd>Telescope lsp_implementation<CR>", s)
+map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", s)
+map("n", "gO", "<Cmd>Telescope lsp_document_symbols<CR>", s)
+map("n", "<localleader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", s)

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# https://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
+
+pushd ~/mnt
+
+sshfs_mount() {
+  sshfs \
+    -o defer_permissions \
+    -o cache_timeout=300 \
+    -o reconnect \
+    -o noappledouble \
+    -o no_readahead \
+    -o nolocalcaches \
+    -o auto_cache \
+    $1 $2
+}
+
+# sshfs_mount tod-miricyl-server:/root tod-miricyl-server
+#
+# sshfs_mount toronto-server:/home/ubuntu toronto-server
+#
+# sshfs_mount badass-server:/home/ubuntu badass-server
+#
+# s3fs storj-bucket ./storj-bucket -o passwd_file=${HOME}/.passwd-s3fs -o url=https://gateway.storjshare.io -o use_path_request_style
+#
+# s3fs nextcould-backup ./nextcould-backup -o passwd_file=${HOME}/.passwd-s3fs -o url=https://gateway.storjshare.io -o use_path_request_style
+
+popd
