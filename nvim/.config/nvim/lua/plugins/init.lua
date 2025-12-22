@@ -115,9 +115,11 @@ lazy.setup({
 
 		-- gtask.nvim
 		{ "p-tupe/gtask.nvim" },
+		-- { dir = "~/Projects/gtask.nvim" },
 
 		-- nvim-rss
 		{ "p-tupe/nvim-rss" },
+		-- { dir = "~/Projects/nvim-rss" },
 	},
 	install = { colorscheme = { "dracula" } },
 })
