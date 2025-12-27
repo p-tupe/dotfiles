@@ -1,3 +1,5 @@
+-- https://github.com/p-tupe/nvim-rss
+
 local ok, rss = pcall(require, "nvim-rss")
 if not ok then
 	print("nvim-rss not loaded")
