@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.pritesh.convert-supernotes</string>
+    <key>ServiceDescription</key>
+    <string>Converts supernote files to pdfs on change</string>
+    <key>Program</key>
+    <string>/Users/pritesh/.local/bin/convert_supernotes_to_pdf</string>
+    <key>WatchPaths</key>
+    <array>
+      <string>/Users/pritesh/Notes/supernote/Note</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.pritesh.convert-supernotes.err</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.pritesh.convert-supernotes.out</string>
+  </dict>
+</plist>

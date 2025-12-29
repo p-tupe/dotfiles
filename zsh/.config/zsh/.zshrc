@@ -77,6 +77,7 @@ export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
+:$HOME/.cargo/bin\
 :/opt/homebrew/opt/python@3.14/libexec/bin\
 :/opt/homebrew/Cellar/uv/0.9.5/bin\
 :/opt/homebrew/opt/make/libexec/gnubin\

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+supernote_pdf \
+  -i /Users/pritesh/Notes/supernote/Note/ \
+  -o /tmp/PDFs
+
+rsync -azvq /tmp/PDFs/*.pdf /Users/pritesh/Notes/supernote/PDFs/
+
+rm -rf /tmp/PDFs

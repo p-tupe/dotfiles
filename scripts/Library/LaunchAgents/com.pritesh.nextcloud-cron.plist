@@ -8,7 +8,7 @@
     <key>ServiceDescription</key>
     <string>Run daily background cron jobs for nextcloud</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/nextcloud-cron</string>
+    <string>/Users/pritesh/.local/bin/nextcloud_cron</string>
     <key>RunAtLoad</key>
     <true />
     <key>StartOnMount</key>
