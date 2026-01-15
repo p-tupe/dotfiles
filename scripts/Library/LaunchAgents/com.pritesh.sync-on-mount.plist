@@ -8,7 +8,7 @@
     <key>ServiceDescription</key>
     <string>Sync Sandisk SSD on mount</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/sync/sandisk</string>
+    <string>/Users/pritesh/.local/bin/sync_sandisk</string>
     <key>RunAtLoad</key>
     <true />
     <key>StartOnMount</key>

@@ -2,12 +2,16 @@
 
 ssh toronto-server 'bash -s' <<'EOF'
 for app in */; do pushd $app; docker compose pull && docker compose up -d; popd; done
-sudo apt update && sudo apt upgrade -y
+docker system prune --all --volumes --force
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+# sudo reboot -h now
 EOF
 
 ssh badass-server 'bash -s' <<'EOF'
 for app in */; do pushd $app; docker compose pull && docker compose up -d; popd; done
-sudo apt update && sudo apt upgrade -y
+docker system prune --all --volumes --force
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+# sudo reboot -h now
 EOF
 
 echo -e "\n\nDone!"

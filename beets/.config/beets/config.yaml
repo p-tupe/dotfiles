@@ -13,7 +13,8 @@ asciify_paths: yes
 # fromfilename: use filename to search
 # chroma: use audio fingerprint to search (https://beets.readthedocs.io/en/stable/plugins/chroma.html)
 # fetchart: get album art along with metadata
-plugins: scrub fromfilename chroma fetchart
+# musicbrainz:  include matches from the MusicBrainz database.
+plugins: scrub fromfilename chroma fetchart musicbrainz
 
 match:
   # List of preferred countries and types in order

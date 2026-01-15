@@ -78,7 +78,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
 :$HOME/.docker/bin\
 :$HOME/.cargo/bin\
-:/opt/homebrew/opt/python@3.14/libexec/bin\
+:$HOME/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/bin/\
 :/opt/homebrew/Cellar/uv/0.9.5/bin\
 :/opt/homebrew/opt/make/libexec/gnubin\
 :/opt/homebrew/bin\

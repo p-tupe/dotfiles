@@ -27,8 +27,12 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Tool for linting and static analysis of Lua code
 brew "luacheck"
 # Utility for directing compilation
@@ -39,14 +43,14 @@ brew "neovim"
 brew "node"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Safe, concurrent, practical language
+brew "rust"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -106,3 +110,4 @@ cask "zoom"
 go "github.com/p-tupe/pingmon"
 go "github.com/p-tupe/dev-log/examples/go/royal-road-scraper"
 go "snazzy-maps-scraper"
+cargo "supernote_pdf"
