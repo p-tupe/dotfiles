@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+/Users/pritesh/.cargo/bin/supernote_pdf \
+  -i /Users/pritesh/Notes/supernote/Note/ \
+  -o /tmp/PDFs
+
+/opt/homebrew/bin/rsync \
+  --archive \
+  --quiet \
+  --delete \
+  --partial \
+  /tmp/PDFs/*.pdf /Users/pritesh/Notes/supernote/PDFs/
+
+rm -rf /tmp/PDFs
+
+osascript -e 'display notification "Supernotes converted successfully!"'

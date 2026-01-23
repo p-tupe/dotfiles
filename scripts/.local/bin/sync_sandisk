@@ -18,6 +18,8 @@ rsync \
   $HOME/.dotfiles \
   /Volumes/Sandisk
 
+diskutil unmount Sandisk
+
 osascript -e 'display notification "Sandisk synced successfully!"'
 
 # To backup sensitive data, use:

@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_scandir(lazypath) then
@@ -89,7 +88,7 @@ lazy.setup({
 		-- Smart and Powerful commenting plugin for neovim
 		{ "numToStr/Comment.nvim" },
 
-		-- A minimalist autopairs for Neovim written by Lua.
+		-- A minimalist autopairs for Neovim
 		{ "windwp/nvim-autopairs" },
 
 		-- Git signs written in pure lua.
@@ -113,19 +112,23 @@ lazy.setup({
 		-- Git plugin
 		{ "NeogitOrg/neogit", lazy = true, dependencies = { "sindrets/diffview.nvim" } },
 
-		-- gtask.nvim
-		{ "p-tupe/gtask.nvim" },
+		{
+			"3rd/image.nvim",
+			build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+			opts = {
+				processor = "magick_cli",
+			},
+		},
 
-		-- nvim-rss
+		-- Google Tasks in neovim
+		{ "p-tupe/gtask.nvim" },
+		-- { dir = "~/Projects/gtask.nvim" },
+
+		-- A simple rss reader for neovim
 		{ "p-tupe/nvim-rss" },
+		-- { dir = "~/Projects/nvim-rss" },
 	},
 	install = { colorscheme = { "dracula" } },
-})
-
-require("gtask").setup({
-	markdown_dir = "~/Notes",
-	ignore_patterns = { "code-notes", "archive", "idea-board.md", "objectives.md", "bucket-list.md" },
-	-- verbosity = "info",
 })
 
 require("Comment").setup()
@@ -149,5 +152,7 @@ require("plugins.nvim-tree")
 require("plugins.zen-mode")
 
 require("plugins.neogit")
+
+require("plugins.gtask")
 
 require("plugins.nvim-rss")

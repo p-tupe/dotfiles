@@ -1,3 +1,5 @@
+-- https://github.com/p-tupe/nvim-rss
+
 local ok, rss = pcall(require, "nvim-rss")
 if not ok then
 	print("nvim-rss not loaded")
@@ -6,19 +8,16 @@ end
 
 rss.setup({ feeds_dir = "~/.config/nvim" })
 
-vim.cmd([[
+vim.cmd('command! OpenRssView lua require("nvim-rss").open_feeds_tab()')
 
-  command! OpenRssView lua require("nvim-rss").open_feeds_tab()
+vim.api.nvim_create_autocmd("BufReadPost", {
+	desc = "Fetch all feeds when nvim.rss is opened; Add mapping for Enter key",
+	pattern = "*/nvim.rss",
+	callback = function()
+		require("nvim-rss").fetch_all_feeds()
 
-  command! FetchFeed lua require("nvim-rss").fetch_feed()
-
-  command! FetchAllFeeds lua require("nvim-rss").fetch_all_feeds()
-
-  command! ViewFeed lua require("nvim-rss").view_feed()
-
-  " Pressing "Enter" opens the feed under cursor
-  autocmd! BufRead */nvim.rss noremap <buffer><silent><Enter> :lua require("nvim-rss").view_feed()<CR>
-
-  " Fetch all feeds when nvim.rss is opened
-  autocmd! BufRead */nvim.rss :lua require("nvim-rss").fetch_all_feeds()
-]])
+		vim.keymap.set("n", "<CR>", function()
+			require("nvim-rss").view_feed()
+		end, { buffer = true, silent = true, noremap = true })
+	end,
+})

@@ -2,3 +2,6 @@ snazzy-maps-scraper
 pingmon
 royal-road-scraper
 
+# just `go install .` in ../share/backup_servers
+backup_servers
+
