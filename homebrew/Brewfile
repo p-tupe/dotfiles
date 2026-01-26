@@ -1,7 +1,7 @@
 tap "koekeishiya/formulae"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Play, record, convert, and stream audio and video
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
@@ -27,7 +27,7 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Tools and libraries to manipulate images in many formats
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
@@ -91,8 +91,6 @@ cask "obsidian"
 cask "qbittorrent"
 # Image viewer
 cask "qview"
-# Team communication and collaboration software
-cask "slack"
 # Real time file synchronisation software
 cask "syncthing-app"
 # Virtual machines UI using QEMU
@@ -101,6 +99,6 @@ cask "utm"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
-go "github.com/p-tupe/pingmon"
+go "backup_servers"
+go "github.com/fyne-io/fyne-cross"
 go "github.com/p-tupe/dev-log/examples/go/royal-road-scraper"
-go "snazzy-maps-scraper"

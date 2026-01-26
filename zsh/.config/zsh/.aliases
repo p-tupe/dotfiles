@@ -30,6 +30,7 @@ notify() {
 }
 
 # Usage: tts file.txt --> file.mp3
+# https://github.com/thewh1teagle/kokoro-onnx
 tts() {
   if [ "$#" -lt 1 ]; then
     echo "USAGE:\n\ttts <input.txt> [--chunks ./dir]"

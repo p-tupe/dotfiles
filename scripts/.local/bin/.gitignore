@@ -1,6 +1,7 @@
-snazzy-maps-scraper
-pingmon
 royal-road-scraper
+fyne-cross
+check-sites
+backup_servers
 
 # just `go install .` in ../share/backup_servers
 backup_servers
