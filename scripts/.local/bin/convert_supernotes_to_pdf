@@ -11,7 +11,7 @@ set -euo pipefail
   --quiet \
   --delete \
   --partial \
-  /tmp/PDFs/*.pdf /Users/pritesh/Notes/supernote/PDFs/
+  /tmp/PDFs/*.pdf /Users/pritesh/Backups/supernote/PDFs
 
 rm -rf /tmp/PDFs
 

@@ -11,8 +11,6 @@
     <string>/Users/pritesh/.local/bin/check-sites</string>
     <key>RunAtLoad</key>
     <true />
-    <key>StartOnMount</key>
-    <true />
     <key>StandardErrorPath</key>
     <string>/tmp/com.pritesh.check-sites.err</string>
     <key>StandardOutPath</key>

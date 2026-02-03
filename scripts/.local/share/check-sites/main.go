@@ -62,8 +62,7 @@ func check(site string) {
 	log.Println(site, ":", resp.Status)
 }
 
-// alert sends a `msg` to the email using the
-// authorization code from env var
+// alert sends a `msg` to the email
 func alert(msg string) {
 	log.Println("Generating alert...")
 

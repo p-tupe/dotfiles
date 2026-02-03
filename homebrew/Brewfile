@@ -99,6 +99,8 @@ cask "utm"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
+go "github.com/air-verse/air"
 go "backup_servers"
+go "check-sites"
 go "github.com/fyne-io/fyne-cross"
 go "github.com/p-tupe/dev-log/examples/go/royal-road-scraper"
