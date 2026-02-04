@@ -1,12 +1,11 @@
 royal-road-scraper
 fyne-cross
 check-sites
-backup_servers
+backup-servers
+mail-server
+slack-proxy
 air
 pip*
 yt-dlp
 beet
-
-# just `go install .` in ../share/backup_servers
-backup_servers
 
