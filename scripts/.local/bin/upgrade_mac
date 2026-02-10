@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-echo -e "\n\nUpdating brew...\n"
+echo -e "\n\nUpdating...\n"
+
 (
   brew update
   brew upgrade --greedy
@@ -9,19 +10,18 @@ echo -e "\n\nUpdating brew...\n"
   popd
 ) >/dev/null &
 
-echo -e "\n\nUpdating npm...\n"
 (
   npm --location=global update
 ) >/dev/null &
 
-echo -e "\n\nUpdating uv...\n"
 (
   uv tool upgrade --all
 ) >/dev/null &
 
-echo -e "\n\nUpdating nvim...\n"
 nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
 
 wait
+
+echo -e "\n\nDone!\n"
 
 cleanup_everything

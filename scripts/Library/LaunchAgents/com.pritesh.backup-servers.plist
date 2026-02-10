@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+   "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.pritesh.backup-servers</string>
+    <key>ServiceDescription</key>
+    <string>Backup server data to local Backup dir</string>
+    <key>Program</key>
+    <string>/Users/pritesh/.local/bin/backup-servers</string>
+    <key>RunAtLoad</key>
+    <true />
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.pritesh.backup-servers.err</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.pritesh.backup-servers.out</string>
+  </dict>
+</plist>

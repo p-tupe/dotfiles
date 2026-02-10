@@ -1,7 +1,7 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 # Automatically called in update_everything
 
-echo -e "\nCleaning histories"
+echo -e "Cleaning up..."
 (
   rm -rf ~/.*history
   rm -rf ~/.config/zsh/.zhistory
@@ -11,22 +11,19 @@ echo -e "\nCleaning histories"
   rm -rf ~/.cljs
 ) >/dev/null 2>&1 &
 
-echo -e "\nEmptying trash"
 (
   pushd ~/.Trash/
   rm -rf *
   popd
 ) >/dev/null 2>&1 &
 
-echo -e "\nRemoving .DS_Store files"
 command fd --unrestricted --glob --follow --prune --type file ".DS_Store" --exec rm &
 
-echo -e "\nPruning brew packages"
-brew autoremove && brew cleanup --prune=all
-
-echo -e "\nDeleting macos stuff"
-sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 rm -rf ~/Music/Music
+
+brew autoremove && brew cleanup --prune=all &
+
+sqlite3 /Users/pritesh/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent'
 # sudo log erase --all
 
 # Clear Cache
@@ -38,4 +35,6 @@ if (docker stats --no-stream >/dev/null 2>&1); then
   docker system prune -a --volumes
 fi
 
-echo -e "\nAll Done!"
+wait
+
+echo -e "Done!"

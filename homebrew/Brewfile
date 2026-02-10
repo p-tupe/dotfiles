@@ -39,6 +39,8 @@ brew "make"
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
@@ -99,10 +101,10 @@ cask "utm"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
-
-# Private programs
+go "github.com/air-verse/air"
 go "github.com/p-tupe/code-examples/go/backup-servers"
-go "github.com/p-tupe/dev-log/examples/go/royal-road-scraper"
-# go "github.com/p-tupe/code-examples/go/check-sites"
-# go "github.com/p-tupe/code-examples/go/mail-server"
-# go "github.com/p-tupe/code-examples/go/slack-proxy"
+go "github.com/p-tupe/code-examples/go/check-sites"
+go "fyne.io/tools/cmd/fyne"
+go "github.com/fyne-io/fyne-cross"
+go "github.com/p-tupe/code-examples/go/mail-server"
+go "github.com/p-tupe/code-examples/go/royal-road-scraper"
