@@ -2,21 +2,15 @@
 
 echo -e "\n\nUpdating...\n"
 
-(
-  brew update
-  brew upgrade --greedy
-  pushd ~/.dotfiles/homebrew
-  brew bundle dump --force --describe
-  popd
-) >/dev/null &
+brew update
+brew upgrade --greedy
+pushd ~/.dotfiles/homebrew
+brew bundle dump --force --describe
+popd
 
-(
-  npm --location=global update
-) >/dev/null &
+npm --location=global update
 
-(
-  uv tool upgrade --all
-) >/dev/null &
+uv tool upgrade --all
 
 nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
 

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 /Users/pritesh/.local/bin/supernote-toolkit \
-  -input /Users/pritesh/Notes/supernote/Note/ -recurse \
+  -input /Users/pritesh/Notes/supernote/Note/ \
   -output /Users/pritesh/Backups/supernote/PDFs
 
 osascript -e 'display notification "Supernotes converted successfully!"'

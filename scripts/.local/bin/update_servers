@@ -2,7 +2,7 @@
 
 (
 ssh toronto-server 'bash -s' <<'EOF'
-for app in */; do pushd $app; docker compose pull && docker compose up -d; popd; done
+for app in */; do pushd $app; docker compose pull --quiet && docker compose up -d; popd; done
 docker system prune --all --volumes --force
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 # sudo reboot -h now
