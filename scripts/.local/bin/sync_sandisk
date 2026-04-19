@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o pipefail
 
-if [[ ! -e /Volumes/Sandisk ]]; then exit; fi
+if [ $NOTIFY ]; then $NOTIFY "Syncing Sandisk"; fi
+
+if [[ ! -e /Volumes/Sandisk ]]; then
+  echo "Sandisk not mounted"
+  exit
+fi
 
 rsync \
   --archive \
@@ -15,12 +20,17 @@ rsync \
   $HOME/Notes \
   $HOME/Pictures \
   $HOME/Ebooks \
+  $HOME/Backups \
   $HOME/.dotfiles \
-  /Volumes/Sandisk
+  /Volumes/Sandisk && diskutil unmount Sandisk
 
-diskutil unmount Sandisk
-
-osascript -e 'display notification "Sandisk synced successfully!"'
+if [ $NOTIFY ]; then
+  if [ $? -ne 0 ]; then
+    $NOTIFY "Sandisk synced failed! Please check logs."
+  else
+    $NOTIFY "Sandisk synced successfully!"
+  fi
+fi
 
 # To backup sensitive data, use:
 #

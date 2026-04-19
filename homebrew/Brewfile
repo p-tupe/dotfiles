@@ -1,10 +1,15 @@
+tap "arthur-ficial/tap"
 tap "koekeishiya/formulae"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
+# Command-line interface for SQLite
+brew "sqlite"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Pack, ship and run any application as a lightweight container
@@ -39,6 +44,10 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
+# General-purpose speech recognition model
+brew "openai-whisper"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Rsync for cloud storage
 brew "rclone"
 # Search tool like grep and The Silver Searcher
@@ -47,6 +56,8 @@ brew "ripgrep"
 brew "rsync"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Tracks most-used directories to make cd smarter
@@ -65,6 +76,8 @@ cask "android-platform-tools"
 cask "bitwarden"
 # E-books management software
 cask "calibre"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
 # Web browser
 cask "firefox"
 cask "font-maple-mono"
@@ -83,14 +96,16 @@ cask "kitty"
 cask "logi-options+"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
 # Simple application that will prevent iTunes or Apple Music from launching
 cask "notunes"
-# Knowledge base that works on top of a local folder of plain text Markdown files
-cask "obsidian"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Image viewer
 cask "qview"
+# Team communication and collaboration software
+cask "slack"
 # Real time file synchronisation software
 cask "syncthing-app"
 # Virtual machines UI using QEMU
@@ -99,9 +114,8 @@ cask "utm"
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
-go "github.com/air-verse/air"
-go "github.com/p-tupe/code-examples/go/backup-servers"
 go "github.com/p-tupe/code-examples/go/check-sites"
-go "fyne.io/tools/cmd/fyne"
-go "github.com/fyne-io/fyne-cross"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
+uv "beets[chroma]"
+uv "kokoro-tts"
+uv "yt-dlp"

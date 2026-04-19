@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -o pipefail
 
 /Users/pritesh/.local/bin/supernote-toolkit \
-  -input /Users/pritesh/Notes/supernote/Note/ \
+  -input /Users/pritesh/Backups/supernote/Note/ \
   -output /Users/pritesh/Backups/supernote/PDFs
 
-osascript -e 'display notification "Supernotes converted successfully!"'
+if [ $NOTIFY ]; then
+  if [ $? -ne 0 ]; then
+    $NOTIFY "Supernotes conversion failed! Please check logs."
+  else
+    $NOTIFY "Supernotes converted successfully!"
+  fi
+fi

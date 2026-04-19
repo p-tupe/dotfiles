@@ -27,6 +27,7 @@ end
 local function _openApp(name); application.launchOrFocus(name); end
 
 function M.openFirefox(); _openApp("firefox"); end
+-- function M.openFirefoxPrivate(); _openApp("/Applications/Firefox.app/Contents/MacOS/firefox --profile $(mktemp -d) --private-window"); end
 function M.openChrome(); _openApp("/Applications/Google Chrome.app/contents/MacOS/Google Chrome"); end
 function M.openKitty(); _openApp("kitty"); end
 -- function M.openMusic(); _openApp("kitty music"); end

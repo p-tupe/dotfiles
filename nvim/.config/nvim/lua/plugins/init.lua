@@ -65,7 +65,7 @@ lazy.setup({
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
 		-- Wraps the Neovim treesitter API
-		{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+		{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
 
 		-- A completion engine plugin for neovim written in Lua.
 		{

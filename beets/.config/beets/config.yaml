@@ -35,3 +35,6 @@ paths:
 
 ui:
   color: yes
+
+acoustid:
+  apikey: hLmTAx3eIX

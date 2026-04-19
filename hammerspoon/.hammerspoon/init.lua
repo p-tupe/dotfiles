@@ -7,6 +7,7 @@ local f = require("./functions")
 
 local mappings = {
 	{ modifiers = { "cmd" }, key = "b", fn = f.openFirefox },
+	-- { modifiers = { "cmd", "shift" }, key = "p", fn = f.openFirefoxPrivate },
 	{ modifiers = { "cmd" }, key = "g", fn = f.openChrome },
 	{ modifiers = { "cmd" }, key = "return", fn = f.openKitty },
 

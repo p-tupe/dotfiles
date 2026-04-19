@@ -10,15 +10,24 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+vim.lsp.config("pylsp", {
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = { "E262", "E266" },
+					maxLineLength = 120,
+				},
+			},
+		},
+	},
+})
+
 require("mason-lspconfig").setup()
 vim.diagnostic.config({ virtual_text = false })
 
 local mappings = {
 	["<localleader>g"] = ":lua vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
-	["grr"] = "<cmd>Telescope lsp_references<CR>",
-	["gri"] = "<cmd>Telescope lsp_implementation<CR>",
-	["gd"] = "<cmd>Telescope lsp_definitions<CR>",
-	["gO"] = "<Cmd>Telescope lsp_document_symbols<CR>",
 	["<localleader>d"] = "<cmd>lua vim.diagnostic.open_float()<CR>",
 }
 

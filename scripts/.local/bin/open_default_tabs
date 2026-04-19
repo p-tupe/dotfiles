@@ -2,26 +2,7 @@
 
 import { exec } from "node:child_process";
 
-const sites = {
-  jobs: [
-    "https://ca.indeed.com/",
-    "https://www.jobbank.gc.ca/home",
-    "https://www.glassdoor.ca/Job/index.htm",
-    "https://wellfound.com/jobs",
-    "https://www.linkedin.com/jobs/",
-    "https://talent.toptal.com/portal",
-    // "https://techamana.com/",
-    // "eluta.ca",
-    // "monster.ca",
-  ],
-
-  pr: [
-    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada.html",
-    "https://www.reddit.com/r/ImmigrationCanada/",
-  ],
-
-  work: [],
-};
+import sites from "./tabs-config.json" with { type: "json" };
 
 const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
 const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
@@ -49,9 +30,10 @@ if (arg) {
   } else {
     openSites(sites[process.argv[2]]);
   }
-} else
+} else {
   console.log(
     "Usage: open_default_tabs (",
     Object.keys(sites).join(" | "),
     ")",
   );
+}

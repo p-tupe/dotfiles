@@ -10,3 +10,9 @@ yt-dlp
 beet
 fyne
 supernote-toolkit
+claude
+godotenv
+
+
+*config.json
+*.env

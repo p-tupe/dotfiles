@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # Automatically called in update_everything
 
-echo -e "Cleaning up..."
+set -o pipefail
+
+if [ $NOTIFY ]; then $NOTIFY "Cleaning Mac...!"; fi
+
 (
   rm -rf ~/.*history
   rm -rf ~/.config/zsh/.zhistory
@@ -37,4 +40,4 @@ fi
 
 wait
 
-echo -e "Done!"
+if [ $NOTIFY ]; then $NOTIFY "Cleaning Mac Done!"; fi
