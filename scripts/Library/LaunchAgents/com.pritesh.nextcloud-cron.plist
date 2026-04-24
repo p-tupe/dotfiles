@@ -11,8 +11,6 @@
     <string>/Users/pritesh/.local/bin/nextcloud_cron</string>
     <key>RunAtLoad</key>
     <true />
-    <key>StartOnMount</key>
-    <true />
     <key>StandardErrorPath</key>
     <string>/tmp/com.pritesh.nextcloud-cron.err</string>
     <key>StandardOutPath</key>

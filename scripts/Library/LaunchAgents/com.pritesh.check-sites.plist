@@ -9,6 +9,12 @@
     <string>Monitor sites' health</string>
     <key>Program</key>
     <string>/Users/pritesh/.local/bin/check-sites</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/pritesh/.local/bin/check-sites</string>
+      <string>
+      /Users/pritesh/.local/bin/check-sites-config.json</string>
+    </array>
     <key>RunAtLoad</key>
     <true />
     <key>StandardErrorPath</key>

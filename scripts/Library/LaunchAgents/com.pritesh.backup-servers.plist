@@ -6,7 +6,7 @@
     <key>Label</key>
     <string>com.pritesh.backup-servers</string>
     <key>ServiceDescription</key>
-    <string>Backup server data to local Backup dir</string>
+    <string>Run daily server backup</string>
     <key>Program</key>
     <string>/Users/pritesh/.local/bin/backup-servers</string>
     <key>RunAtLoad</key>
