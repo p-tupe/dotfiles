@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+mkdir -p ~/Backups/.local/bin/
+
+# ~/.local/bin/*.env \
+rsync -azrq --delete --ignore-errors \
+  ~/.local/bin/*.json \
+  ~/Backups/.local/bin/

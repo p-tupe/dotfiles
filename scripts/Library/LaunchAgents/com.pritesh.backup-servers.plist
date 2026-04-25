@@ -8,7 +8,7 @@
     <key>ServiceDescription</key>
     <string>Run daily server backup</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/backup-servers</string>
+    <string>/Users/pritesh/.local/bin/backup-servers.mts</string>
     <key>RunAtLoad</key>
     <true />
     <key>StandardErrorPath</key>
