@@ -110,15 +110,7 @@ lazy.setup({
 		{ "mhinz/vim-sayonara", cmd = "Sayonara" },
 
 		-- Git plugin
-		{ "NeogitOrg/neogit", lazy = true, dependencies = { "sindrets/diffview.nvim" } },
-
-		-- {
-		-- 	"3rd/image.nvim",
-		-- 	build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-		-- 	opts = {
-		-- 		processor = "magick_cli",
-		-- 	},
-		-- },
+		{ "NeogitOrg/neogit", lazy = true, dependencies = { "sindrets/diffview.nvim" }, cmd = "Neogit" },
 
 		-- Google Tasks in neovim
 		{ "p-tupe/gtask.nvim" },
@@ -128,8 +120,9 @@ lazy.setup({
 		{ "p-tupe/nvim-rss" },
 		-- { dir = "~/Projects/nvim-rss" },
 	},
-	install = { colorscheme = { "dracula" } },
 })
+
+vim.cmd("colorscheme dracula")
 
 require("Comment").setup()
 

@@ -10,15 +10,11 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("pylsp", {
+vim.lsp.config("pyright", {
 	settings = {
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = { "E262", "E266" },
-					maxLineLength = 120,
-				},
-			},
+		python = {
+			pythonPath = (vim.fn.filereadable(".venv/bin/python") == 1) and (vim.fn.getcwd() .. "/.venv/bin/python")
+				or vim.fn.exepath("python3"),
 		},
 	},
 })

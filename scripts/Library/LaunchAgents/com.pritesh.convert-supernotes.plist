@@ -18,5 +18,9 @@
     <string>/tmp/com.pritesh.convert-supernotes.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.convert-supernotes.out</string>
+    <dict>
+      <key>NOTIFY</key>
+      <string>/Users/pritesh/.local/bin/notify</string>
+    </dict>
   </dict>
 </plist>

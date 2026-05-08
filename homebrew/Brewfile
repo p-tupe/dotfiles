@@ -1,5 +1,11 @@
 tap "arthur-ficial/tap"
+tap "jurplel/tap"
 tap "koekeishiya/formulae"
+tap "oven-sh/bun"
+# Command-line interface for SQLite
+brew "sqlite"
+# Official Amazon AWS command-line interface
+brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Play, record, convert, and stream select audio and video codecs
@@ -8,10 +14,8 @@ brew "ffmpeg"
 brew "tesseract"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
-# Command-line interface for SQLite
-brew "sqlite"
-# Secure runtime for JavaScript and TypeScript
-brew "deno"
+# Cross-platform make
+brew "cmake"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Platform keystore credential helper for Docker
@@ -44,16 +48,12 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# General-purpose speech recognition model
-brew "openai-whisper"
-# PDF rendering library (based on the xpdf-3.0 code base)
-brew "poppler"
-# Rsync for cloud storage
-brew "rclone"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Rust toolchain installer
+brew "rustup"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Parser generator tool
@@ -118,4 +118,5 @@ go "github.com/p-tupe/code-examples/go/check-sites"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
 uv "beets[chroma]"
 uv "kokoro-tts"
+uv "nano-pdf"
 uv "yt-dlp"

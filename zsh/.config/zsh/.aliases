@@ -43,9 +43,18 @@ tts() {
 }
 
 music() {
-  folders=${@:-'/Users/pritesh/Music'}
+  default_folders=(
+    "$HOME/Music/Classical"
+    "$HOME/Music/English"
+    "$HOME/Music/Hindi"
+    "$HOME/Music/Hindi Oldies"
+    "$HOME/Music/Marathi"
+    "$HOME/Music/Taylor Swift"
+  )
 
-  nohup /opt/homebrew/bin/vlc \
+  folders=(${@:-default_folders})
+
+  /opt/homebrew/bin/vlc \
     --quiet \
     --no-video \
     --recursive=expand \
@@ -54,7 +63,7 @@ music() {
     --playlist-tree \
     --no-repeat \
     --loop \
-    --random $folders >/dev/null &
+    --random "${folders[@]}" >/dev/null &
 
   disown
 

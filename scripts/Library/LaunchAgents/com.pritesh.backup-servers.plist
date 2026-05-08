@@ -7,13 +7,22 @@
     <string>com.pritesh.backup-servers</string>
     <key>ServiceDescription</key>
     <string>Run daily server backup</string>
-    <key>Program</key>
-    <string>/Users/pritesh/.local/bin/backup-servers.mts</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/Users/pritesh/.local/bin/backup-servers.mts</string>
+      <string>
+      /Users/pritesh/.local/bin/backup-servers-config.json</string>
+    </array>
     <key>RunAtLoad</key>
     <true />
     <key>StandardErrorPath</key>
     <string>/tmp/com.pritesh.backup-servers.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.backup-servers.out</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>NOTIFY</key>
+      <string>/Users/pritesh/.local/bin/notify</string>
+    </dict>
   </dict>
 </plist>

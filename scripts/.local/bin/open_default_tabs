@@ -7,9 +7,7 @@ import sites from "./tabs-config.json" with { type: "json" };
 const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
 const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
-async function sleep(time) {
-  return new Promise((r) => setTimeout(r, time));
-}
+const sleep = async (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function openSites(sites) {
   exec(firefox + " --new-window " + sites.shift());
@@ -25,11 +23,8 @@ const list = process.argv[2];
 const arg = sites[list];
 
 if (arg) {
-  if (list === "swipe") {
-    openSitesChrome(sites["swipe"]);
-  } else {
-    openSites(sites[process.argv[2]]);
-  }
+  if (list === "swipe") openSitesChrome(sites["swipe"]);
+  else openSites(sites[process.argv[2]]);
 } else {
   console.log(
     "Usage: open_default_tabs (",

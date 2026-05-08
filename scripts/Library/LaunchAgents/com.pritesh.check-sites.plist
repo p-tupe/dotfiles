@@ -7,8 +7,6 @@
     <string>com.pritesh.check-sites</string>
     <key>ServiceDescription</key>
     <string>Monitor sites' health</string>
-    <key>Program</key>
-    <string>/Users/pritesh/.local/bin/check-sites</string>
     <key>ProgramArguments</key>
     <array>
       <string>/Users/pritesh/.local/bin/check-sites</string>
@@ -21,5 +19,9 @@
     <string>/tmp/com.pritesh.check-sites.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.check-sites.out</string>
+    <dict>
+      <key>NOTIFY</key>
+      <string>/Users/pritesh/.local/bin/notify</string>
+    </dict>
   </dict>
 </plist>

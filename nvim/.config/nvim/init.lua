@@ -2,10 +2,12 @@ require("options")
 
 require("mappings")
 
-require("plugins")
-
 require("functions")
+
+require("highlights")
+
+require("plugins")
 
 require("commands")
 
-vim.cmd("colorscheme dracula")
+vim.cmd("call MyHighlights()")

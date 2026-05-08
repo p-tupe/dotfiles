@@ -15,5 +15,9 @@
     <string>/tmp/com.pritesh.nextcloud-cron.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.nextcloud-cron.out</string>
+    <dict>
+      <key>NOTIFY</key>
+      <string>/Users/pritesh/.local/bin/notify</string>
+    </dict>
   </dict>
 </plist>
