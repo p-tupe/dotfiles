@@ -52,22 +52,11 @@ music() {
     "$HOME/Music/Taylor Swift"
   )
 
-  folders=(${@:-default_folders})
+  folders=(${@:-${default_folders[@]}})
 
-  /opt/homebrew/bin/vlc \
-    --quiet \
-    --no-video \
-    --recursive=expand \
-    --no-media-library \
-    --playlist-autostart \
-    --playlist-tree \
-    --no-repeat \
-    --loop \
-    --random "${folders[@]}" >/dev/null &
+  cliamp --shuffle --auto-play --daemon "${folders[@]}" >/dev/null
 
   disown
-
-  /opt/homebrew/bin/yabai -m rule --add app="^VLC" space=5
 }
 
 mov2mp4() { ffmpeg -i $1 video.mp4 }

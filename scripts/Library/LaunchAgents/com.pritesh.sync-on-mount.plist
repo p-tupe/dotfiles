@@ -17,6 +17,7 @@
     <string>/tmp/com.pritesh.sync-on-mount.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.sync-on-mount.out</string>
+    <key>EnvironmentVariables</key>
     <dict>
       <key>NOTIFY</key>
       <string>/Users/pritesh/.local/bin/notify</string>

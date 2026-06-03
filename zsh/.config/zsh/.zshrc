@@ -31,7 +31,6 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##### COMPLETION #####
 ######################
 
-autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"   # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' rehash true                        # automatically find new executables in path
@@ -101,8 +100,14 @@ zstyle ':vcs_info:*' enable git
 ##### INIT ####
 ###############
 
+# completions
+autoload -Uz compinit && compinit -C
+
 # For z command
 . /opt/homebrew/etc/profile.d/z.sh
+
+# For fzf
+source <(fzf --zsh)
 
 if [ ! -e "/tmp/run_once" ]; then
   (

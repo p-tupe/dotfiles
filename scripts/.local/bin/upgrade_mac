@@ -2,20 +2,19 @@
 
 set -o pipefail
 
-if [ $NOTIFY ]; then $NOTIFY 'Updating Mac...'; fi
-
 brew update
 brew upgrade --greedy
 pushd ~/.dotfiles/homebrew
 brew bundle dump --force --describe
 popd
 
+# Remove quarantine
+xattr -r -d com.apple.quarantine /Applications/* 2>/dev/null
+
 npm --location=global update
 
 uv tool upgrade --all
 
 nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
-
-if [ $NOTIFY ]; then $NOTIFY 'Updating Mac Done!'; fi
 
 cleanup_everything

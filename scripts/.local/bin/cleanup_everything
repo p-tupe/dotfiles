@@ -3,8 +3,6 @@
 
 set -o pipefail
 
-if [ $NOTIFY ]; then $NOTIFY "Cleaning Mac...!"; fi
-
 (
   rm -rf ~/.*history
   rm -rf ~/.config/zsh/.zhistory
@@ -20,7 +18,8 @@ if [ $NOTIFY ]; then $NOTIFY "Cleaning Mac...!"; fi
   popd
 ) >/dev/null 2>&1 &
 
-command fd --unrestricted --glob --follow --prune --type file ".DS_Store" --exec rm &
+command fd --unrestricted --glob --follow \
+  --prune --type file ".DS_Store" --exec rm &
 
 rm -rf ~/Music/Music
 
@@ -39,5 +38,3 @@ if (docker stats --no-stream >/dev/null 2>&1); then
 fi
 
 wait
-
-if [ $NOTIFY ]; then $NOTIFY "Cleaning Mac Done!"; fi

@@ -2,14 +2,20 @@
 
 set -o pipefail
 
+echo "$(date) Starting conversion..."
+
 /Users/pritesh/.local/bin/supernote-toolkit \
   -input /Users/pritesh/Backups/supernote/Note/ \
   -output /Users/pritesh/Backups/supernote/PDFs
 
-if [ $NOTIFY ]; then
-  if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then
+  echo "$(date) Conversion failed!"
+  if [ $NOTIFY ]; then
     $NOTIFY "Supernotes conversion failed! Please check logs."
-  else
+  fi
+else
+  echo "$(date) Conversion successful!"
+  if [ $NOTIFY ]; then
     $NOTIFY "Supernotes converted successfully!"
   fi
 fi

@@ -2,12 +2,13 @@
 
 set -o pipefail
 
-if [ $NOTIFY ]; then $NOTIFY "Syncing Sandisk"; fi
-
 if [[ ! -e /Volumes/Sandisk ]]; then
-  echo "Sandisk not mounted"
+  echo "$(date) Sandisk not mounted!"
   exit
 fi
+
+echo "$(date) Starting sandisk sync..."
+if [ $NOTIFY ]; then $NOTIFY "Syncing Sandisk"; fi
 
 rsync \
   --archive \
@@ -24,10 +25,14 @@ rsync \
   $HOME/.dotfiles \
   /Volumes/Sandisk && diskutil unmount Sandisk
 
-if [ $NOTIFY ]; then
-  if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then
+  echo "$(date) Sandisk sync failed!"
+  if [ $NOTIFY ]; then
     $NOTIFY "Sandisk synced failed! Please check logs."
-  else
+  fi
+else
+  echo "$(date) Sandisk sync successful!"
+  if [ $NOTIFY ]; then
     $NOTIFY "Sandisk synced successfully!"
   fi
 fi

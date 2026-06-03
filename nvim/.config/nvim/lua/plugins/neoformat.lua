@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap("n", "<leader>p", ":Neoformat<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>p", ":lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<leader>p", ":'<,'>Neoformat<CR>", { noremap = true, silent = true })
 
 --  Look for a formatter executable in the node_modules/.bin directory

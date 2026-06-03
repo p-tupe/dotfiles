@@ -6,3 +6,8 @@ mkdir -p ~/Backups/.local/bin/
 rsync -azrq --delete --ignore-errors \
   ~/.local/bin/*.json \
   ~/Backups/.local/bin/
+
+rsync -azrq --delete --ignore-errors \
+  --filter=":- .gitignore" \
+  --exclude=".git" \
+  ~/Projects ~/Backups/

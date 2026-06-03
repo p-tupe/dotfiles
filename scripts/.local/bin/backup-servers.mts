@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/opt/homebrew/bin/node
 /**
  * backup-servers.mts is a simple script that pulls up config from a .json file
  * for form ConfigItem[] and (assuming ssh config is set) uses rsync to pull
@@ -22,10 +22,9 @@ if (!argv[2]) {
 
 type ConfigItem = { from: string; to: string; exclude: string[] };
 
+console.log(`${new Date().toLocaleString()} Server backup started...`);
 if (process.env.NOTIFY) {
-  execSync(`${process.env.NOTIFY} 'Server backup started!'`);
-} else {
-  console.log(`${new Date().toLocaleString()} Server backup started!`);
+  execSync(`${process.env.NOTIFY} 'Server backup started...'`);
 }
 
 const rawCfg = readFileSync(argv[2], "utf8");
@@ -44,8 +43,7 @@ for (let { from, to, exclude } of cfg) {
     }))().catch(console.error);
 }
 
+console.log(`${new Date().toLocaleString()} Server backup complete!`);
 if (process.env.NOTIFY) {
   execSync(`${process.env.NOTIFY} 'Server backup complete!'`);
-} else {
-  console.log(`${new Date().toLocaleString()} Server backup complete!`);
 }

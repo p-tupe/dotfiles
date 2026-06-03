@@ -18,6 +18,7 @@
     <string>/tmp/com.pritesh.convert-supernotes.err</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.pritesh.convert-supernotes.out</string>
+    <key>EnvironmentVariables</key>
     <dict>
       <key>NOTIFY</key>
       <string>/Users/pritesh/.local/bin/notify</string>

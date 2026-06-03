@@ -1,5 +1,19 @@
 require("mason").setup()
 
+vim.filetype.add({
+	extension = {
+		cr = "crystal",
+	},
+})
+
+vim.lsp.config("lattice", {
+	cmd = { vim.fn.expand("~/.local/bin/lattice") },
+	filetypes = { "crystal" },
+	root_markers = { "shard.yml", ".git" },
+})
+
+vim.lsp.enable("lattice")
+
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
@@ -23,7 +37,7 @@ require("mason-lspconfig").setup()
 vim.diagnostic.config({ virtual_text = false })
 
 local mappings = {
-	["<localleader>g"] = ":lua vim.diagnostic.goto_next({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
+	["<localleader>g"] = ":lua vim.diagnostic.jump({ severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
 	["<localleader>d"] = "<cmd>lua vim.diagnostic.open_float()<CR>",
 }
 
