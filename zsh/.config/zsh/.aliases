@@ -42,23 +42,6 @@ tts() {
     --voice "af_heart:20,af_bella:80" $*
 }
 
-music() {
-  default_folders=(
-    "$HOME/Music/Classical"
-    "$HOME/Music/English"
-    "$HOME/Music/Hindi"
-    "$HOME/Music/Hindi Oldies"
-    "$HOME/Music/Marathi"
-    "$HOME/Music/Taylor Swift"
-  )
-
-  folders=(${@:-${default_folders[@]}})
-
-  cliamp --shuffle --auto-play --daemon "${folders[@]}" >/dev/null
-
-  disown
-}
-
 mov2mp4() { ffmpeg -i $1 video.mp4 }
 
 download_audio() {

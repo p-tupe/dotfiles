@@ -5,7 +5,7 @@ local hotkey = require("hs.hotkey")
 
 local f = require("./functions")
 
-local mappings = {
+f.mapKeys({
 	{ modifiers = { "cmd" }, key = "b", fn = f.openFirefox },
 	-- { modifiers = { "cmd", "shift" }, key = "p", fn = f.openFirefoxPrivate },
 	{ modifiers = { "cmd" }, key = "g", fn = f.openChrome },
@@ -17,20 +17,44 @@ local mappings = {
 	{ modifiers = { "alt" }, key = "k", fn = f.slideTop },
 	{ modifiers = { "alt" }, key = "l", fn = f.slideRight },
 
-	-- { modifiers = { "alt" }, key = "1", fn = f.goToSpace1 },
-	-- { modifiers = { "alt" }, key = "2", fn = f.goToSpace2 },
-	-- { modifiers = { "alt" }, key = "3", fn = f.goToSpace3 },
-	-- { modifiers = { "alt" }, key = "4", fn = f.goToSpace4 },
-	-- { modifiers = { "alt" }, key = "5", fn = f.goToSpace5 },
-
 	{ modifiers = { "alt", "shift" }, key = "1", fn = f.moveWinToSpace1 },
 	{ modifiers = { "alt", "shift" }, key = "2", fn = f.moveWinToSpace2 },
 	{ modifiers = { "alt", "shift" }, key = "3", fn = f.moveWinToSpace3 },
 	{ modifiers = { "alt", "shift" }, key = "4", fn = f.moveWinToSpace4 },
 	{ modifiers = { "alt", "shift" }, key = "5", fn = f.moveWinToSpace5 },
-}
+})
 
-f.mapKeys(mappings)
+--------------------------
+--- Media Key Handling ---
+--------------------------
+local tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
+	local data = event:systemKey()
+
+	if data["key"] == "PLAY" and data["down"] then
+		f.mediaToggle()
+		return true, nil
+	end
+
+	if data["key"] == "REWIND" and data["down"] then
+		f.mediaPrev()
+		return true, nil
+	end
+
+	if data["key"] == "FAST" and data["down"] then
+		f.mediaNext()
+		return true, nil
+	end
+
+	return false, nil
+end)
+
+if tap then
+	tap:start()
+end
+
+------------
+-- Spoons --
+------------
 
 hs.loadSpoon("Shade")
 
