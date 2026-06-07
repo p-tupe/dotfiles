@@ -20,25 +20,6 @@ setopt no_check_jobs      # Don't warn about running processes when exiting
 setopt numeric_glob_sort  # Sort filenames numerically when it makes sense
 setopt rc_expand_param    # Array expension with parameters
 
-###################
-##### PLUGINS #####
-###################
-
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-######################
-##### COMPLETION #####
-######################
-
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"   # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                        # automatically find new executables in path
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path /tmp/cache
-zstyle ':completion:*:functions' ignored-patterns '_*' # Ignore completion functions for commands
-
 ##################
 ##### CONFIG #####
 ##################
@@ -66,7 +47,7 @@ bindkey '^[[6~' history-beginning-search-forward  # Page down key
 ##### PATH #####
 ################
 
-export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
+# export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk"
 
 export PATH="$HOME/.local/bin/\
 :$HOME/.local/npm/bin\
@@ -96,12 +77,41 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{blue}%b'
 zstyle ':vcs_info:*' enable git
 
+######################
+##### COMPLETION #####
+######################
+
+# compinit is one of the most expensive things in a typical .zshrc. 
+# By default it does a security audit of every completion file, every single time you open a shell.
+# The fix is to only do the full run if the cache (.zcompdump)
+# is older than 24 hours, and otherwise skip the check with -C
+# https://mijndertstuij.nl/posts/life-is-too-short-for-a-slow-terminal/
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive tab completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"   # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                        # automatically find new executables in path
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path /tmp/cache
+zstyle ':completion:*:functions' ignored-patterns '_*' # Ignore completion functions for commands
+
+###################
+##### PLUGINS #####
+###################
+
+source /opt/homebrew/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 ###############
 ##### INIT ####
 ###############
-
-# completions
-autoload -Uz compinit && compinit -C
 
 # For z command
 . /opt/homebrew/etc/profile.d/z.sh

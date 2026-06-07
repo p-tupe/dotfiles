@@ -53,10 +53,21 @@ lazy.setup({
 		{ "neovim/nvim-lspconfig" },
 
 		-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
-		{ "williamboman/mason.nvim" },
+		{
+			"mason-org/mason.nvim",
+			opts = {},
+		},
 
-		-- mason-lspconfig bridges mason.nvim with the lspconfig plugin
-		{ "williamboman/mason-lspconfig.nvim" },
+    {
+      'mrcjkb/rustaceanvim',
+      -- To avoid being surprised by breaking changes,
+      -- I recommend you set a version range
+      version = '^9',
+      -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
+      -- No need for lazy.nvim to lazy-load it.
+      lazy = false,
+    },
+
 
 		-- A highly extendable fuzzy finder over lists.
 		{ "nvim-telescope/telescope.nvim" },
@@ -80,7 +91,11 @@ lazy.setup({
 		},
 
 		-- A file system explorer for the Vim editor.
-		{ "kyazdani42/nvim-tree.lua", lazy = true, dependencies = { "kyazdani42/nvim-web-devicons" } },
+		{
+			"kyazdani42/nvim-tree.lua",
+			lazy = true,
+			dependencies = { "kyazdani42/nvim-web-devicons" },
+		},
 
 		-- Provides mappings to easily delete, change and add such surroundings in pairs.
 		{ "tpope/vim-surround" },
@@ -110,7 +125,12 @@ lazy.setup({
 		{ "mhinz/vim-sayonara", cmd = "Sayonara" },
 
 		-- Git plugin
-		{ "NeogitOrg/neogit", lazy = true, dependencies = { "sindrets/diffview.nvim" }, cmd = "Neogit" },
+		{
+			"NeogitOrg/neogit",
+			lazy = true,
+			dependencies = { "sindrets/diffview.nvim" },
+			cmd = "Neogit",
+		},
 
 		-- Google Tasks in neovim
 		{ "p-tupe/gtask.nvim" },
