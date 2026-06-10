@@ -53,10 +53,10 @@ lazy.setup({
 		{ "neovim/nvim-lspconfig" },
 
 		-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
-		{
-			"mason-org/mason.nvim",
-			opts = {},
-		},
+		-- {
+		-- 	"mason-org/mason.nvim",
+		-- 	opts = {},
+		-- },
 
     {
       'mrcjkb/rustaceanvim',
@@ -150,7 +150,7 @@ require("plugins.telescope")
 
 require("plugins.treesitter")
 
-require("plugins.mason-config")
+-- require("plugins.mason-config")
 
 require("plugins.cmp")
 
@@ -169,3 +169,5 @@ require("plugins.neogit")
 require("plugins.gtask")
 
 require("plugins.nvim-rss")
+
+require("plugins.lsp")

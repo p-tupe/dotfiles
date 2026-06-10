@@ -54,6 +54,7 @@ export PATH="$HOME/.local/bin/\
 :$HOME/.docker/bin\
 :$HOME/.cargo/bin\
 :$HOME/.local/share/uv/python/cpython-3.14.2-macos-aarch64-none/bin/\
+:/opt/homebrew/opt/libpq/bin\
 :/opt/homebrew/opt/rustup/bin\
 :/opt/homebrew/bin\
 :/opt/homebrew/sbin\
