@@ -50,6 +50,7 @@ lazy.setup({
     -- An implementation of the Popup API from vim in Neovim.
     { "nvim-lua/popup.nvim" },
 
+    -- LSP/Linter/Formatter setup helper
     {
       "mason-org/mason-lspconfig.nvim",
       opts = {},
@@ -58,16 +59,6 @@ lazy.setup({
         "neovim/nvim-lspconfig",
       },
     },
-
-    -- {
-    --   'mrcjkb/rustaceanvim',
-    --   -- To avoid being surprised by breaking changes,
-    --   -- I recommend you set a version range
-    --   version = '^9',
-    --   -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
-    --   -- No need for lazy.nvim to lazy-load it.
-    --   lazy = false,
-    -- },
 
     -- A highly extendable fuzzy finder over lists.
     { "nvim-telescope/telescope.nvim" },

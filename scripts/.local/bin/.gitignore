@@ -11,7 +11,7 @@ fyne
 supernote-toolkit
 claude
 godotenv
-
+ruff
 
 *config.json
 *.env

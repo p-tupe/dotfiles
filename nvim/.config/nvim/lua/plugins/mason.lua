@@ -17,14 +17,31 @@ vim.lsp.config("pyright", {
   },
 })
 
-vim.lsp.config("gopls", {
-  settings = {
-    gofumpt = true,
-    staticcheck = true,
-  }
+vim.lsp.config('golangci_lint_ls', {
+  cmd = { 'golangci-lint-langserver' },
+  root_markers = { '.git', 'go.mod' },
+  init_options = {
+    command = {
+      'golangci-lint', 'run',
+      '--output.json.path', 'stdout',
+      '--show-stats=false', '--issues-exit-code=1'
+    },
+  },
 })
 
-vim.lsp.enable({ "lua_ls", "pyright", "rust-analyzer", "gopls" })
+vim.lsp.enable({
+  "lua_ls",
+  "pyright",
+  "rust_analyzer",
+  "golangci_lint_ls",
+  "ts_ls",
+  "eslint",
+  "tailwindcss",
+  "cssls",
+  "html",
+  "jsonls",
+  "svelte"
+})
 
 vim.diagnostic.config({ virtual_text = false })
 
