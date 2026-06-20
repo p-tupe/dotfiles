@@ -1,18 +1,18 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_scandir(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out =
-		vim.fn.system({ "git", "clone", "--depth=1", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out =
+      vim.fn.system({ "git", "clone", "--depth=1", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 
 vim.opt.rtp:prepend(lazypath)
@@ -20,126 +20,130 @@ vim.opt.rtp:prepend(lazypath)
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
-	return
+  return
 end
 
 lazy.setup({
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"netrwPlugin",
-				"osc52",
-				"rplugin",
-				"shada",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
-	spec = {
-		-- A dark theme
-		{ "dracula/vim", name = "dracula" },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "osc52",
+        "rplugin",
+        "shada",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 
-		-- Library of lua functions.
-		{ "nvim-lua/plenary.nvim" },
+  spec = {
+    -- A dark theme
+    { "dracula/vim",          name = "dracula" },
 
-		-- An implementation of the Popup API from vim in Neovim.
-		{ "nvim-lua/popup.nvim" },
+    -- Library of lua functions.
+    { "nvim-lua/plenary.nvim" },
 
-		-- Collection of common configurations for Neovim's built-in language server client.
-		{ "neovim/nvim-lspconfig" },
-
-		-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
-		-- {
-		-- 	"mason-org/mason.nvim",
-		-- 	opts = {},
-		-- },
+    -- An implementation of the Popup API from vim in Neovim.
+    { "nvim-lua/popup.nvim" },
 
     {
-      'mrcjkb/rustaceanvim',
-      -- To avoid being surprised by breaking changes,
-      -- I recommend you set a version range
-      version = '^9',
-      -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
-      -- No need for lazy.nvim to lazy-load it.
-      lazy = false,
+      "mason-org/mason-lspconfig.nvim",
+      opts = {},
+      dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+      },
     },
 
+    -- {
+    --   'mrcjkb/rustaceanvim',
+    --   -- To avoid being surprised by breaking changes,
+    --   -- I recommend you set a version range
+    --   version = '^9',
+    --   -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
+    --   -- No need for lazy.nvim to lazy-load it.
+    --   lazy = false,
+    -- },
 
-		-- A highly extendable fuzzy finder over lists.
-		{ "nvim-telescope/telescope.nvim" },
+    -- A highly extendable fuzzy finder over lists.
+    { "nvim-telescope/telescope.nvim" },
 
-		-- fzf-native is a c port of fzf
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    -- fzf-native is a c port of fzf
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
-		-- Wraps the Neovim treesitter API
-		{ "nvim-treesitter/nvim-treesitter", lazy = false, build = ":TSUpdate" },
+    -- Wraps the Neovim treesitter API
+    {
+      "nvim-treesitter/nvim-treesitter",
+      lazy = false,
+      build = ":TSUpdate"
+    },
 
-		-- A completion engine plugin for neovim written in Lua.
-		{
-			"hrsh7th/nvim-cmp",
-			dependencies = {
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
-				"hrsh7th/cmp-cmdline",
-				"ray-x/cmp-treesitter",
-			},
-		},
+    -- A completion engine plugin for neovim written in Lua.
+    {
+      "hrsh7th/nvim-cmp",
+      dependencies = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+        "ray-x/cmp-treesitter",
+      },
+    },
 
-		-- A file system explorer for the Vim editor.
-		{
-			"kyazdani42/nvim-tree.lua",
-			lazy = true,
-			dependencies = { "kyazdani42/nvim-web-devicons" },
-		},
+    -- A file system explorer for the Vim editor.
+    {
+      "kyazdani42/nvim-tree.lua",
+      lazy = true,
+      dependencies = { "kyazdani42/nvim-web-devicons" },
+    },
 
-		-- Provides mappings to easily delete, change and add such surroundings in pairs.
-		{ "tpope/vim-surround" },
+    -- Provides mappings to easily delete, change and add such surroundings in pairs.
+    { "tpope/vim-surround" },
 
-		-- Smart and Powerful commenting plugin for neovim
-		{ "numToStr/Comment.nvim" },
+    -- Smart and Powerful commenting plugin for neovim
+    { "numToStr/Comment.nvim" },
 
-		-- A minimalist autopairs for Neovim
-		{ "windwp/nvim-autopairs" },
+    -- A minimalist autopairs for Neovim
+    { "windwp/nvim-autopairs" },
 
-		-- Git signs written in pure lua.
-		{ "lewis6991/gitsigns.nvim" },
+    -- Git signs written in pure lua.
+    { "lewis6991/gitsigns.nvim" },
 
-		-- navigate seamlessly between vim and kitty splits
-		{ "knubie/vim-kitty-navigator", build = "cp ./*.py ~/.config/kitty" },
+    -- navigate seamlessly between vim and kitty splits
+    { "knubie/vim-kitty-navigator", build = "cp ./*.py ~/.config/kitty" },
 
-		-- This (neo)vim plugin makes scrolling nice and smooth.
-		{ "psliwka/vim-smoothie" },
+    -- This (neo)vim plugin makes scrolling nice and smooth.
+    { "psliwka/vim-smoothie" },
 
-		-- Distraction-free writing for Neovim.
-		{ "folke/zen-mode.nvim" },
+    -- Distraction-free writing for Neovim.
+    { "folke/zen-mode.nvim" },
 
-		-- A (Neo)vim plugin for formatting code.
-		{ "sbdchd/neoformat", cmd = "Neoformat" },
+    -- A (Neo)vim plugin for formatting code.
+    { "sbdchd/neoformat",           cmd = "Neoformat" },
 
-		-- Provides a single command that deletes the current buffer in a smart way.
-		{ "mhinz/vim-sayonara", cmd = "Sayonara" },
+    -- Provides a single command that deletes the current buffer in a smart way.
+    { "mhinz/vim-sayonara",         cmd = "Sayonara" },
 
-		-- Git plugin
-		{
-			"NeogitOrg/neogit",
-			lazy = true,
-			dependencies = { "sindrets/diffview.nvim" },
-			cmd = "Neogit",
-		},
+    -- Git plugin
+    {
+      "NeogitOrg/neogit",
+      lazy = true,
+      dependencies = { "sindrets/diffview.nvim" },
+      cmd = "Neogit",
+    },
 
-		-- Google Tasks in neovim
-		{ "p-tupe/gtask.nvim" },
-		-- { dir = "~/Projects/gtask.nvim" },
+    -- Google Tasks in neovim
+    { "p-tupe/gtask.nvim" },
+    -- { dir = "~/Projects/gtask.nvim" },
 
-		-- A simple rss reader for neovim
-		{ "p-tupe/nvim-rss" },
-		-- { dir = "~/Projects/nvim-rss" },
-	},
+    -- A simple rss reader for neovim
+    { "p-tupe/nvim-rss" },
+    -- { dir = "~/Projects/nvim-rss" },
+  },
 })
 
 vim.cmd("colorscheme dracula")
@@ -149,8 +153,6 @@ require("Comment").setup()
 require("plugins.telescope")
 
 require("plugins.treesitter")
-
--- require("plugins.mason-config")
 
 require("plugins.cmp")
 
@@ -170,4 +172,4 @@ require("plugins.gtask")
 
 require("plugins.nvim-rss")
 
-require("plugins.lsp")
+require("plugins.mason")

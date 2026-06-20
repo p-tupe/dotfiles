@@ -1,9 +1,5 @@
+tap "asmvik/formulae", trusted: true
 tap "bjarneo/cliamp"
-tap "koekeishiya/formulae"
-# Command-line interface for SQLite
-brew "sqlite"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Play, record, convert, and stream select audio and video codecs
@@ -12,8 +8,10 @@ brew "ffmpeg"
 brew "tesseract"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
+# Command-line interface for SQLite
+brew "sqlite"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # Platform keystore credential helper for Docker
 brew "docker-credential-helper"
 # More intuitive version of du in rust
@@ -30,18 +28,14 @@ brew "fzf"
 brew "fzf-tab"
 # Distributed revision control system
 brew "git"
-# Git extension for versioning large files
-brew "git-lfs"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Tools and libraries to manipulate images in select formats
-brew "imagemagick"
-# GNU utilities for networking
-brew "inetutils"
+# Postgres C API library
+brew "libpq"
 # Utility for directing compilation
 brew "make"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -68,10 +62,10 @@ brew "z"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# A retro terminal music player inspired by Winamp 2.x
-brew "bjarneo/cliamp/cliamp"
 # A tiling window manager for macOS based on binary space partitioning.
-brew "koekeishiya/formulae/yabai"
+brew "asmvik/formulae/yabai"
+# A retro terminal music player inspired by Winamp 2.x
+brew "bjarneo/cliamp/cliamp", trusted: true
 # Toolset to implement parts of Android apps in native code
 cask "android-ndk"
 # Android SDK component
@@ -120,9 +114,12 @@ cask "vlc"
 cask "zoom"
 go "github.com/p-tupe/code-examples/go/check-sites"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
+cargo "cargo-watch"
+cargo "paul-graham-essay-scraper"
 uv "beets[chroma]"
 uv "kokoro-tts"
 uv "nano-pdf"
+uv "ruff"
 uv "yt-dlp"
 npm "@types/node"
 npm "neovim"

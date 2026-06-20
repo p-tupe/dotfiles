@@ -34,11 +34,17 @@ local tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(
     return false, nil
   end
 
-  print(data["key"])
-
   if data["key"] == "PLAY" then
-    f.mediaToggle()
+    if hs.fs.attributes("~/.config/cliamp/cliamp.sock") then
+      f.mediaToggle()
+    else
+      f.mediaStart()
+    end
     return true, nil
+  end
+
+  if not hs.fs.attributes("~/.config/cliamp/cliamp.sock") then
+    return false, nil
   end
 
   if data["key"] == "REWIND" or data["key"] == "PREVIOUS" then

@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 default_folders=(
-  "$HOME/Music/Classical"
   "$HOME/Music/English"
+  "$HOME/Music/Classical"
   "$HOME/Music/Hindi"
   "$HOME/Music/Hindi Oldies"
   "$HOME/Music/Marathi"
@@ -11,10 +11,7 @@ default_folders=(
 
 folders=(${@:-${default_folders[@]}})
 
-/opt/homebrew/bin/cliamp --shuffle --daemon "${folders[@]}" >/dev/null 2>&1 &
-sleep 1
-/opt/homebrew/bin/cliamp next
+((sleep 2 && cliamp next) &)
 
-disown
-
-# kill $(ps aux | rg "cliamp --s" | tail -n 1 | awk '{print $2}')
+kitty --start-as minimized --detach  \
+  /opt/homebrew/bin/cliamp --low-power --shuffle  "${folders[@]}"
