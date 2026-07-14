@@ -3,7 +3,7 @@
 set -o pipefail
 
 brew update
-brew upgrade --greedy
+brew upgrade --greedy --quiet --overwrite --yes
 pushd ~/.dotfiles/homebrew
 brew bundle dump --force --describe
 popd

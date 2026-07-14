@@ -1,4 +1,4 @@
-tap "asmvik/formulae", trusted: true
+tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git", trusted: true
 tap "bjarneo/cliamp"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -10,6 +10,8 @@ brew "tesseract"
 brew "chromaprint"
 # Command-line interface for SQLite
 brew "sqlite"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Platform keystore credential helper for Docker
@@ -34,6 +36,8 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
 # Postgres C API library
 brew "libpq"
 # Utility for directing compilation
@@ -44,6 +48,8 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
+# Run periodic jobs in PostgreSQL
+brew "pg_cron"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
@@ -58,6 +64,8 @@ brew "tree-sitter-cli"
 brew "uv"
 # Tracks most-used directories to make cd smarter
 brew "z"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
@@ -106,21 +114,17 @@ cask "qview"
 cask "slack"
 # Real time file synchronisation software
 cask "syncthing-app"
-# Virtual machines UI using QEMU
-cask "utm"
 # Multimedia player
 cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
 go "github.com/p-tupe/code-examples/go/check-sites"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
-cargo "cargo-watch"
+go "github.com/wailsapp/wails/v2/cmd/wails"
 cargo "paul-graham-essay-scraper"
 uv "beets[chroma]"
 uv "kokoro-tts"
-uv "nano-pdf"
 uv "ruff"
 uv "yt-dlp"
 npm "@types/node"
 npm "neovim"
-npm "pnpm"

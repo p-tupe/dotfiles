@@ -40,7 +40,8 @@ vim.lsp.enable({
   "cssls",
   "html",
   "jsonls",
-  "svelte"
+  "svelte",
+  -- "sqlls"
 })
 
 vim.diagnostic.config({ virtual_text = false })

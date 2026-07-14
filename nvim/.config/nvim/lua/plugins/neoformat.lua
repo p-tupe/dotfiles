@@ -1,11 +1,14 @@
 vim.g.neoformat_enabled_python = { 'ruff' }
 vim.g.neoformat_enabled_go = { 'goimports' }
+vim.g.neoformat_enabled_markdown = { 'prettierd' }
 
 local ext_to_lang = {
   py = "python",
   lua = "lua",
   rs = "rust",
-  go = "go"
+  go = "go",
+  sql = "sql",
+  md = "markdown"
 }
 
 local function format()
@@ -39,6 +42,6 @@ vim.g.neoformat_basic_format_trim = 1
 vim.g.neoformat_only_msg_on_error = 1
 
 
-vim.keymap.set('n', '<leader>p', format, { desc = "Format buf with Neoformat or ls", silent = true, noremap = true })
+vim.keymap.set('n', '<leader>p', format, { desc = "Format buf with Neoformat or lsp", silent = true, noremap = true })
 -- vim.api.nvim_set_keymap("n", "<leader>p", ":format<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("v", "<leader>p", ":'<,'>format<CR>", { noremap = true, silent = true })

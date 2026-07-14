@@ -46,3 +46,5 @@
   updateRefs = true
 [merge]
   conflictstyle = zdiff3
+[includeIf "gitdir:/Users/pritesh/Work/"]
+  path = ~/.gitconfig-work
