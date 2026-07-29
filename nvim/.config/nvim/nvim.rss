@@ -2,11 +2,10 @@ Blogs
 ----------
 http://feeds.feedburner.com/pragandy
 http://www.codesimplicity.com/feed/atom/
-https://blog.cleancoder.com/atom.xml
 https://davidwalsh.name/feed
 https://feeds.feedburner.com/BarbarianMeetsCoding
 https://freshman.tech/index.xml
-* https://stackoverflow.blog/feed/
+https://stackoverflow.blog/feed/
 https://www.jayconrod.com/feed
 https://www.rockyourcode.com/index.xml/
 https://www.semicolonandsons.com/feed
@@ -15,10 +14,10 @@ https://priteshtupe.com/rss.xml
 
 News
 ----------
-* http://feeds.bbci.co.uk/news/rss.xml
-* https://hnrss.org/frontpage
+http://feeds.bbci.co.uk/news/rss.xml
+https://hnrss.org/frontpage
 https://lobste.rs/rss
 
 Reddit
 ----------
-* https://www.reddit.com/r/neovim/.rss?sort=new
+https://www.reddit.com/r/neovim/.rss?sort=new
