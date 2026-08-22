@@ -8,13 +8,9 @@
     <key>ServiceDescription</key>
     <string>Run daily background cron jobs for nextcloud</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/nextcloud_cron</string>
+    <string>/Users/pritesh/.local/bin/nextcloud-cron</string>
     <key>RunAtLoad</key>
     <true />
-    <key>StandardErrorPath</key>
-    <string>/tmp/com.pritesh.nextcloud-cron.err</string>
-    <key>StandardOutPath</key>
-    <string>/tmp/com.pritesh.nextcloud-cron.out</string>
     <key>EnvironmentVariables</key>
     <dict>
       <key>NOTIFY</key>

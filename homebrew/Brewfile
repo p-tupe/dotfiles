@@ -36,12 +36,16 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Improved top (interactive process viewer)
+brew "htop"
 # Postgres C API library
 brew "libpq"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
@@ -52,8 +56,6 @@ brew "sops"
 brew "stow"
 # Postgres development platform
 brew "supabase"
-# Parser generator tool
-brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Tracks most-used directories to make cd smarter
@@ -66,6 +68,10 @@ brew "zsh-syntax-highlighting"
 brew "asmvik/formulae/yabai"
 # A retro terminal music player inspired by Winamp 2.x
 brew "bjarneo/cliamp/cliamp", trusted: true
+# App for managing battery charging. (Also installs a CLI on first use.)
+cask "battery"
+# Desktop password and login vault
+cask "bitwarden"
 # E-books management software
 cask "calibre"
 # App to build and share containerised applications and microservices
@@ -92,6 +98,8 @@ cask "nextcloud"
 cask "ngrok"
 # Simple application that will prevent iTunes or Apple Music from launching
 cask "notunes"
+# Local-first alternative to Logitech Options+ for HID++ devices
+cask "openlogi"
 # Image viewer
 cask "qview"
 # Team communication and collaboration software

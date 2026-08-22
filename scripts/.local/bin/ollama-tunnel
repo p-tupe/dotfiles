@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+
+set -eo pipefail
+
+if [ $NOTIFY ]; then $NOTIFY "Starting Ollama Tunnel..."; fi
+
+if ! curl -s --max-time 2 http://127.0.0.1:11434/api/version > /dev/null 2>&1; then
+    OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /opt/homebrew/bin/ollama serve &
+fi
+
+exec /usr/bin/ssh -N -R 11434:localhost:11434 \
+  -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
+  -o ExitOnForwardFailure=yes toronto-server
+
+if [ $NOTIFY ]; then $NOTIFY "Ollama Tunnel Started!"; fi

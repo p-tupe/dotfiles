@@ -5,7 +5,7 @@ set -o pipefail
 brew update
 brew upgrade --greedy --quiet --overwrite --yes
 pushd ~/.dotfiles/homebrew
-brew bundle dump --force --describe
+brew bundle dump --force
 popd
 
 # Remove quarantine
@@ -17,4 +17,4 @@ uv tool upgrade --all
 
 nvim --headless "+Lazy! sync" +MasonUpdate +TSUpdate +qa
 
-cleanup_everything
+cleanup-everything

@@ -1,6 +1,7 @@
 vim.g.neoformat_enabled_python = { 'ruff' }
 vim.g.neoformat_enabled_go = { 'goimports' }
 vim.g.neoformat_enabled_markdown = { 'prettierd' }
+vim.g.neoformat_enabled_xml = { 'xmllint' }
 
 local ext_to_lang = {
   py = "python",
@@ -8,7 +9,8 @@ local ext_to_lang = {
   rs = "rust",
   go = "go",
   sql = "sql",
-  md = "markdown"
+  md = "markdown",
+  plist = "xml",
 }
 
 local function format()

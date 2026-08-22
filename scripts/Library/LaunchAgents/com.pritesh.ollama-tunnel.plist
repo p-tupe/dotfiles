@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.pritesh.sync-on-mount</string>
-    <key>ServiceDescription</key>
-    <string>Sync Sandisk SSD on mount</string>
+    <string>com.priteshtupe.ollama-tunnel</string>
     <key>Program</key>
-    <string>/Users/pritesh/.local/bin/sync-sandisk</string>
+    <string>/Users/pritesh/bin/ollama-tunnel</string>
     <key>RunAtLoad</key>
     <true/>
-    <key>StartOnMount</key>
+    <key>KeepAlive</key>
     <true/>
     <key>EnvironmentVariables</key>
     <dict>

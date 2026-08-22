@@ -44,6 +44,7 @@ tts() {
 
 mov2mp4() { ffmpeg -i $1 video.mp4 }
 
+# prefer jiosaavn over youtube
 download_audio() {
   yt-dlp --verbose --ignore-errors \
     --format bestaudio --extract-audio --audio-format mp3 \
