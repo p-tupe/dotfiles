@@ -74,10 +74,10 @@ set.numberwidth = 5
 -- List mode on, with custom chars
 set.list = true
 set.listchars = {
-	tab = "  ",
-	trail = "·",
-	extends = "»",
-	precedes = "«",
+  tab = "  ",
+  trail = "·",
+  extends = "»",
+  precedes = "«",
 }
 
 -- Remove end of buffer ~, diff delted - and fold closed -
@@ -115,3 +115,6 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.g.loaded_ruby_provider = 0
+-- vim.opt.rocks.hererocks = false
+-- vim.opt.rocks.enabled = false

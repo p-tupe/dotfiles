@@ -10,7 +10,7 @@
     <string>/Users/pritesh/.local/bin/convert-supernotes</string>
     <key>WatchPaths</key>
     <array>
-      <string>/Users/pritesh/Notes/supernote/Note</string>
+      <string>/Users/pritesh/Backups/supernote/Note</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>

@@ -5,7 +5,7 @@
     <key>Label</key>
     <string>com.priteshtupe.ollama-tunnel</string>
     <key>Program</key>
-    <string>/Users/pritesh/bin/ollama-tunnel</string>
+    <string>/Users/pritesh/.local/bin/ollama-tunnel</string>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>

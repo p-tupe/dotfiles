@@ -1,3 +1,21 @@
+local lsp_servers = {
+  "astro",
+  "lua_ls",
+  "dmypy",
+  "rust_analyzer",
+  -- "gopls",
+  "golangci_lint_ls",
+  "ts_ls",
+  "eslint",
+  "tailwindcss",
+  "cssls",
+  "html",
+  "jsonls",
+  "svelte",
+  "ruff",
+  "zls"
+}
+
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
@@ -29,20 +47,7 @@ vim.lsp.config('golangci_lint_ls', {
   },
 })
 
-vim.lsp.enable({
-  "lua_ls",
-  "pyright",
-  "rust_analyzer",
-  "golangci_lint_ls",
-  "ts_ls",
-  "eslint",
-  "tailwindcss",
-  "cssls",
-  "html",
-  "jsonls",
-  "svelte",
-  -- "sqlls"
-})
+vim.lsp.enable(lsp_servers)
 
 vim.diagnostic.config({ virtual_text = false })
 

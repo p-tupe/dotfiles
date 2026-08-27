@@ -81,22 +81,22 @@ f.openFirefox()
 -- Break Timer --
 -----------------
 
-local breakTimer = timer.doEvery(60 * 50, function()
-  alert.show("Take a break!")
-  timer.doAfter(5, function()
-    caffeinate.lockScreen()
-  end)
-end)
-
-hotkey.bind({ "alt" }, "t", function()
-  if breakTimer:running() then
-    alert.show("Breaktimer stopped!")
-    breakTimer:stop()
-  else
-    alert.show("Breaktimer started!")
-    breakTimer:start()
-  end
-end)
+-- local breakTimer = timer.doEvery(60 * 50, function()
+--   alert.show("Take a break!")
+--   timer.doAfter(5, function()
+--     caffeinate.lockScreen()
+--   end)
+-- end)
+--
+-- hotkey.bind({ "alt" }, "t", function()
+--   if breakTimer:running() then
+--     alert.show("Breaktimer stopped!")
+--     breakTimer:stop()
+--   else
+--     alert.show("Breaktimer started!")
+--     breakTimer:start()
+--   end
+-- end)
 
 ------------------
 -- Quick reload --
