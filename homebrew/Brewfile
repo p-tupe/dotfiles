@@ -56,6 +56,8 @@ brew "sops"
 brew "stow"
 # Postgres development platform
 brew "supabase"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Tracks most-used directories to make cd smarter

@@ -12,11 +12,11 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles. A ni
 
 2. Cd into the dir `cd ~/.dotfiles`
 
-3. Dry-run on a app, eg firefox `stow --verbose --no zsh`
+3. Dry-run on a app, eg zsh `stow --verbose --no zsh`
 
-4. Live-run on a app, eg nvim `stow --verbose nvim`
+4. Live-run on a app, `stow --verbose zsh`
 
-5. Verify that symlinks were made `ls -lah ~/.config/nvim` should show `/home/<user>/.config/nvim -> ../.dotfiles/nvim/.config/nvim`
+5. Verify that symlinks were made `ls -lah ~/.config/zsh` should show `/home/<user>/.config/zsh -> ../.dotfiles/zsh/.config/zsh`
 
 ## Notes
 
@@ -34,7 +34,7 @@ I'd recommend going through the files and cherry-picking the stuff you want to i
 1. [system monitor: bpytop](https://github.com/aristocratos/bpytop)
 1. [password manager: bitwarden](https://bitwarden.com/)
 
-I use this setup on a Macbook Air M1 machine.
+I use this setup on a Macbook Pro M2 machine.
 
 ## Screenshots
 
@@ -50,7 +50,7 @@ I use this setup on a Macbook Air M1 machine.
 
 ![bpytop image](./bpytop.webp)
 
-## Some App- Specific Instructions
+## Some App-Specific Instructions
 
 ### firefox
 
@@ -71,7 +71,7 @@ https://www.reddit.com/r/privacytoolsIO/comments/mqy5u1/firefox_privacy_tweaks/
 This is macos specific launchd user agent directory. Once stowed, run the following to load the jobs:
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.pritesh.*
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.pritesh.*
 ```
 
 ### .scripts/.local/share/kokoro-tts

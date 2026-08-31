@@ -11,6 +11,7 @@ local ext_to_lang = {
   sql = "sql",
   md = "markdown",
   plist = "xml",
+  xml = "xml",
 }
 
 local function format()
