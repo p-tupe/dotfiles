@@ -3,6 +3,7 @@ vim.g.neoformat_enabled_go = { 'goimports' }
 vim.g.neoformat_enabled_markdown = { 'prettierd' }
 vim.g.neoformat_enabled_xml = { 'xmllint' }
 vim.g.neoformat_enabled_ocaml = { 'ocamlformat', 'ocpindent' }
+vim.g.neoformat_enabled_nim = { 'nimpretty' }
 
 local ext_to_lang = {
   py = "python",
@@ -13,7 +14,8 @@ local ext_to_lang = {
   md = "markdown",
   plist = "xml",
   xml = "xml",
-  ml = "ocaml"
+  ml = "ocaml",
+  nim = "nim"
 }
 
 local function format()

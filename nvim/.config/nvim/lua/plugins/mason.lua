@@ -14,7 +14,8 @@ local lsp_servers = {
   "svelte",
   "ruff",
   "zls",
-  "ocamllsp"
+  "ocamllsp",
+  "nim_langserver"
 }
 
 vim.lsp.config("lua_ls", {
@@ -48,17 +49,19 @@ vim.lsp.config('golangci_lint_ls', {
   },
 })
 
+vim.lsp.config('nim_langserver', {
+  -- It's erroring out on completions, disable them
+  on_attach = function(c) c.server_capabilities.completionProvider = nil end,
+  settings = {
+    nim = {
+      nimsuggestIdleTimeout = 86400000,
+      notificationVerbosity = "none"
+    }
+  }
+})
+
 vim.lsp.enable(lsp_servers)
 
 vim.diagnostic.config({ virtual_text = false })
-
-local mappings = {
-  ["<localleader>g"] = ":lua vim.diagnostic.jump({ count = 1, severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>",
-  ["<localleader>d"] = "<cmd>lua vim.diagnostic.open_float()<CR>",
-}
-
-for key, map in pairs(mappings) do
-  vim.api.nvim_set_keymap("n", key, map, { noremap = true, silent = true })
-end
 
 require("mason-lspconfig").setup()

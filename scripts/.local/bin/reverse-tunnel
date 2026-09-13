@@ -11,21 +11,21 @@ if ! curl -s --max-time 2 http://127.0.0.1:8000/healthz > /dev/null 2>&1; then
   popd
 fi
 
-# Ollama
+# Ollama (embeddings)
 if ! curl -s --max-time 2 http://127.0.0.1:11434/api/version > /dev/null 2>&1; then
     OLLAMA_FLASH_ATTENTION="1" \
     OLLAMA_KV_CACHE_TYPE="q8_0" \
     /opt/homebrew/bin/ollama serve &
 fi
 
-# Talk-it-out
+# Talk-it-out (TTS)
 if ! curl -s --max-time 2 http://127.0.0.1:8001/ > /dev/null 2>&1; then
   pushd "$HOME/Projects/talk-it-out"
   nohup .venv/bin/uvicorn main:app --host 127.0.0.1 --port 8001 &
   popd
 fi
 
-# Whisper
+# Whisper (STT)
 if ! curl -s -o /dev/null --max-time 2 http://127.0.0.1:8002/; then 
   /opt/homebrew/bin/whisper-server \
     --model "$HOME/Projects/local/whisper-models/ggml-large-v3-turbo.bin" \

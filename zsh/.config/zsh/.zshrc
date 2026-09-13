@@ -109,19 +109,13 @@ zstyle ':completion:*:functions' ignored-patterns '_*' # Ignore completion funct
 source /opt/homebrew/opt/fzf-tab/share/fzf-tab/fzf-tab.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(fzf --zsh)
+# eval $(opam env)
+source /opt/homebrew/etc/profile.d/z.sh
 
 ###############
 ##### INIT ####
 ###############
-
-# For z command
-. /opt/homebrew/etc/profile.d/z.sh
-
-# For fzf
-source <(fzf --zsh)
-
-# For ocaml
-eval $(opam env)
 
 if [ ! -e "/tmp/run_once" ]; then
   (

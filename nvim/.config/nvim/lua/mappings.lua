@@ -87,3 +87,4 @@ map("n", "<leader>G", ":Neogit<CR>", s)
 -- LSP stuff
 map("n", "<localleader>g", ":lua vim.diagnostic.jump({ count = 1, severity=vim.diagnostic.severity.ERROR, wrap = true })<CR>", s)
 map("n", "<localleader>d", "<cmd>lua vim.diagnostic.open_float()<CR>", s)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", s)

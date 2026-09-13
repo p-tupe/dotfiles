@@ -1,0 +1,4 @@
+[build]
+target-dir = "/Users/pritesh/.cargo/target"
+rustc-wrapper = "sccache"
+incremental = false
