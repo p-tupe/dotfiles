@@ -5,9 +5,10 @@ export LC_ALL=en_US.UTF-8 # solves locale warnings
 export MANPAGER='nvim +Man!'
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export TERMINAL="kitty"
-export BROWSER="firefox"
+export TERMINAL=kitty
+export BROWSER=firefox
 export KEYTIMEOUT=1
+export XDG_CONFIG_HOME="$HOME/.config"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 # Do not print any hints about changing Homebrew´s behaviour
 export HOMEBREW_NO_ENV_HINTS=1
