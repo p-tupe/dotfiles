@@ -1,4 +1,4 @@
-tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git", trusted: true
+tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "bjarneo/cliamp"
 # Command-line interface for SQLite
 brew "sqlite"
@@ -10,6 +10,8 @@ brew "bat"
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
 brew "chromaprint"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl", link: true
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Pack, ship and run any application as a lightweight container
@@ -48,12 +50,12 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# Utility that provides fast incremental file transfer
-brew "rsync"
-# OCaml package manager
-brew "opam"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Used as a compiler wrapper and avoids compilation when possible
+brew "sccache"
 # Editor of encrypted files
 brew "sops"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -64,14 +66,16 @@ brew "supabase"
 brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Internet file retriever
+brew "wget"
+# Port of OpenAI's Whisper model in C/C++
+brew "whisper.cpp"
 # Tracks most-used directories to make cd smarter
 brew "z"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# A tiling window manager for macOS based on binary space partitioning.
-brew "asmvik/formulae/yabai"
 # A retro terminal music player inspired by Winamp 2.x
 brew "bjarneo/cliamp/cliamp", trusted: true
 # App for managing battery charging. (Also installs a CLI on first use.)
@@ -117,7 +121,13 @@ cask "vlc"
 # Video communication and virtual meeting platform
 cask "zoom"
 go "github.com/p-tupe/code-examples/go/check-sites"
+go "reverse-proxy"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
+# cargo "create-tauri-app"
+cargo "paul-graham-essay-scraper", source: "https://github.com/p-tupe/code-examples.git"
+cargo "tauri-cli"
+cargo "watchexec-cli"
+cargo "zettel-merken"
 uv "beets[chroma]"
 uv "kokoro-tts"
 uv "ruff"

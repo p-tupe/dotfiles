@@ -2,8 +2,6 @@ local lsp_servers = {
   "astro",
   "lua_ls",
   "dmypy",
-  "rust_analyzer",
-  -- "gopls",
   "golangci_lint_ls",
   "ts_ls",
   "eslint",
@@ -16,6 +14,8 @@ local lsp_servers = {
   "zls",
   "ocamllsp",
   "nim_langserver"
+  -- "rust_analyzer", -- using rustaceanim
+  -- "gopls", -- using golangci_lint_ls
 }
 
 vim.lsp.config("lua_ls", {

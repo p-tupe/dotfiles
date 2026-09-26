@@ -1,34 +1,34 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S cargo +nightly -Zscript -q
+---cargo
+[package]
+edition = "2024"
 
-import { exec } from "node:child_process";
+[dependencies]
+serde_json = "*"
+---
 
-import sites from "./tabs-config.json" with { type: "json" };
+use std::{collections::HashMap, env, error::Error, fs, process::Command};
 
-const firefox = "/Applications/Firefox.app/Contents/MacOS/firefox";
-const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const CONFIG_FILE: &str = "/Users/pritesh/.local/bin/tabs-config.json";
 
-const sleep = async (ms) => new Promise((r) => setTimeout(r, ms));
+fn main() -> Result<(), Box<dyn Error>> {
+    let cfg: HashMap<String, Vec<String>> = serde_json::from_slice(&fs::read(CONFIG_FILE)?)?;
+    let key = env::args().nth(1).ok_or("no option")?;
 
-async function openSites(sites) {
-  exec(firefox + " --new-window " + sites.shift());
-  await sleep(3000);
-  exec(firefox + sites.map((s) => " --new-tab " + s).join(" "));
-}
+    let mut sites = cfg
+        .get(&key)
+        .ok_or_else(|| {
+            format!(
+                "expected one of [{}]",
+                cfg.keys().cloned().collect::<Vec<_>>().join(" | ")
+            )
+        })?
+        .iter();
 
-async function openSitesChrome(sites) {
-  exec('\"' + chrome + '\" ' + sites.map((s) => " --new-tab " + s).join(" "));
-}
+    Command::new("firefox")
+        .args(["--new-window", sites.next().ok_or("no site found")?])
+        .args(sites.flat_map(|s| ["--new-tab", s]))
+        .spawn()?;
 
-const list = process.argv[2];
-const arg = sites[list];
-
-if (arg) {
-  if (list === "swipe") openSitesChrome(sites["swipe"]);
-  else openSites(sites[process.argv[2]]);
-} else {
-  console.log(
-    "Usage: open_default_tabs (",
-    Object.keys(sites).join(" | "),
-    ")",
-  );
+    Ok(())
 }

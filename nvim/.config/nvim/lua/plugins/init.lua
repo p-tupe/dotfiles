@@ -127,6 +127,13 @@ lazy.setup({
       cmd = "Neogit",
     },
 
+    -- Supercharge your Rust experience in Neovim!
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^9',
+      lazy = false,
+    },
+
     -- Google Tasks in neovim
     { "p-tupe/gtask.nvim" },
     -- { dir = "~/Projects/gtask.nvim" },

@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.priteshtupe.ollama-tunnel</string>
+    <string>com.priteshtupe.reverse-tunnel</string>
     <key>Description</key>
     <string>Reverse ssh from Mac to toronto-server</string>
     <key>Program</key>

@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+/Users/pritesh/.local/bin/backup-local
+
+/Users/pritesh/.local/bin/backup-servers.mts /Users/pritesh/.local/bin/backup-servers-config.json
+
+open /Applications/Syncthing.app
+
+# open /Applications/Nextcloud.app
