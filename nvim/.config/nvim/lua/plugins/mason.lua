@@ -49,6 +49,18 @@ vim.lsp.config('golangci_lint_ls', {
   },
 })
 
+---@type rustaceanvim.Opts
+vim.g.rustaceanvim = {
+  ---@type rustaceanvim.tools.Opts
+  tools = {
+    enable_clippy = true,
+  },
+  ---@type rustaceanvim.lsp.ClientOpts
+  server = {
+    status_notify_level = false,
+  }
+}
+
 vim.lsp.config('nim_langserver', {
   -- It's erroring out on completions, disable them
   on_attach = function(c) c.server_capabilities.completionProvider = nil end,

@@ -2,20 +2,25 @@
 
 set -eo pipefail
 
-if [ $NOTIFY ]; then $NOTIFY "Starting reverse mac services..."; fi
+if [ $NOTIFY ]; then $NOTIFY "Starting mac services..."; fi
 
 # Reverse Proxy
 if ! curl -s --max-time 2 http://127.0.0.1:8000/healthz; then
-  pushd /Users/pritesh/.local/bin
+  pushd "$HOME/.local/bin"
   ./reverse-proxy ./reverse-proxy-config.json &
   popd
 fi
 
-# Ollama (embeddings)
+# Ollama (embeddings, backup)
 if ! curl -s --max-time 2 http://127.0.0.1:11434/api/version; then
     OLLAMA_FLASH_ATTENTION="1" \
     OLLAMA_KV_CACHE_TYPE="q8_0" \
     /opt/homebrew/bin/ollama serve &
+fi
+
+# SHC
+if ! curl -s --max-time 2 http://127.0.0.1:8004/health; then
+  PORT=8004 /Users/pritesh/.cargo/bin/simple-heart-counter &
 fi
 
 # Talk-it-out (TTS)
