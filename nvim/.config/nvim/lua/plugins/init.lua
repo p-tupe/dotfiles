@@ -53,7 +53,6 @@ lazy.setup({
     -- LSP/Linter/Formatter setup helper
     {
       "mason-org/mason-lspconfig.nvim",
-      opts = {},
       dependencies = {
         { "mason-org/mason.nvim", opts = {} },
         "neovim/nvim-lspconfig",
@@ -114,10 +113,10 @@ lazy.setup({
     { "folke/zen-mode.nvim" },
 
     -- A (Neo)vim plugin for formatting code.
-    { "sbdchd/neoformat",           cmd = "Neoformat" },
+    { "sbdchd/neoformat", cmd = "Neoformat" },
 
     -- Provides a single command that deletes the current buffer in a smart way.
-    { "mhinz/vim-sayonara",         cmd = "Sayonara" },
+    { "mhinz/vim-sayonara", cmd = "Sayonara" },
 
     -- Git plugin
     {

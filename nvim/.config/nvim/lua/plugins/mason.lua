@@ -72,8 +72,6 @@ vim.lsp.config('nim_langserver', {
   }
 })
 
-vim.lsp.enable(lsp_servers)
-
 vim.diagnostic.config({ virtual_text = false })
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({ automatic_enable = lsp_servers })

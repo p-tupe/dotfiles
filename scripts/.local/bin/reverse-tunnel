@@ -31,12 +31,12 @@ if ! curl -s --max-time 2 http://127.0.0.1:8001/; then
 fi
 
 # Whisper (STT)
-if ! curl -s -o /dev/null --max-time 2 http://127.0.0.1:8002/; then 
-  /opt/homebrew/bin/whisper-server \
-    --model "$HOME/Projects/local/whisper-models/ggml-large-v3-turbo.bin" \
-    --port 8002 \
-    --convert --tmp-dir /tmp &
-fi
+# if ! curl -s -o /dev/null --max-time 2 http://127.0.0.1:8002/; then 
+#   /opt/homebrew/bin/whisper-server \
+#     --model "$HOME/Projects/local/whisper-models/ggml-large-v3-turbo.bin" \
+#     --port 8002 \
+#     --convert --tmp-dir /tmp &
+# fi
 
 # Reverse SSH
 exec /usr/bin/ssh -N -R 8900:localhost:8000 \

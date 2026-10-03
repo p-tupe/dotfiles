@@ -1,14 +1,12 @@
 tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "bjarneo/cliamp"
-tap "derailed/k9s"
+tap "messense/macos-cross-toolchains"
 # Command-line interface for SQLite
 brew "sqlite"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Binary installation for rust projects
-brew "cargo-binstall"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Core component of the AcoustID project (Audio fingerprinting)
@@ -43,8 +41,12 @@ brew "gnupg"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Improved top (interactive process viewer)
 brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Postgres C API library
 brew "libpq"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -53,8 +55,6 @@ brew "neovim"
 brew "node"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
@@ -87,6 +87,10 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # A retro terminal music player inspired by Winamp 2.x
 brew "bjarneo/cliamp/cliamp", trusted: true
+# aarch64-unknown-linux-gnu Toolchain
+brew "messense/macos-cross-toolchains/aarch64-unknown-linux-gnu", trusted: true
+# x86_64-unknown-linux-gnu Toolchain
+brew "messense/macos-cross-toolchains/x86_64-unknown-linux-gnu", trusted: true
 # App for managing battery charging. (Also installs a CLI on first use.)
 cask "battery"
 # Desktop password and login vault
@@ -125,6 +129,8 @@ cask "qview"
 cask "slack"
 # Real time file synchronisation software
 cask "syncthing-app"
+# Virtual machines UI using QEMU
+cask "utm"
 # Multimedia player
 cask "vlc"
 # Video communication and virtual meeting platform
@@ -132,8 +138,11 @@ cask "zoom"
 go "github.com/p-tupe/code-examples/go/check-sites"
 go "reverse-proxy"
 go "github.com/p-tupe/code-examples/go/royal-road-scraper"
+cargo "bacon"
 cargo "create-tauri-app"
+cargo "cross", source: "https://github.com/cross-rs/cross"
 cargo "paul-graham-essay-scraper", source: "https://github.com/p-tupe/code-examples.git"
+cargo "simple-heart-counter"
 cargo "tauri-cli"
 cargo "watchexec-cli"
 cargo "zettel-merken"
