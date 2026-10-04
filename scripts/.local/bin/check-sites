@@ -1,0 +1,70 @@
+#!/usr/bin/env -S cargo +nightly -Zscript
+---cargo
+[dependencies]
+reqwest = "*"
+tokio = { version = "*", features = ["full"]}
+serde = { version = "*", features = ["derive"]}
+serde_json = "*"
+log = "*"
+env_logger = "*"
+---
+//! Check sites and notify if not OK
+use log::LevelFilter;
+use reqwest::StatusCode;
+use serde::Deserialize;
+use std::{env, fs, process::Command, time::Duration};
+
+#[derive(Deserialize)]
+struct Config {
+    sites: Vec<String>,
+    interval: u64,
+    auth: String,
+}
+
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    env_logger::builder().filter_level(LevelFilter::Info).init();
+
+    let cfg = serde_json::from_slice::<Config>(&fs::read("./check-sites-config.json")?)?;
+    let mut ticker = tokio::time::interval(Duration::from_secs(cfg.interval));
+
+    loop {
+        ticker.tick().await;
+
+        for site in &cfg.sites {
+            log::info!("checking {}", site);
+            let Ok(status) = reqwest::get(site).await.map(|r| r.status()) else {
+                log::error!("{} returned error", site);
+                notify(site, &cfg.auth).await;
+                continue;
+            };
+
+            log::info!("{} returned {}", site, status);
+            if status != StatusCode::OK {
+                notify(site, &cfg.auth).await;
+            }
+        }
+    }
+}
+
+async fn notify(site: &str, auth: &str) {
+    let local_notify = env::var("NOTIFY").unwrap_or("".into());
+    if !local_notify.is_empty() {
+        let _ = Command::new(local_notify)
+            .arg(format!("Pingmon failed for {}", site))
+            .spawn();
+    }
+
+    if !auth.is_empty() {
+        // FIXME
+        let Ok(_) = reqwest::Client::new()
+            .post("https://app.priteshtupe.com/mail/")
+            .body(r#"{"to":"mail@priteshtupe.com","subject":"Pingmon Alert","contents":"A site has failed to response"}"#)
+            .header("authorization", auth).send().await else {
+            log::error!("Failed to send email notification");
+            return;
+        };
+    }
+}
+
+// vi: ft=rust
