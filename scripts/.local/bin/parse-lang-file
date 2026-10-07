@@ -40,7 +40,7 @@ use std::{
     hash_map,
     io::{self, Write},
     path::PathBuf,
-    process::Command,
+    process::{Command, exit},
 };
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -49,11 +49,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut short_silence = home_dir().ok_or("could not find home dir")?;
     short_silence.push(".local/share/short_silence.mp3");
-    fs::exists(&short_silence).expect("short_silence.mp3 not found");
+    if !fs::exists(&short_silence)? {
+        eprintln!("error: ~/.local/share/short_silence.mp3 not found");
+        exit(1);
+    }
 
     let mut long_silence = home_dir().ok_or("could not find home dir")?;
     long_silence.push(".local/share/long_silence.mp3");
-    fs::exists(&long_silence).expect("long_silence.mp3 not found");
+    if !fs::exists(&long_silence)? {
+        eprintln!("error: ~/.local/share/long_silence.mp3 not found");
+        exit(1);
+    }
 
     let lang_tag = hash_map! {
       "fr:" => "fr-fr",
@@ -125,7 +131,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .args(["-i", "/tmp/chunks_list.txt"]) // file path
         .args(["-b:a", "128k"]) // copy, don't re-encode
         .arg(out) // output file
-        .output()?;
+        .status()?;
 
     Ok(())
 }
