@@ -1,7 +1,7 @@
 local lsp_servers = {
   "astro",
   "lua_ls",
-  "dmypy",
+  "pyright",
   "golangci_lint_ls",
   "ts_ls",
   "eslint",

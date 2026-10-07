@@ -1,0 +1,133 @@
+#!/usr/bin/env -S cargo +nightly -Zscript --quiet
+---cargo
+[package]
+edition = "2024"
+[dependencies]
+regex = "*"
+serde_json = "*"
+ureq = { version = "*", features = ["json"] }
+---
+//! This program parses plain text files with specific line tags like `fr:` and `en:`,
+//! which it uses to generate tts audio, each chunk by specific language.
+//!
+//! Example:
+//! ```plain
+//! // test_file.txt
+//! fr: Bonjour en: Good Day
+//! ```
+//!
+//! Usage:
+//! ```bash
+//! lang-parser test_file.txt # outputs test_file.mp3
+//! ```
+//!
+//! Note:
+//! Use kokoro/piper tts engines on [talk-it-out](https://github.com/p-tupe/talk-it-out) to generate audio.
+//!
+//! To generate silence (change -t for short/long):
+//! ```bash
+//! ffmpeg -nostdin -hide_banner -loglevel error -f lavfi \
+//!       -i anullsrc=r=22050:cl=mono -t 2 \
+//!      -c:a libmp3lame -b:a 128k -ar 22050 -ac 1 short_silence.mp3 -y
+//! ```
+
+#![feature(hash_map_macro)]
+
+use regex::regex;
+use std::{
+    env::{self, home_dir},
+    fs::{self},
+    hash_map,
+    io::{self, Write},
+    path::PathBuf,
+    process::Command,
+};
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let input_path = env::args().nth(1).ok_or("no file path in args")?;
+    let input_file = fs::read_to_string(&input_path)?;
+
+    let mut short_silence = home_dir().ok_or("could not find home dir")?;
+    short_silence.push(".local/share/short_silence.mp3");
+    fs::exists(&short_silence).expect("short_silence.mp3 not found");
+
+    let mut long_silence = home_dir().ok_or("could not find home dir")?;
+    long_silence.push(".local/share/long_silence.mp3");
+    fs::exists(&long_silence).expect("long_silence.mp3 not found");
+
+    let lang_tag = hash_map! {
+      "fr:" => "fr-fr",
+        "en:" => "en-us",
+    };
+
+    let tags = regex!("(?ms)(fr|en):");
+    let mut indices = tags.find_iter(&input_file).peekable();
+    let mut chunks = Vec::new();
+    while let Some(curr) = indices.next() {
+        let next = indices.peek().map_or(input_file.len(), |i| i.start());
+
+        chunks.push((
+            lang_tag
+                .get(curr.as_str())
+                .ok_or("language not mappted to a voice yet")?,
+            input_file[curr.end()..next].trim(), // text content
+        ));
+    }
+
+    {
+        let flip_flop = true; // for short/long silence
+        let _ = fs::remove_file("/tmp/chunks_list.txt").or(Ok::<(), &str>(()));
+        let mut chunks_list = fs::OpenOptions::new()
+            .append(true)
+            .create_new(true)
+            .open("/tmp/chunks_list.txt")
+            .expect("could not open chunks_list");
+
+        for (i, (lang, text)) in chunks.iter().enumerate() {
+            let mut resp = ureq::get("http://localhost:8001/tts")
+                .query_pairs([("lang", lang), ("text", &text)])
+                .call()?;
+
+            let chunk_path = format!("/tmp/chunk-{i}.mp3");
+
+            let mut audio_file = fs::OpenOptions::new()
+                .write(true)
+                .truncate(true)
+                .create(true)
+                .open(&chunk_path)?;
+
+            io::copy(&mut resp.body_mut().as_reader(), &mut audio_file)?;
+
+            let silence = if flip_flop {
+                short_silence
+                    .as_path()
+                    .to_str()
+                    .ok_or("could not convert short_silence.mp3 to string")?
+            } else {
+                long_silence
+                    .as_path()
+                    .to_str()
+                    .ok_or("could not convert long_silence.mp3 to string")?
+            };
+
+            chunks_list.write_all(format!("file {}\nfile {}\n", chunk_path, silence).as_bytes())?;
+        }
+
+        chunks_list.flush()?;
+    }
+
+    let mut out = PathBuf::from(&input_path);
+    out.set_extension("mp3");
+
+    Command::new("ffmpeg")
+        .args(["-f", "concat"]) // format is file, not media
+        .args(["-safe", "0"]) //  allow absolute path
+        .args(["-i", "/tmp/chunks_list.txt"]) // file path
+        .args(["-b:a", "128k"]) // copy, don't re-encode
+        .arg(out) // output file
+        .output()?;
+
+    Ok(())
+}
+
+// vi: ft=rust
