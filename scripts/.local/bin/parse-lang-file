@@ -33,7 +33,6 @@ ureq = { version = "*", features = ["json"] }
 
 #![feature(hash_map_macro)]
 
-use regex::regex;
 use std::{
     env::{self, home_dir},
     fs::{self},
@@ -44,29 +43,26 @@ use std::{
 };
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // TODO: Make const, or user configurable
+    let lang_tag = hash_map! {
+      "fr:" => "fr-fr",
+      "en:" => "en-us",
+    };
+    // TODO: Build up from lang_tag
+    let tags = regex::regex!("(?m)(fr:|en:)");
+
     let input_path = env::args().nth(1).ok_or("no file path in args")?;
     let input_file = fs::read_to_string(&input_path)?;
 
-    let mut short_silence = home_dir().ok_or("could not find home dir")?;
-    short_silence.push(".local/share/short_silence.mp3");
-    if !fs::exists(&short_silence)? {
-        eprintln!("error: ~/.local/share/short_silence.mp3 not found");
+    let home_dir = home_dir().ok_or("could not find home dir")?;
+    let short_silence = home_dir.join(".local/share/short_silence.mp3");
+    let long_silence = home_dir.join(".local/share/long_silence.mp3");
+
+    if !short_silence.exists() || !long_silence.exists() {
+        eprintln!("error: ~/.local/share/{{short|long}}_silence.mp3 not found");
         exit(1);
     }
 
-    let mut long_silence = home_dir().ok_or("could not find home dir")?;
-    long_silence.push(".local/share/long_silence.mp3");
-    if !fs::exists(&long_silence)? {
-        eprintln!("error: ~/.local/share/long_silence.mp3 not found");
-        exit(1);
-    }
-
-    let lang_tag = hash_map! {
-      "fr:" => "fr-fr",
-        "en:" => "en-us",
-    };
-
-    let tags = regex!("(?ms)(fr|en):");
     let mut indices = tags.find_iter(&input_file).peekable();
     let mut chunks = Vec::new();
     while let Some(curr) = indices.next() {
@@ -81,8 +77,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     {
-        let flip_flop = true; // for short/long silence
-        let _ = fs::remove_file("/tmp/chunks_list.txt").or(Ok::<(), &str>(()));
+        let mut flip = true; // for short/long silence
+        let _ = fs::remove_file("/tmp/chunks_list.txt");
         let mut chunks_list = fs::OpenOptions::new()
             .append(true)
             .create_new(true)
@@ -95,42 +91,31 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .call()?;
 
             let chunk_path = format!("/tmp/chunk-{i}.mp3");
-
             let mut audio_file = fs::OpenOptions::new()
                 .write(true)
                 .truncate(true)
                 .create(true)
                 .open(&chunk_path)?;
-
             io::copy(&mut resp.body_mut().as_reader(), &mut audio_file)?;
 
-            let silence = if flip_flop {
-                short_silence
-                    .as_path()
-                    .to_str()
-                    .ok_or("could not convert short_silence.mp3 to string")?
-            } else {
-                long_silence
-                    .as_path()
-                    .to_str()
-                    .ok_or("could not convert long_silence.mp3 to string")?
-            };
-
+            let silence = if flip { &short_silence } else { &long_silence };
+            let silence = silence
+                .to_str()
+                .ok_or("could not convert silence file to string")?;
+            flip = !flip;
             chunks_list.write_all(format!("file {}\nfile {}\n", chunk_path, silence).as_bytes())?;
         }
 
         chunks_list.flush()?;
     }
 
-    let mut out = PathBuf::from(&input_path);
-    out.set_extension("mp3");
-
+    let out_file = PathBuf::from(&input_path).with_extension("mp3");
     Command::new("ffmpeg")
         .args(["-f", "concat"]) // format is file, not media
         .args(["-safe", "0"]) //  allow absolute path
         .args(["-i", "/tmp/chunks_list.txt"]) // file path
         .args(["-b:a", "128k"]) // copy, don't re-encode
-        .arg(out) // output file
+        .arg(out_file) // output file
         .status()?;
 
     Ok(())

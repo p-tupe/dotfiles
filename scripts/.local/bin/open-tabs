@@ -6,13 +6,31 @@ edition = "2024"
 [dependencies]
 serde_json = "*"
 ---
+//! Open a set of browser tabs based on config
+//!
+//! Example Config:
+//! ```json
+//! work: ["https://work-site.com", "https://mail.work.com"]
+//! ```
+//!
+//! Usage:
+//! ```bash
+//! open-tabs work
+//! ```
 
-use std::{collections::HashMap, env, error::Error, fs, process::Command};
-
-const CONFIG_FILE: &str = "/Users/pritesh/.local/bin/tabs-config.json";
+use std::{
+    collections::HashMap,
+    env::{self, home_dir},
+    error::Error,
+    fs,
+    process::Command,
+};
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let cfg: HashMap<String, Vec<String>> = serde_json::from_slice(&fs::read(CONFIG_FILE)?)?;
+    let config_file = home_dir()
+        .ok_or("no home dir found")?
+        .join(".local/bin/open-tabs-config.json");
+    let cfg: HashMap<String, Vec<String>> = serde_json::from_slice(&fs::read(config_file)?)?;
     let key = env::args().nth(1).ok_or("no option")?;
 
     let mut sites = cfg

@@ -1,12 +1,9 @@
 // ==UserScript==
 // @name         HDFC Enable Copy-Paste
-// @namespace    sebas.tian
 // @version      1.0.0
 // @description  Re-enables copy/paste/select/right-click on HDFC sites (netbanking + retail). Strips oncopy/onpaste/oncontextmenu/onselectstart handlers, neutralizes JS-assigned ones, unblocks Ctrl+C/V/X/A.
-// @author       Sebas Tian
-// @match        https://*.hdfcbank.com/*
-// @match        https://hdfcbank.com/*
-// @match        https://netbanking.hdfcbank.com/*
+// @author       Pritesh Tupe
+// @match        https://now.hdfc.bank.in/auth/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==

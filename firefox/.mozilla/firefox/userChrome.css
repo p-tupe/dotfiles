@@ -8,29 +8,26 @@ See the above repository for updates as well as full license text. */
   --uc-autohide-toolbar-delay: 1.8s;
   --uc-autohide-toolbar-duration: 400ms;
 }
+
 :root[uidensity="compact"] {
   --uc-navbar-transform: -34px;
 }
 
-#navigator-toolbox > div {
+#navigator-toolbox>div {
   display: contents;
 }
-:root[sessionrestored]
-  :where(
-    #nav-bar,
-    #PersonalToolbar,
-    #tab-notification-deck,
-    .global-notificationbox
-  ) {
+
+:root[sessionrestored] :where(#nav-bar,
+  #PersonalToolbar,
+  #tab-notification-deck,
+  .global-notificationbox) {
   transform: translateY(var(--uc-navbar-transform));
 }
-:root:is([customizing], [chromehidden*="toolbar"])
-  :where(
-    #nav-bar,
-    #PersonalToolbar,
-    #tab-notification-deck,
-    .global-notificationbox
-  ) {
+
+:root:is([customizing], [chromehidden*="toolbar"]) :where(#nav-bar,
+  #PersonalToolbar,
+  #tab-notification-deck,
+  .global-notificationbox) {
   transform: none !important;
   opacity: 1 !important;
 }
@@ -38,13 +35,12 @@ See the above repository for updates as well as full license text. */
 #nav-bar:not([customizing]) {
   opacity: 0;
   transition:
-    transform var(--uc-autohide-toolbar-duration) ease
-      var(--uc-autohide-toolbar-delay),
-    opacity var(--uc-autohide-toolbar-duration) ease
-      var(--uc-autohide-toolbar-delay) !important;
+    transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay),
+    opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important;
   position: relative;
   z-index: 2;
 }
+
 #titlebar {
   position: relative;
   z-index: 3;
@@ -57,176 +53,173 @@ See the above repository for updates as well as full license text. */
 #tabbrowser-tabbox {
   z-index: auto !important;
 }
+
 /* Show when toolbox is focused, like when urlbar has received focus */
-#navigator-toolbox:focus-within > .browser-toolbar {
+#navigator-toolbox:focus-within>.browser-toolbar {
   transform: translateY(0);
   opacity: 1;
   transition-duration: var(--uc-autohide-toolbar-duration),
     var(--uc-autohide-toolbar-duration) !important;
   transition-delay: 0s !important;
 }
+
 /* Show when toolbox is hovered */
-#titlebar:hover ~ .browser-toolbar,
-.browser-titlebar:hover ~ :is(#nav-bar, #PersonalToolbar),
+#titlebar:hover~.browser-toolbar,
+.browser-titlebar:hover~ :is(#nav-bar, #PersonalToolbar),
 #nav-bar:hover,
-#nav-bar:hover + #PersonalToolbar {
+#nav-bar:hover+#PersonalToolbar {
   transform: translateY(0);
   opacity: 1;
   transition-duration: var(--uc-autohide-toolbar-duration),
     var(--uc-autohide-toolbar-duration) !important;
   transition-delay: 0s !important;
 }
+
 :root[sessionrestored] #urlbar[popover] {
   opacity: 0;
   pointer-events: none;
   transition:
-    transform var(--uc-autohide-toolbar-duration) ease
-      var(--uc-autohide-toolbar-delay),
-    opacity var(--uc-autohide-toolbar-duration) ease
-      var(--uc-autohide-toolbar-delay);
+    transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay),
+    opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay);
   transform: translateY(var(--uc-navbar-transform));
 }
-#mainPopupSet:has(> [role="group"][panelopen]) ~ toolbox #urlbar[popover],
-.browser-titlebar:is(:hover, :focus-within) ~ #nav-bar #urlbar[popover],
+
+#mainPopupSet:has(> [role="group"][panelopen])~toolbox #urlbar[popover],
+.browser-titlebar:is(:hover, :focus-within)~#nav-bar #urlbar[popover],
 #nav-bar:is(:hover, :focus-within) #urlbar[popover],
-#urlbar-container > #urlbar[popover]:is([focused], [open]) {
+#urlbar-container>#urlbar[popover]:is([focused], [open]) {
   opacity: 1;
   pointer-events: auto;
   transition-delay: 0ms;
   transform: translateY(0);
 }
-#urlbar-container > #urlbar[popover]:is([focused], [open]) {
-  transition-duration: 100ms; /* Faster when focused */
+
+#urlbar-container>#urlbar[popover]:is([focused], [open]) {
+  transition-duration: 100ms;
+  /* Faster when focused */
 }
+
 /* This ruleset is separate, because not having :has support breaks other selectors as well */
-#mainPopupSet:has(> [role="group"][panelopen])
-  ~ #navigator-toolbox
-  > .browser-toolbar {
+#mainPopupSet:has(> [role="group"][panelopen])~#navigator-toolbox>.browser-toolbar {
   transition-delay: 33ms !important;
   transform: translateY(0);
   opacity: 1;
 }
+
 /* If tabs are in sidebar then nav-bar doesn't normally have its own background - so we nee to add it back */
 #nav-bar.browser-titlebar {
   background: inherit;
 }
-#toolbar-menubar:not([autohide="true"]) ~ #nav-bar.browser-titlebar {
-  background-position-y: -28px; /* best guess, could vary */
+
+#toolbar-menubar:not([autohide="true"])~#nav-bar.browser-titlebar {
+  background-position-y: -28px;
+  /* best guess, could vary */
   border-top: none !important;
 }
 
 /* Bookmarks toolbar needs so extra rules */
 #PersonalToolbar {
-  transition: transform var(--uc-autohide-toolbar-duration) ease
-    var(--uc-autohide-toolbar-delay) !important;
+  transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important;
   position: relative;
   z-index: 1;
 }
 
 /* Move up the content view */
-:root[sessionrestored]:not([inFullscreen], [chromehidden~="toolbar"])
-  > body
-  > #browser {
+:root[sessionrestored]:not([inFullscreen], [chromehidden~="toolbar"])>body>#browser {
   margin-top: var(--uc-navbar-transform);
 }
 
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_tabs_with_one_tab.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
 
-/* Makes tabs toolbar items zero-height initially and sets enlarge them to fill up space equal to tab-min-height set on tabs. Optionally use privatemode_indicator_as_menu_button.css to replace main menu icon with private browsing indicator while tabs are hidden. 
+/* Hide tabs toolbar when there's only one visible tab. */
 
-This will NOT work correctly if you have hidden tabs such as with tab groups extensions
-*/
+:where(#TabsToolbar):has(#pinned-tabs-container:empty ~ #tabbrowser-arrowscrollbox > .tabbrowser-tab:first-child + hbox),
+:where(#TabsToolbar):has(#tabbrowser-arrowscrollbox > #tabbrowser-arrowscrollbox-periphery:first-child) {
+  height: 0px;
+  contain: size;
+  visibility: hidden;
 
-/* This style causes CSD window controls to disappear on linux, but you can kind of work around that by using window_control_fallback_for_custom_windows_theme.css */
-
-:root[sizemode="normal"] #nav-bar {
-  --uc-window-drag-space-width: 20px;
+  +#nav-bar {
+    --uc-navbar-window-controls-display: flex;
+  }
 }
 
 #titlebar {
+  appearance: none !important;
   -moz-appearance: none !important;
 }
+
 #TabsToolbar {
   min-height: 0px !important;
 }
 
-#tabbrowser-tabs,
-#tabbrowser-arrowscrollbox {
-  min-height: 0 !important;
+#nav-bar,
+#toolbar-menubar#toolbar-menubar#toolbar-menubar:not([autohide], [collapsed])~#nav-bar {
+  --uc-navbar-window-controls-display: none;
 }
 
-.accessibility-indicator,
-.private-browsing-indicator {
-  height: unset !important;
-}
-.accessibility-indicator > hbox {
-  padding-block: 0 !important;
-}
-
-.tabbrowser-tab {
-  height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin, 0px));
-}
-
-.tabbrowser-tab:only-of-type,
-.tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"] {
-  visibility: collapse !important;
-  min-height: 0 !important;
-  height: 0;
+:root[customtitlebar] #nav-bar>.titlebar-buttonbox-container {
+  display: var(--uc-navbar-window-controls-display) !important;
 }
 
 /* Fix window controls not being clickable */
 :root[tabsintitlebar] #toolbar-menubar[autohide="true"][inactive] {
   transition: height 0ms steps(1) 80ms;
 }
+
 :where(#nav-bar) {
-  border-inline: var(--uc-window-drag-space-width, 0) solid
-    var(--toolbar-bgcolor);
+  border-inline: var(--uc-window-drag-space-width, 0) solid var(--toolbar-bgcolor);
 }
+
 @media (-moz-platform: linux) {
   #TabsToolbar .titlebar-buttonbox {
     align-items: stretch !important;
   }
-  #TabsToolbar
-    > .titlebar-buttonbox-container
-    > .titlebar-buttonbox
-    > .titlebar-button {
+
+  #TabsToolbar>.titlebar-buttonbox-container>.titlebar-buttonbox>.titlebar-button {
     transform: scale(0.8);
     margin-inline: -3px !important;
   }
-  #TabsToolbar .titlebar-button > .toolbarbutton-icon {
+
+  #TabsToolbar .titlebar-button>.toolbarbutton-icon {
     padding: 0 13px !important;
   }
 }
 
-#tabbrowser-tabs:not([overflow]) ~ #alltabs-button {
+#tabbrowser-tabs:not([overflow])~#alltabs-button {
   display: none;
 }
 
 #tabbrowser-arrowscrollbox-periphery,
 #private-browsing-indicator-with-label,
-#TabsToolbar > .titlebar-buttonbox-container {
+#TabsToolbar>.titlebar-buttonbox-container {
   contain: strict;
   contain-intrinsic-height: 0px;
 }
+
 #tabbrowser-arrowscrollbox-periphery {
   contain-intrinsic-width: 36px;
   padding-inline-end: 3px;
 }
+
 #private-browsing-indicator-with-label {
   contain-intrinsic-width: 116px;
 }
-#TabsToolbar > .titlebar-buttonbox-container {
+
+#TabsToolbar>.titlebar-buttonbox-container {
   contain-intrinsic-width: var(--uc-window-control-width, 138px);
   margin-bottom: 0 !important;
 }
+
 @media (-moz-platform: linux) {
-  #TabsToolbar > .titlebar-buttonbox-container {
+  #TabsToolbar>.titlebar-buttonbox-container {
     contain-intrinsic-width: var(--uc-window-control-width, 105px);
   }
 }
+
 @media (-moz-platform: macos) {
-  #TabsToolbar > .titlebar-buttonbox-container {
+  #TabsToolbar>.titlebar-buttonbox-container {
     contain-intrinsic-width: var(--uc-window-control-width, 72px);
   }
 }
@@ -236,22 +229,16 @@ This will NOT work correctly if you have hidden tabs such as with tab groups ext
 /****************************************************************************************/
 
 /* hide private mode indicators / private masks */
-#main-window[privatebrowsingmode="temporary"]:not([inDOMFullscreen="true"])
-  #navigator-toolbox
-  #TabsToolbar
-  .private-browsing-indicator,
+#main-window[privatebrowsingmode="temporary"]:not([inDOMFullscreen="true"]) #navigator-toolbox #TabsToolbar .private-browsing-indicator,
 * #private-browsing-indicator-titlebar,
 * #private-browsing-indicator,
 * .private-browsing-indicator {
   visibility: collapse !important;
 }
 
-#TabsToolbar
-  :is(
-    #private-browsing-indicator-with-label,
-    .private-browsing-indicator-with-label,
-    .private-browsing-indicator-icon,
-    .private-browsing-indicator-label
-  ) {
+#TabsToolbar :is(#private-browsing-indicator-with-label,
+  .private-browsing-indicator-with-label,
+  .private-browsing-indicator-icon,
+  .private-browsing-indicator-label) {
   display: none !important;
 }
