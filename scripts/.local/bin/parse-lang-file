@@ -37,7 +37,6 @@ use std::{
     env::{self, home_dir},
     fs::{self},
     hash_map,
-    io::{self, Write},
     path::PathBuf,
     process::{Command, exit},
 };
@@ -57,7 +56,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let home_dir = home_dir().ok_or("could not find home dir")?;
     let short_silence = home_dir.join(".local/share/short_silence.mp3");
     let long_silence = home_dir.join(".local/share/long_silence.mp3");
-
     if !short_silence.exists() || !long_silence.exists() {
         eprintln!("error: ~/.local/share/{{short|long}}_silence.mp3 not found");
         exit(1);
@@ -66,52 +64,35 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut indices = tags.find_iter(&input_file).peekable();
     let mut flip = true; // for short/long silence
     let mut count = 0; // for chunk idx
-    let mut chunks_list = fs::OpenOptions::new()
-        .append(true)
-        .create(true)
-        .open("/tmp/chunks_list.txt")
-        .expect("could not open chunks_list");
+    let mut chunks_list = String::new();
 
     while let Some(curr) = indices.next() {
         let next = indices.peek().map_or(input_file.len(), |i| i.start());
 
-        let lang = lang_tag
-            .get(curr.as_str())
-            .ok_or("language not mappted to a voice yet")?;
-
-        let text = input_file[curr.end()..next].trim(); // text content
-
         let mut resp = ureq::get("http://localhost:8001/tts")
-            .query_pairs([("lang", lang), ("text", &text)])
+            .query_pairs([
+                ("lang", lang_tag.get(curr.as_str()).unwrap()),
+                ("text", &input_file[curr.end()..next].trim()),
+            ])
             .call()?;
 
         let chunk_path = format!("/tmp/chunk-{count}.mp3");
-        let mut audio_file = fs::OpenOptions::new()
-            .write(true)
-            .truncate(true)
-            .create(true)
-            .open(&chunk_path)?;
-        io::copy(&mut resp.body_mut().as_reader(), &mut audio_file)?;
+        fs::write(&chunk_path, resp.body_mut().read_to_vec()?)?;
 
         let silence = if flip { &short_silence } else { &long_silence };
-        let silence = silence
-            .to_str()
-            .ok_or("could not convert silence file to string")?;
+        let silence = silence.to_str().unwrap();
+        chunks_list.push_str(&format!("\nfile {}\nfile {}\n", chunk_path, silence));
 
-        chunks_list.write_all(format!("file {}\nfile {}\n", chunk_path, silence).as_bytes())?;
         flip = !flip;
         count += 1;
     }
 
-    chunks_list.flush()?;
+    fs::write("/tmp/chunks_list.txt", chunks_list)?;
 
     let out_file = PathBuf::from(&input_path).with_extension("mp3");
     Command::new("ffmpeg")
-        .args(["-f", "concat"]) // format is file, not media
-        .args(["-safe", "0"]) //  allow absolute path
-        .args(["-i", "/tmp/chunks_list.txt"]) // file path
-        .args(["-b:a", "128k"]) // copy, don't re-encode
-        .arg(out_file) // output file
+        .args(["-f", "concat", "-safe", "0", "-b:a", "128k"])
+        .args(["-i", "/tmp/chunks_list.txt", out_file.to_str().unwrap()])
         .status()?;
 
     Ok(())
