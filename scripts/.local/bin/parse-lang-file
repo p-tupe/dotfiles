@@ -4,7 +4,6 @@
 edition = "2024"
 [dependencies]
 regex = "*"
-serde_json = "*"
 ureq = { version = "*", features = ["json"] }
 ---
 //! This program parses plain text files with specific line tags like `fr:` and `en:`,
@@ -22,24 +21,10 @@ ureq = { version = "*", features = ["json"] }
 //! ```
 //!
 //! Note:
-//! Use kokoro/piper tts engines on [talk-it-out](https://github.com/p-tupe/talk-it-out) to generate audio.
-//!
-//! To generate silence (change -t for short/long):
-//! ```bash
-//! ffmpeg -nostdin -hide_banner -loglevel error -f lavfi \
-//!       -i anullsrc=r=22050:cl=mono -t 2 \
-//!      -c:a libmp3lame -b:a 128k -ar 22050 -ac 1 short_silence.mp3 -y
-//! ```
+//! Uses kokoro/piper tts engines on [talk-it-out](https://github.com/p-tupe/talk-it-out) to generate audio.
 
 #![feature(hash_map_macro)]
-
-use std::{
-    env::{self, home_dir},
-    fs::{self},
-    hash_map,
-    path::PathBuf,
-    process::{Command, exit},
-};
+use std::{env, fs, hash_map, path::PathBuf, process::Command};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // TODO: Make const, or user configurable
@@ -53,18 +38,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let input_path = env::args().nth(1).ok_or("no file path in args")?;
     let input_file = fs::read_to_string(&input_path)?;
 
-    let home_dir = home_dir().ok_or("could not find home dir")?;
-    let short_silence = home_dir.join(".local/share/short_silence.mp3");
-    let long_silence = home_dir.join(".local/share/long_silence.mp3");
-    if !short_silence.exists() || !long_silence.exists() {
-        eprintln!("error: ~/.local/share/{{short|long}}_silence.mp3 not found");
-        exit(1);
+    let short_silence = "/tmp/short_silence.mp3";
+    let long_silence = "/tmp/long_silence.mp3";
+    if !fs::exists(short_silence)? {
+        generate_silence(2, short_silence);
+    }
+    if !fs::exists(long_silence)? {
+        generate_silence(3, long_silence);
     }
 
     let mut indices = tags.find_iter(&input_file).peekable();
     let mut flip = true; // for short/long silence
     let mut count = 0; // for chunk idx
-    let mut chunks_list = String::new();
+    let mut chunks_list = String::from("file /tmp/short_silence.mp3\n");
 
     while let Some(curr) = indices.next() {
         let next = indices.peek().map_or(input_file.len(), |i| i.start());
@@ -79,9 +65,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let chunk_path = format!("/tmp/chunk-{count}.mp3");
         fs::write(&chunk_path, resp.body_mut().read_to_vec()?)?;
 
-        let silence = if flip { &short_silence } else { &long_silence };
-        let silence = silence.to_str().unwrap();
-        chunks_list.push_str(&format!("\nfile {}\nfile {}\n", chunk_path, silence));
+        let silence = if flip { short_silence } else { long_silence };
+        chunks_list.push_str(&format!("file {}\nfile {}\n", chunk_path, silence));
 
         flip = !flip;
         count += 1;
@@ -89,13 +74,29 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     fs::write("/tmp/chunks_list.txt", chunks_list)?;
 
-    let out_file = PathBuf::from(&input_path).with_extension("mp3");
     Command::new("ffmpeg")
-        .args(["-f", "concat", "-safe", "0", "-b:a", "128k"])
-        .args(["-i", "/tmp/chunks_list.txt", out_file.to_str().unwrap()])
-        .status()?;
+        .args(["-nostdin", "-hide_banner"])
+        .args(["-loglevel", "error"])
+        .args(["-f", "concat", "-safe", "0", "-i", "/tmp/chunks_list.txt"])
+        .args(["-b:a", "128k"])
+        .arg(PathBuf::from(&input_path).with_extension("mp3"))
+        .output()?;
 
     Ok(())
+}
+
+fn generate_silence(time: i32, file: &str) {
+    Command::new("ffmpeg")
+        .args(["-nostdin", "-hide_banner"])
+        .args(["-loglevel", "error", "-f", "lavfi"])
+        .args(["-i", "anullsrc=r=22050:cl=mono"])
+        .args(["-t", &time.to_string()])
+        .args(["-c:a", "libmp3lame"])
+        .args(["-b:a", "128k", "-ar"])
+        .args(["22050", "-ac", "1"])
+        .arg(file)
+        .spawn()
+        .expect("should generate silence");
 }
 
 // vi: ft=rust
